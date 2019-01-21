@@ -21,12 +21,12 @@ public interface IHealth {
     /// <summary>
     /// Tells whether the unit currently cannot die. The unit can still take damage
     /// </summary>
-    bool isImmortal { get; set; }
+    bool IsImmortal { get; set; }
     
     /// <summary>
     /// Tells whether the unit currently cannot take any damage
     /// </summary>
-    bool isInvunerable { get; set; }
+    bool IsInvulnerable { get; set; }
     
     /// <summary>
     /// Increases current health points by the given amount. Will not increase beyond maximum health
