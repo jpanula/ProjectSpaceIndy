@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMover{
+public interface IMover {
     /// <summary>
     /// Speed of movement
     /// </summary>
