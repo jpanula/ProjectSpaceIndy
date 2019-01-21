@@ -1,4 +1,4 @@
-# ProjectSpaceIndy
+# Project Space Indy
 Project Space Indy by Team Relic
 
 Muistakaa, että masterille ei laiteta mitään, mikä ei toimi.
