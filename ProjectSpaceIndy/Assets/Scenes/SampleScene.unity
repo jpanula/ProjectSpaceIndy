@@ -215,6 +215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1612667570}
+  Distance: 20
+  Angle: 55
+  MovementSmoothing: 0.15
 --- !u!20 &282840813
 Camera:
   m_ObjectHideFlags: 0
@@ -353,13 +356,18 @@ Prefab:
     - target: {fileID: 114101453088164596, guid: 662e6350a097a234d983b257aff26aab,
         type: 2}
       propertyPath: _speed
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114101453088164596, guid: 662e6350a097a234d983b257aff26aab,
         type: 2}
       propertyPath: turnSmoothing
       value: 0.112
       objectReference: {fileID: 0}
+    - target: {fileID: 114101453088164596, guid: 662e6350a097a234d983b257aff26aab,
+        type: 2}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 282840813}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 662e6350a097a234d983b257aff26aab, type: 2}
   m_IsPrefabParent: 0
