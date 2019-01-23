@@ -14,7 +14,7 @@ public class WeaponTester : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetAxisRaw("Fire1") > 0)
 		{
 			foreach (Weapon weapon in Weapons)
 			{
