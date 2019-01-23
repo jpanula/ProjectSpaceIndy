@@ -217,6 +217,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4233615534918490}
+  - component: {fileID: 114101453088164596}
+  - component: {fileID: 114997143367041604}
   m_Layer: 0
   m_Name: Placeholder Spaceship
   m_TagString: Untagged
@@ -1307,6 +1309,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114101453088164596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714050269312900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad76eeb45e64b6439b936af7539c215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  turnSmoothing: 0.1
+--- !u!114 &114997143367041604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714050269312900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc8f742dede0374e962cd9f4729dad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135274715442409042
 SphereCollider:
   m_ObjectHideFlags: 1
