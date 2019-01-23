@@ -219,9 +219,10 @@ GameObject:
   - component: {fileID: 4233615534918490}
   - component: {fileID: 114101453088164596}
   - component: {fileID: 114997143367041604}
+  - component: {fileID: 114182059755915736}
   m_Layer: 0
   m_Name: Placeholder Spaceship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1320,8 +1321,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad76eeb45e64b6439b936af7539c215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  turnSmoothing: 0.1
+  Camera: {fileID: 0}
+  _speed: 10
+  turnSmoothing: 0.112
+--- !u!114 &114182059755915736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714050269312900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee29269ca6166946bacf06c2a801bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingHealth: 0
+  _currentHealth: 0
+  _maxHealth: 0
+  _minHealth: 0
+  _isImmortal: 0
+  _isInvulnerable: 0
 --- !u!114 &114997143367041604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1333,6 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc8f742dede0374e962cd9f4729dad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Weapons: []
 --- !u!135 &135274715442409042
 SphereCollider:
   m_ObjectHideFlags: 1

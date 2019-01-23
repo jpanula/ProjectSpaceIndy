@@ -355,19 +355,47 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114101453088164596, guid: 662e6350a097a234d983b257aff26aab,
         type: 2}
-      propertyPath: _speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114101453088164596, guid: 662e6350a097a234d983b257aff26aab,
-        type: 2}
-      propertyPath: turnSmoothing
-      value: 0.112
-      objectReference: {fileID: 0}
-    - target: {fileID: 114101453088164596, guid: 662e6350a097a234d983b257aff26aab,
-        type: 2}
       propertyPath: Camera
       value: 
       objectReference: {fileID: 282840813}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 662e6350a097a234d983b257aff26aab, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2102424797 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1590664492115012, guid: 124928f6c2994174185e9032eb380a87,
+    type: 2}
+  m_PrefabInternal: {fileID: 306713948}
+--- !u!114 &2102424799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2102424797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2df821cd5c02c48a2c11330a73acbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapons: []
+  Player: {fileID: 0}
+  StrafeTime: 3
+  WaitTime: 1.5
+  Distance: 10
+  MoveLeft: 0
+  Waiting: 0
+--- !u!114 &2102424800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2102424797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c9af1d42b7b34449ccc34135f0944a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 50
+  TurnSmoothing: 0.1
+  MoveSmoothing: 0.33
+  Player: {fileID: 0}
