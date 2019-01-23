@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerUnit : UnitBase {
 	
-	// Also in unitbase
-	private IMover _mover;
-	
 	// Update is called once per frame
 	protected override void Update ()
 	{
@@ -25,19 +22,4 @@ public class PlayerUnit : UnitBase {
 		Mover.Move( movementVector * Time.deltaTime);
 
 	}
-	
-	// Remove after unitbase is implemented
-	public IMover Mover
-	{
-		get
-		{
-			if ( _mover == null )
-			{
-				_mover = GetComponent< IMover >();
-			}
-
-			return _mover;
-		}
-	}
-
 }

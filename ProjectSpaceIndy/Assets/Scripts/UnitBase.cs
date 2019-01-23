@@ -12,6 +12,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     protected virtual void Awake()
     {
         Health = gameObject.GetOrAddComponent<Health>();
+        Mover = GetComponent<IMover>();
     }
 
     protected abstract void Update();
