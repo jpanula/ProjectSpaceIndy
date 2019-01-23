@@ -6,11 +6,6 @@ public class PlayerUnit : MonoBehaviour {
 	
 	// Also in unitbase
 	private IMover _mover;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update ()

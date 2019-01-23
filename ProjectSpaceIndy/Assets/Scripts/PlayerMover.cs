@@ -25,7 +25,12 @@ public class PlayerMover : MonoBehaviour, IMover
 		position = position + movementVector * _speed;
 		Vector3 lookAt = position - transform.position;
 		rotationSpeed = 1 / turnSmoothing;
-		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAt), rotationSpeed * Time.deltaTime);
+		if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
+		{
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAt),
+				rotationSpeed * Time.deltaTime);
+		}
+
 		transform.position = position;
 
 		
