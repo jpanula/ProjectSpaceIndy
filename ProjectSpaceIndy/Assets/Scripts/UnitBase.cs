@@ -5,38 +5,38 @@ using UnityEngine;
 public abstract class UnitBase : MonoBehaviour, IDamageReceiver
 {
 
-	public IMover Mover;
-	public IHealth Health;
-	public WeaponBase[] Weapons;
+    public IMover Mover;
+    public IHealth Health;
+    public Weapon[] Weapons;
 
-	protected virtual void Awake()
-	{
-		Health = gameObject.GetOrAddComponent<Health>();
-	}
+    protected virtual void Awake()
+    {
+        Health = gameObject.GetOrAddComponent<Health>();
+    }
 
-	protected abstract void Update();
+    protected abstract void Update();
 
-	public virtual bool TakeDamage(int amount)
-	{
-		bool died = Health.DecreaseHealth(amount);
-		if (died)
-		{
-			Die();
-		}
+    public virtual bool TakeDamage(int amount)
+    {
+        bool died = Health.DecreaseHealth(amount);
+        if (died)
+        {
+            Die();
+        }
 
-		return died;
-	}
+        return died;
+    }
 
-	public void Fire()
-	{
-		foreach (WeaponBase weapon in Weapons)
-		{
-			weapon.Fire();
-		}
-	}
+    public void Fire()
+    {
+        foreach (Weapon weapon in Weapons)
+        {
+            weapon.Fire();
+        }
+    }
 
-	protected virtual void Die()
-	{
-		Destroy(gameObject);
-	}
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
+    }
 }
