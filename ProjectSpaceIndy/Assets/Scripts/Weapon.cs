@@ -25,17 +25,20 @@ public class Weapon : MonoBehaviour
     /// <returns>True if the projectile can be fired, false otherwise</returns>
     public bool Fire()
     {
-        bool canFire = _coolDownTimer >= CoolDownTime;
-        if (canFire)
+        if (_coolDownTimer >= CoolDownTime)
         {
             _coolDownTimer = 0;
             Projectile projectile = Projectiles.GetPooledItem();
-            projectile.transform.position = transform.position;
-            projectile.transform.rotation = transform.rotation;
-            projectile.Launch(this, transform.forward);
+            if (projectile != null)
+            {
+                projectile.transform.position = transform.position;
+                projectile.transform.rotation = transform.rotation;
+                projectile.Launch(this, transform.forward);
+                return true;
+            }
         }
 
-        return canFire;
+        return false;
     }
 
     public bool ReturnProjectile(Projectile projectile)
