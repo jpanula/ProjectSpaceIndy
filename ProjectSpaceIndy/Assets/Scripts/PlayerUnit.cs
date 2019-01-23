@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerUnit : MonoBehaviour {
+public class PlayerUnit : UnitBase {
 	
 	// Also in unitbase
 	private IMover _mover;
 	
 	// Update is called once per frame
-	void Update ()
+	protected override void Update ()
 	{
 		float horizontal = Input.GetAxisRaw( "Horizontal" );
 		float vertical = Input.GetAxisRaw( "Vertical" );
