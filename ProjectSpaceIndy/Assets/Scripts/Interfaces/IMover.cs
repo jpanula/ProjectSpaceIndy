@@ -7,10 +7,6 @@ public interface IMover {
     /// Speed of movement
     /// </summary>
     float Speed { get; }
-    
-    /// <summary>
-    /// Method for moving
-    /// </summary>
-    /// <param name="movementVector">The movement vector</param>
-    void Move(Vector3 movementVector);
+
+    Vector3 MovementVector { get; set; }
 }

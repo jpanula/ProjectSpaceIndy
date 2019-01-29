@@ -8,10 +8,26 @@ public class EnemyMover : MonoBehaviour, IMover
     public float TurnSmoothing;
     public float MoveSmoothing;
     public GameObject Player;
+    public float StrafeTime;
+    public float WaitTime;
+    public float Distance;
+    public bool MoveLeft;
+    public bool Waiting;
+    private float _strafeTimer;
+    private float _waitTimer;
+    public Vector3 _movementVector;
+
+    public Vector3 MovementVector
+    {
+        get { return _movementVector; }
+        set { _movementVector = value; }
+    }
 
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
+        _strafeTimer = 0;
+        _waitTimer = 0;
     }
 
     public float Speed
@@ -27,5 +43,44 @@ public class EnemyMover : MonoBehaviour, IMover
 
         transform.position =
             Vector3.Lerp(transform.position, transform.position + movementVector * _speed, 1 / MoveSmoothing * Time.deltaTime);
+    }
+
+    private void Update()
+    {
+        _movementVector = Vector3.zero;
+        if (Waiting)
+        {
+            _waitTimer += Time.deltaTime;
+            Move(_movementVector * Time.deltaTime);
+            if (_waitTimer >= WaitTime)
+            {
+                Waiting = false;
+                _waitTimer = 0;
+            }
+        }
+        else
+        {
+            _strafeTimer += Time.deltaTime;
+            if (MoveLeft)
+            {
+                _movementVector = -transform.right;
+            }
+            else
+            {
+                _movementVector = transform.right;
+            }
+
+            if (_strafeTimer >= StrafeTime)
+            {
+                Waiting = true;
+                _strafeTimer = 0;
+                MoveLeft = !MoveLeft;
+            }
+
+            Vector3 playerVector = Vector3.Normalize(Player.transform.position - transform.position);
+            float distanceFromPlayer = Vector3.Distance(Player.transform.position, transform.position);
+            playerVector *= (distanceFromPlayer - Distance) / Distance;
+            Move((_movementVector + playerVector) * Time.deltaTime);
+        }
     }
 }
