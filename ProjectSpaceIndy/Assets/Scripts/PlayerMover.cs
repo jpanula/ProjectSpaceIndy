@@ -88,7 +88,6 @@ public class PlayerMover : MonoBehaviour, IMover
 		// Kutsutaan Moverin Move metodia ja välitetään syötevektori 
 		// parametrina.
 		Move( _movementVector * Time.deltaTime);
-		_lastMousePosition = Input.mousePosition;
 		
 		//Debug.Log("X: " + Input.GetAxisRaw("Horizontal_Look") + " Y: " + Input.GetAxisRaw("Vertical_Look"));
 
