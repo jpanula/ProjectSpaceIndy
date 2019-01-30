@@ -10,12 +10,15 @@ public class PlayerMover : MonoBehaviour, IMover
 	public float _speed = 1;
 	[Range(0.1f, 1.0f), Tooltip("Bigger number = Ship turns slower")]
 	public float turnSmoothing;
+	[Tooltip("Time in seconds to wait before changing rotation to match movement direction")]
+	public float RotationTimeout;
 	public bool UseMouse;
 	private float rotationSpeed;
 	private Plane _plane;
 	private float _distanceToPlane;
 	private Vector3 _pointOnPlane;
 	public Vector3 _movementVector;
+	private float _timeOutTimer;
 
 	public Vector3 MovementVector
 	{
@@ -26,6 +29,7 @@ public class PlayerMover : MonoBehaviour, IMover
 	private void Awake()
 	{
 		_plane = new Plane(Vector3.up, 0);
+		_timeOutTimer = 0;
 	}
 
 	public float Speed
@@ -49,6 +53,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			Vector3 lookVector = new Vector3(Input.GetAxisRaw("Horizontal_Look"), 0, -Input.GetAxisRaw("Vertical_Look"));
 			lookVector += transform.position;
 			transform.LookAt(lookVector);
+			_timeOutTimer = 0;
 		}
 		// If controller right stick fails, get from mouse if possible
 		else if (UseMouse)
@@ -63,7 +68,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			}
 		}
 		// If mouse and right stick rotation fails, use movement
-		else if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
+		else if ((Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0) && _timeOutTimer >= RotationTimeout)
 		{
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAt),
 				rotationSpeed * Time.deltaTime);
@@ -75,6 +80,7 @@ public class PlayerMover : MonoBehaviour, IMover
 
 	private void Update()
 	{
+		_timeOutTimer += Time.deltaTime;
 		float horizontal = Input.GetAxisRaw( "Horizontal" );
 		float vertical = Input.GetAxisRaw( "Vertical" );
 
