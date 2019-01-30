@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     public IMover Mover;
     private Weapon _weapon;
     private Vector3 _direction;
-    private bool _isFired;
+    public bool _isFired;
     private float _lifeTimeTimer;
 
     private void Awake()
@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        Mover.MovementVector = _direction * Time.deltaTime;
         _lifeTimeTimer += Time.deltaTime;
         if (_lifeTimeTimer >= Lifetime)
         {
@@ -29,7 +30,11 @@ public class Projectile : MonoBehaviour
 
         if (_isFired)
         {
-            Mover.Move(_direction * Time.deltaTime);
+            Mover.MovementVector = _direction * Time.deltaTime;
+        }
+        else
+        {
+            Mover.MovementVector = Vector3.zero;
         }
     }
 

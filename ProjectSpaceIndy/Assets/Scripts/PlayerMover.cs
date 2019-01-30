@@ -14,6 +14,13 @@ public class PlayerMover : MonoBehaviour, IMover
 	private Plane _plane;
 	private float _distanceToPlane;
 	private Vector3 _pointOnPlane;
+	public Vector3 _movementVector;
+
+	public Vector3 MovementVector
+	{
+		get { return _movementVector; }
+		set { _movementVector = value; }
+	}
 
 	private void Awake()
 	{
@@ -52,8 +59,23 @@ public class PlayerMover : MonoBehaviour, IMover
 
 		transform.position = position;
 
-		
 	}
 
-	
+	private void Update()
+	{
+		float horizontal = Input.GetAxisRaw( "Horizontal" );
+		float vertical = Input.GetAxisRaw( "Vertical" );
+
+		// Muodostetaan syötteestä vektori
+		Vector3 inputVector = new Vector3( horizontal, 0, vertical );
+
+		// Kertomalla inputVector Time.deltaTime:lla saamme fps:stä
+		// riippumattoman liikevektorin
+		_movementVector = inputVector;
+
+		// Kutsutaan Moverin Move metodia ja välitetään syötevektori 
+		// parametrina.
+		Move( _movementVector * Time.deltaTime);
+
+	}
 }
