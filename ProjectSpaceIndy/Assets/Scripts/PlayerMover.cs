@@ -19,6 +19,13 @@ public class PlayerMover : MonoBehaviour, IMover
 	private Vector3 _pointOnPlane;
 	public Vector3 _movementVector;
 	private float _timeOutTimer;
+	
+	// Spherecast variables
+	public float sphereRadius;
+	public float maxDistance;
+	private float currentHitDitstance;
+	private Vector3 origin;
+	private Vector3 direction;
 
 	public Vector3 MovementVector
 	{
@@ -74,6 +81,17 @@ public class PlayerMover : MonoBehaviour, IMover
 				rotationSpeed * Time.deltaTime);
 		}
 
+		origin = transform.position;
+        
+		direction = position - transform.position;
+		RaycastHit hit;
+
+		if (Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance))
+		{
+			Debug.Log("Hit!");
+			currentHitDitstance = hit.distance;
+		}
+		
 		transform.position = position;
 
 	}
