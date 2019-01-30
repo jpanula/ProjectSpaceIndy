@@ -10,8 +10,7 @@ public class Health : MonoBehaviour, IHealth
     public int _minHealth;
     public bool _isImmortal;
     public bool _isInvulnerable;
-
-
+    
     public int CurrentHealth
     {
         get { return _currentHealth; }
@@ -30,7 +29,12 @@ public class Health : MonoBehaviour, IHealth
 
     public bool IsImmortal { get; set; }
     public bool IsInvulnerable { get; set; }
-    
+
+    private void Awake()
+    {
+        _currentHealth = _startingHealth;
+    }
+
     public void IncreaseHealth(int amount)
     {
         CurrentHealth += amount;
