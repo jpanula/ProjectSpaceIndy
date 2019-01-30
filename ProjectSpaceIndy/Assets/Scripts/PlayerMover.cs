@@ -10,6 +10,7 @@ public class PlayerMover : MonoBehaviour, IMover
 	public float _speed = 1;
 	[Range(0.1f, 1.0f), Tooltip("Bigger number = Ship turns slower")]
 	public float turnSmoothing;
+	public bool UseMouse;
 	private float rotationSpeed;
 	private Plane _plane;
 	private float _distanceToPlane;
@@ -42,15 +43,26 @@ public class PlayerMover : MonoBehaviour, IMover
 		Vector3 lookAt = position - transform.position;
 		rotationSpeed = 1 / turnSmoothing;
 		
-		// Get rotation from mouse if possible
-		Ray mouseRay = Camera.ScreenPointToRay(Input.mousePosition);
-		if (_plane.Raycast(mouseRay, out _distanceToPlane))
+		// Get rotation from the right stick in the controller if possible
+		if (Input.GetAxisRaw("Vertical_Look") != 0 || Input.GetAxisRaw("Horizontal_Look") != 0)
 		{
-			//Debug.DrawLine(_pointOnPlane + new Vector3(0, -2, 0), _pointOnPlane + new Vector3(0, 2, 0), Color.green, 0.5f);
-			_pointOnPlane = mouseRay.GetPoint(_distanceToPlane);
-			transform.LookAt(new Vector3(_pointOnPlane.x, transform.position.y, _pointOnPlane.z));
+			Vector3 lookVector = new Vector3(Input.GetAxisRaw("Horizontal_Look"), 0, -Input.GetAxisRaw("Vertical_Look"));
+			lookVector += transform.position;
+			transform.LookAt(lookVector);
 		}
-		// If mouse rotation fails, use movement
+		// If controller right stick fails, get from mouse if possible
+		else if (UseMouse)
+		{
+			
+			Ray mouseRay = Camera.ScreenPointToRay(Input.mousePosition);
+			if (_plane.Raycast(mouseRay, out _distanceToPlane))
+			{
+				//Debug.DrawLine(_pointOnPlane + new Vector3(0, -2, 0), _pointOnPlane + new Vector3(0, 2, 0), Color.green, 0.5f);
+				_pointOnPlane = mouseRay.GetPoint(_distanceToPlane);
+				transform.LookAt(new Vector3(_pointOnPlane.x, transform.position.y, _pointOnPlane.z));
+			}
+		}
+		// If mouse and right stick rotation fails, use movement
 		else if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
 		{
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAt),
@@ -76,6 +88,9 @@ public class PlayerMover : MonoBehaviour, IMover
 		// Kutsutaan Moverin Move metodia ja välitetään syötevektori 
 		// parametrina.
 		Move( _movementVector * Time.deltaTime);
+		_lastMousePosition = Input.mousePosition;
+		
+		//Debug.Log("X: " + Input.GetAxisRaw("Horizontal_Look") + " Y: " + Input.GetAxisRaw("Vertical_Look"));
 
 	}
 }
