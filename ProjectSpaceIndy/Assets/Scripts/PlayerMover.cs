@@ -95,7 +95,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		Vector3 direction = newPosition - transform.position;
 		RaycastHit hit;
 
-		Debug.DrawLine(origin, position);
+		Debug.DrawLine(origin, newPosition);
 		if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
 		{
 			Debug.Log("Hit!");
