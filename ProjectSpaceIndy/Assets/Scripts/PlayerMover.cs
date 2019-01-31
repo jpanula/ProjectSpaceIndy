@@ -22,11 +22,9 @@ public class PlayerMover : MonoBehaviour, IMover
 	private float _timeOutTimer;
 	
 	// Spherecast variables
-	[FormerlySerializedAs("sphereRadius")]
-	public float SphereRadius;
-	private float maxDistance;
-	private Vector3 _origin;
-	private Vector3 _direction;
+	private float _sphereRadius;
+	private float _maxDistance;
+	
 
 	public Vector3 MovementVector
 	{
@@ -38,6 +36,7 @@ public class PlayerMover : MonoBehaviour, IMover
 	{
 		_plane = new Plane(Vector3.up, 0);
 		_timeOutTimer = 0;
+		_sphereRadius = gameObject.GetComponent<SphereCollider>().radius;
 	}
 
 	public float Speed
@@ -82,13 +81,13 @@ public class PlayerMover : MonoBehaviour, IMover
 				rotationSpeed * Time.deltaTime);
 		}
 
-		_origin = transform.position;
-		maxDistance = Vector3.Distance(_origin, position);
-		_direction = position - transform.position;
+		Vector3 origin = transform.position;
+		_maxDistance = Vector3.Distance(origin, position);
+		Vector3 direction = position - transform.position;
 		RaycastHit hit;
 
-		Debug.DrawLine(_origin, position);
-		if (Physics.SphereCast(_origin, SphereRadius, _direction, out hit, maxDistance))
+		Debug.DrawLine(origin, position);
+		if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance))
 		{
 			Debug.Log("Hit!");
 			//transform.position = hit.point;
