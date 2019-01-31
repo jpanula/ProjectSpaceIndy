@@ -10,5 +10,10 @@ public class TestEnemySpawner : Spawner<EnemyUnit>
         {
             Spawn();
         }
+        // Key to spawn more enemies for testing purposes
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Spawn();
+        }
     }
 }

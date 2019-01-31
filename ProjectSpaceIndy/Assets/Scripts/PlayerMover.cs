@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class PlayerMover : MonoBehaviour, IMover
@@ -131,6 +132,16 @@ public class PlayerMover : MonoBehaviour, IMover
 		Move( _movementVector * Time.deltaTime);
 		
 		//Debug.Log("X: " + Input.GetAxisRaw("Horizontal_Look") + " Y: " + Input.GetAxisRaw("Vertical_Look"));
+		
+		// Temporary toggle for mouse for testing
+		if (Input.GetKeyDown(KeyCode.M))
+		{
+			UseMouse = !UseMouse;
+		}
 
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 	}
 }
