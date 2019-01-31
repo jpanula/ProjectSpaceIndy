@@ -38,7 +38,13 @@ public class EnemyMover : MonoBehaviour, IMover
 
     public void Move(Vector3 movementVector)
     {
-        Quaternion lookRotation = Quaternion.LookRotation(Player.transform.position - transform.position, Vector3.up);
+        Quaternion lookRotation;
+        if (Player != null)
+        {
+            lookRotation = Quaternion.LookRotation(Player.transform.position - transform.position, Vector3.up);
+        }
+        else lookRotation = transform.rotation;
+
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 1 / TurnSmoothing * Time.deltaTime);
 
         transform.position =
@@ -77,10 +83,13 @@ public class EnemyMover : MonoBehaviour, IMover
                 MoveLeft = !MoveLeft;
             }
 
-            Vector3 playerVector = Vector3.Normalize(Player.transform.position - transform.position);
-            float distanceFromPlayer = Vector3.Distance(Player.transform.position, transform.position);
-            playerVector *= (distanceFromPlayer - Distance) / Distance;
-            Move((_movementVector + playerVector) * Time.deltaTime);
+            if (Player != null)
+            {
+                Vector3 playerVector = Vector3.Normalize(Player.transform.position - transform.position);
+                float distanceFromPlayer = Vector3.Distance(Player.transform.position, transform.position);
+                playerVector *= (distanceFromPlayer - Distance) / Distance;
+                Move((_movementVector + playerVector) * Time.deltaTime);
+            }
         }
     }
 }
