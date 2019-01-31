@@ -8,8 +8,7 @@ public class Spawner<TMonoBehaviour> : MonoBehaviour
     /// <summary>
     /// Prefab to be instantiated by the spawner
     /// </summary>
-    [SerializeField]
-    protected TMonoBehaviour prefab;
+    public TMonoBehaviour prefab;
 
     /// <summary>
     /// Sets the prefab to instantiate
