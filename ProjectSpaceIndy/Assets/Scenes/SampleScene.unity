@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 776746167}
   - component: {fileID: 776746166}
   - component: {fileID: 776746165}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 1310049680}
   - component: {fileID: 1310049679}
   - component: {fileID: 1310049678}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,6 +504,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1546740534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1590664492115012, guid: 124928f6c2994174185e9032eb380a87,
+    type: 3}
+  m_PrefabInstance: {fileID: 306713948}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1546740535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546740534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee29269ca6166946bacf06c2a801bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingHealth: 10
+  _currentHealth: 0
+  _maxHealth: 10
+  _minHealth: 0
+  _isImmortal: 0
+  _isInvulnerable: 0
 --- !u!1 &1612667570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1714050269312900, guid: 662e6350a097a234d983b257aff26aab,
@@ -572,6 +596,11 @@ PrefabInstance:
     - target: {fileID: 4372207512632934, guid: 662e6350a097a234d983b257aff26aab, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 2933166530342732561, guid: 662e6350a097a234d983b257aff26aab,
+        type: 3}
+      propertyPath: m_Name
+      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 662e6350a097a234d983b257aff26aab, type: 3}

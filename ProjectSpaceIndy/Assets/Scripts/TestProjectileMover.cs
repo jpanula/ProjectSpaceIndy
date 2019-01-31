@@ -24,7 +24,8 @@ public class TestProjectileMover : MonoBehaviour, IMover
 
     public void Move(Vector3 movementVector)
     {
-        transform.Translate(movementVector * Speed);
+        transform.position += movementVector * Speed;
+        Debug.DrawLine(transform.position, transform.position + movementVector * Speed);
     }
 
     private void Update()
