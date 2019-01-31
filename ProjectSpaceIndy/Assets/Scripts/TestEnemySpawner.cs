@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestEnemySpawner : Spawner<EnemyUnit>
 {
@@ -14,6 +15,10 @@ public class TestEnemySpawner : Spawner<EnemyUnit>
         if (Input.GetKeyDown(KeyCode.P))
         {
             Spawn();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
