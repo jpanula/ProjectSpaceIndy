@@ -757,10 +757,11 @@ MonoBehaviour:
   Camera: {fileID: 0}
   _speed: 10
   turnSmoothing: 0.112
-  RotationTimeout: 0
+  RotationTimeout: 0.5
   UseMouse: 0
+  LeftStickDeadzone: 0.2
+  RightStickDeadzone: 0.2
   _movementVector: {x: 0, y: 0, z: 0}
-  SphereRadius: 0
 --- !u!114 &114997143367041604
 MonoBehaviour:
   m_ObjectHideFlags: 0
