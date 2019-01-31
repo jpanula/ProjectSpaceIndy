@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMover : MonoBehaviour, IMover
 {
@@ -21,11 +22,11 @@ public class PlayerMover : MonoBehaviour, IMover
 	private float _timeOutTimer;
 	
 	// Spherecast variables
-	public float sphereRadius;
-	public float maxDistance;
-	private float currentHitDitstance;
-	private Vector3 origin;
-	private Vector3 direction;
+	[FormerlySerializedAs("sphereRadius")]
+	public float SphereRadius;
+	private float maxDistance;
+	private Vector3 _origin;
+	private Vector3 _direction;
 
 	public Vector3 MovementVector
 	{
@@ -81,19 +82,20 @@ public class PlayerMover : MonoBehaviour, IMover
 				rotationSpeed * Time.deltaTime);
 		}
 
-		origin = transform.position;
-        
-		direction = position - transform.position;
+		_origin = transform.position;
+		maxDistance = Vector3.Distance(_origin, position);
+		_direction = position - transform.position;
 		RaycastHit hit;
 
-		if (Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance))
+		Debug.DrawLine(_origin, position);
+		if (Physics.SphereCast(_origin, SphereRadius, _direction, out hit, maxDistance))
 		{
 			Debug.Log("Hit!");
-			currentHitDitstance = hit.distance;
+			//transform.position = hit.point;
 		}
 		
-		transform.position = position;
-
+		else { transform.position = position; }
+		
 	}
 
 	private void Update()
