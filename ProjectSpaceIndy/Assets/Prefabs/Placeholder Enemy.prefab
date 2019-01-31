@@ -475,9 +475,10 @@ GameObject:
   - component: {fileID: 114765725923357712}
   - component: {fileID: 114427019644771500}
   - component: {fileID: 1825451411157633552}
+  - component: {fileID: 1546740535}
   m_Layer: 10
   m_Name: Placeholder Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -552,6 +553,24 @@ CapsuleCollider:
   m_Height: 3.043348
   m_Direction: 0
   m_Center: {x: 0.002235042, y: 0.037603114, z: 0.006895595}
+--- !u!114 &1546740535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590664492115012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee29269ca6166946bacf06c2a801bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingHealth: 10
+  _currentHealth: 0
+  _maxHealth: 10
+  _minHealth: 0
+  _isImmortal: 0
+  _isInvulnerable: 0
 --- !u!1 &1682623916743188
 GameObject:
   m_ObjectHideFlags: 0
