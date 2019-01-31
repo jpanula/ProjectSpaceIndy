@@ -87,13 +87,16 @@ public class PlayerMover : MonoBehaviour, IMover
 				rotationSpeed * Time.deltaTime);
 		}
 
+		int layerMask = (1 << 10) | (1 << 11) | (1 << 13);
+		//layerMask = ~layerMask;
+
 		Vector3 origin = transform.position;
 		_maxDistance = Vector3.Distance(origin, newPosition);
 		Vector3 direction = newPosition - transform.position;
 		RaycastHit hit;
 
-		Debug.DrawLine(origin, newPosition);
-		if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance))
+		Debug.DrawLine(origin, position);
+		if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
 		{
 			Debug.Log("Hit!");
 			//transform.position = hit.point;
