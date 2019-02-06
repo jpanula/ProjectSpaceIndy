@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestButton : MonoBehaviour, IActivator
+public class TestButton : Activator
 {
-    private bool _active;
+    public Material Green;
+    public Renderer Renderer;
 
-    public bool Active
+    private void OnTriggerEnter(Collider other)
     {
-        get { return _active; }
+        Renderer.material = Green;
+        Active = true;
     }
 }
