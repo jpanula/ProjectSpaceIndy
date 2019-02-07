@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TestDoor : MechanismBase
 {
+    
     private bool _activated;
     public float Speed;
     public GameObject Target;
@@ -15,6 +16,8 @@ public class TestDoor : MechanismBase
         targetPosition = Target.transform.position;
     }
 
+    // Checks every activator in the array to see if they are active
+    // If all are active, go to Activation();
     void Update()
     {
         int activeCounter = 0;
@@ -32,6 +35,8 @@ public class TestDoor : MechanismBase
         }
     }
 
+    // When all activators are active, the door moves to its targetPosition
+    // When targetPosition is reached, the bool _activated is set to true
     public override void Activation()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, Speed * Time.deltaTime);
