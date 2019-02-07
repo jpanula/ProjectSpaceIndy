@@ -47,7 +47,8 @@
                         ),
                         1.0f/abs(_Sharpness)
                     )
-                / 2
+                
+                    / 2 
                 
             ));
             //float4(lerp(_GridColor, _BackgroundColor, min(min(pow(abs(sin(IN.worldPos.x * PI / _GridBase)),1.0f/abs(_Sharpness)), pow(abs(sin(IN.worldPos.z * PI / _GridBase)),1.0f/abs(_Sharpness))),pow(abs(sin(IN.worldPos.y * PI / _GridBase)),1.0f/abs(_Sharpness))) ));
