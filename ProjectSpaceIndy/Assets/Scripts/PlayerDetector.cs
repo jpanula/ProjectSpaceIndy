@@ -16,7 +16,6 @@ public class PlayerDetector : ActivatorBase
         if (other.CompareTag("Player"))
         {
             _active = true;
-            Debug.Log("Inside");
         }
     }
 
@@ -25,7 +24,6 @@ public class PlayerDetector : ActivatorBase
         if (other.CompareTag("Player"))
         {
             _active = false;
-            Debug.Log("Outside");
         }
     }
 
