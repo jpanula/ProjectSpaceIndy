@@ -11,11 +11,28 @@ public class PlayerDetector : ActivatorBase
         get { return _active; }
     }
 
-    
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _active = true;
+            Debug.Log("Inside");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _active = false;
+            Debug.Log("Outside");
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position + GetComponent<BoxCollider>().center, Vector3.Scale(transform.localScale, GetComponent<BoxCollider>().size));
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(GetComponent<BoxCollider>().center, GetComponent<BoxCollider>().size);
     }
 }
