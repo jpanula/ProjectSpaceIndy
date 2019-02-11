@@ -125,6 +125,10 @@ public class PlayerMover : MonoBehaviour, IMover
 
 		// Kertomalla inputVector Time.deltaTime:lla saamme fps:stä
 		// riippumattoman liikevektorin
+		if (Vector3.Magnitude(inputVector) > 1.0f)
+		{
+			inputVector = Vector3.Normalize(inputVector);
+		}
 		_movementVector = inputVector;
 
 		// Kutsutaan Moverin Move metodia ja välitetään syötevektori 
