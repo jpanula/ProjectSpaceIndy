@@ -6,6 +6,6 @@ public class ScrapPickup : PickupBase
 {
     protected override void GrantEffect(PlayerUnit playerUnit)
     {
-        throw new System.NotImplementedException();
+        //TODO add score system
     }
 }
