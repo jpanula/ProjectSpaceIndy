@@ -23,7 +23,7 @@ public class Spawner<TMonoBehaviour> : MonoBehaviour
     /// Instantiates the prefab to be spawned
     /// </summary>
     /// <returns>The copy created from the prefab</returns>
-    public TMonoBehaviour Spawn()
+    public virtual TMonoBehaviour Spawn()
     {
         TMonoBehaviour result = null;
 
