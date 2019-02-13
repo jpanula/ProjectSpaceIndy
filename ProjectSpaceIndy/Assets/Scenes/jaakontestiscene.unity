@@ -730,7 +730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1590664492115012, guid: 124928f6c2994174185e9032eb380a87, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4085591709165504, guid: 124928f6c2994174185e9032eb380a87, type: 3}
       propertyPath: m_LocalPosition.x
@@ -775,6 +775,16 @@ PrefabInstance:
     - target: {fileID: 4085591709165504, guid: 124928f6c2994174185e9032eb380a87, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114765725923357712, guid: 124928f6c2994174185e9032eb380a87,
+        type: 3}
+      propertyPath: AmountOfScrapToDrop
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114765725923357712, guid: 124928f6c2994174185e9032eb380a87,
+        type: 3}
+      propertyPath: DropDistance
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 124928f6c2994174185e9032eb380a87, type: 3}
