@@ -18,4 +18,9 @@ public class TestProjectileMover : MonoBehaviour, IMover
     {
         Move(MovementVector);
     }
+
+    public void Reset()
+    {
+        
+    }
 }

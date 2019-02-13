@@ -143,4 +143,9 @@ public class PlayerMover : MonoBehaviour, IMover
 			UseMouse = !UseMouse;
 		}
 	}
+
+	public void Reset()
+	{
+		_timeOutTimer = 0;
+	}
 }

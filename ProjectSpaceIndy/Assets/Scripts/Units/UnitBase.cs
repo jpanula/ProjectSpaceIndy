@@ -43,11 +43,18 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     {
         if (Spawner != null)
         {
+            Reset();
             Spawner.ReturnUnit(this);
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    protected virtual void Reset()
+    {
+        Health.Reset();
+        Mover.Reset();
     }
 }

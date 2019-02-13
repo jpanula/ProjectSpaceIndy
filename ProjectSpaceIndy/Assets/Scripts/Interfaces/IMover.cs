@@ -9,4 +9,6 @@ public interface IMover {
     float Speed { get; set; }
 
     Vector3 MovementVector { get; set; }
+
+    void Reset();
 }

@@ -17,7 +17,7 @@ public class PooledSpawner : Spawner<UnitBase>
         return result;
     }
 
-    public bool ReturnUnit(UnitBase unit)
+    public virtual bool ReturnUnit(UnitBase unit)
     {
         return Pool.ReturnPooledItem(unit);
     }

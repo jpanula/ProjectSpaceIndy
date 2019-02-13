@@ -19,6 +19,6 @@ public class PlayerUnit : UnitBase
 	protected override void Die()
 	{
 		transform.position = _spawnPosition;
-		Health.Reset();
+		Reset();
 	}
 }
