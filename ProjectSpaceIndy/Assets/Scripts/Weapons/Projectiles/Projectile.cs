@@ -63,5 +63,9 @@ public class Projectile : MonoBehaviour
             damageReceiver.TakeDamage(Damage);
             ReturnProjectile();
         }
+        else if (1 << other.gameObject.layer == (int) Const.Layers.Environment || 1 << other.gameObject.layer == (int) Const.Layers.Activator)
+        {
+            ReturnProjectile();
+        }
     }
 }
