@@ -21,6 +21,7 @@ public static class Const
         Environment = 1 << 11,
         PlayerProjectile = 1 << 12,
         EnemyProjectile = 1 << 13,
-        Activator = 1 << 14
+        Activator = 1 << 14,
+        Pickup = 1 << 15
     }
 }
