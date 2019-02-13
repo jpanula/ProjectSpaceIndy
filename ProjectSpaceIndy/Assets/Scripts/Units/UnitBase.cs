@@ -8,6 +8,9 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     public IMover Mover;
     public IHealth Health;
     public Weapon[] Weapons;
+    private PooledSpawner _spawner;
+
+    public PooledSpawner Spawner { get; set; }
 
     protected virtual void Awake()
     {
@@ -38,6 +41,13 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
 
     protected virtual void Die()
     {
-        Destroy(gameObject);
+        if (Spawner != null)
+        {
+            Spawner.ReturnUnit(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

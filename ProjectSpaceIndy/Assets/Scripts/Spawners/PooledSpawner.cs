@@ -12,6 +12,7 @@ public class PooledSpawner : Spawner<UnitBase>
         UnitBase result = null;
         PreSpawn();
         result = Pool.GetPooledItem();
+        result.Spawner = this;
         PostSpawn(result);
         return result;
     }
