@@ -7,11 +7,15 @@ public class TestButton : ActivatorBase
     public Material Green;
     public Renderer Renderer;
     private bool _active;
+    private bool _activated;
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        Renderer.material = Green;
-        _active = true;
+        if (_active && !_activated)
+        {
+            Renderer.material = Green;
+            _activated = true;
+        }
     }
 
     public override bool Active
