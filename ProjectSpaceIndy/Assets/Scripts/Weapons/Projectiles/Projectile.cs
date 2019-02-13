@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,9 @@ public class Projectile : MonoBehaviour
 
     public float Lifetime;
     public int Damage;
+    public LayerMask LayerMask;
     public IMover Mover;
+    public float Speed;
     private Weapon _weapon;
     private Vector3 _direction;
     public bool _isFired;
@@ -16,25 +19,31 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         Mover = GetComponent<IMover>();
+        Mover.Speed = Speed;
         _lifeTimeTimer = 0;
     }
 
     private void Update()
     {
-        Mover.MovementVector = _direction * Time.deltaTime;
-        _lifeTimeTimer += Time.deltaTime;
-        if (_lifeTimeTimer >= Lifetime)
-        {
-            ReturnProjectile();
-        }
-
         if (_isFired)
         {
             Mover.MovementVector = _direction * Time.deltaTime;
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Mover.MovementVector, out hit,
+                Vector3.Distance(transform.position, transform.position + Mover.MovementVector * Speed), LayerMask))
+            {
+                Hit(hit.collider);
+            }
         }
         else
         {
             Mover.MovementVector = Vector3.zero;
+        }
+        
+        _lifeTimeTimer += Time.deltaTime;
+        if (_lifeTimeTimer >= Lifetime)
+        {
+            ReturnProjectile();
         }
     }
 
@@ -55,17 +64,19 @@ public class Projectile : MonoBehaviour
         owner.ReturnProjectile(this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Hit(Collider collider)
     {
-        IDamageReceiver damageReceiver = other.GetComponent<IDamageReceiver>();
+        IDamageReceiver damageReceiver = collider.GetComponent<IDamageReceiver>();
         if (damageReceiver != null)
         {
             damageReceiver.TakeDamage(Damage);
             ReturnProjectile();
         }
-        else if (1 << other.gameObject.layer == (int) Const.Layers.Environment || 1 << other.gameObject.layer == (int) Const.Layers.Activator)
+        else if (1 << collider.gameObject.layer == (int) Const.Layers.Environment || 1 << collider.gameObject.layer == (int) Const.Layers.Activator)
         {
             ReturnProjectile();
         }
+
+        Debug.Log("Hit " + collider.name);
     }
 }

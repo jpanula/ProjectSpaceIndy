@@ -5,30 +5,16 @@ using UnityEngine;
 public class TestProjectileMover : MonoBehaviour, IMover
 {
 
-    public float _speed;
-    public Vector3 _movementVector;
+    public Vector3 MovementVector { get; set; }
 
-    public Vector3 MovementVector
-    {
-        get { return _movementVector; }
-        set { _movementVector = value; }
-    }
-
-    public float Speed
-    {
-        get
-        {
-            return _speed;
-        }
-    }
+    public float Speed { get; set; }
 
     public void Move(Vector3 movementVector)
     {
         transform.position += movementVector * Speed;
-        Debug.DrawLine(transform.position, transform.position + movementVector * Speed);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move(MovementVector);
     }
