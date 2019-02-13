@@ -11,6 +11,7 @@ public class EnemyDetector : ActivatorBase
     public override bool Active
     {
         get { return _active; }
+        set { _active = value; }
     }
 
     private void Update()

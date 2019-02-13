@@ -17,5 +17,6 @@ public class TestButton : ActivatorBase
     public override bool Active
     {
         get { return _active; }
+        set { _active = value; }
     }
 }
