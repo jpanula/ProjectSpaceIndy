@@ -74,6 +74,11 @@ public class Projectile : MonoBehaviour
         }
         else if (1 << collider.gameObject.layer == (int) Const.Layers.Environment || 1 << collider.gameObject.layer == (int) Const.Layers.Activator)
         {
+            ActivatorBase activator = collider.GetComponent<ActivatorBase>();
+            if (activator != null)
+            {
+                activator.Active = true;
+            }
             ReturnProjectile();
         }
     }
