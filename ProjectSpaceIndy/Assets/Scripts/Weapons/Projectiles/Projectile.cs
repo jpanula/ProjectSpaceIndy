@@ -76,7 +76,5 @@ public class Projectile : MonoBehaviour
         {
             ReturnProjectile();
         }
-
-        Debug.Log("Hit " + collider.name);
     }
 }
