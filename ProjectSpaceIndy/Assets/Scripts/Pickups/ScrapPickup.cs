@@ -9,12 +9,6 @@ public class ScrapPickup : PickupBase
     public float DistanceFactor;
     private Transform _target;
     private float _movementTimer;
-    
-    
-    protected override void GrantEffect(PlayerUnit playerUnit)
-    {
-        //TODO add score system
-    }
 
     protected override void Update()
     {
@@ -44,6 +38,22 @@ public class ScrapPickup : PickupBase
 
         
     }
+    
+    protected override void GrantEffect(PlayerUnit playerUnit)
+    {
+        //TODO add score system
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        PlayerUnit player = other.GetComponent<PlayerUnit>();
+        if (player != null)
+        {
+            GrantEffect(player);
+            Reset();
+            PickupManager.Instance.ReturnScrap(this);
+        }
+    }
 
     private float DistanceToTarget()
     {
@@ -53,5 +63,11 @@ public class ScrapPickup : PickupBase
         }
 
         return 0;
+    }
+
+    private void Reset()
+    {
+        _target = null;
+        _movementTimer = 0;
     }
 }

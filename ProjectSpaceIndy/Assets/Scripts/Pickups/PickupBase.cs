@@ -27,7 +27,7 @@ public abstract class PickupBase : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         PlayerUnit player = other.GetComponent<PlayerUnit>();
         if (player != null)
