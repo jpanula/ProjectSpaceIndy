@@ -16,12 +16,13 @@ public class Detector : ActivatorBase
 
     private void Update()
     {
-        _active = Physics.CheckBox(transform.position, Dimensions / 2, Quaternion.identity, LayerMask);
+        _active = Physics.CheckBox(transform.position, Dimensions / 2, transform.rotation, LayerMask);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = GizmoColor;
-        Gizmos.DrawWireCube(transform.position, Dimensions);
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(Vector3.zero, Dimensions);
     }
 }
