@@ -147,6 +147,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &55485477
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -308,7 +309,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 5.1, z: 6.16}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -89.984, z: 0}
 --- !u!1 &154322231
 GameObject:
@@ -345,6 +346,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &154322233
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -521,6 +523,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &245446967
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -700,6 +703,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!1 &282840810
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +904,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &390532308
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -972,33 +977,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &576814091
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 401843536}
-  - component: {fileID: 401843535}
-  - component: {fileID: 401843534}
-  - component: {fileID: 401843533}
-  - component: {fileID: 401843532}
-  m_Layer: 11
-  m_Name: Cylinder (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!114 &401843532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401843531}
+  m_GameObject: {fileID: 576814091}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1b1628f2865ae34ca53a3bf91239620, type: 3}
@@ -1012,7 +997,7 @@ CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401843531}
+  m_GameObject: {fileID: 576814091}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -1026,7 +1011,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401843531}
+  m_GameObject: {fileID: 576814091}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1063,7 +1048,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401843531}
+  m_GameObject: {fileID: 576814091}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &401843536
 Transform:
@@ -1071,7 +1056,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401843531}
+  m_GameObject: {fileID: 576814091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.66, y: -0.48, z: 11.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1079,6 +1064,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: -134.97801, z: 0}
+--- !u!1 &576814091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401843536}
+  - component: {fileID: 401843535}
+  - component: {fileID: 401843534}
+  - component: {fileID: 401843533}
+  - component: {fileID: 401843532}
+  m_Layer: 11
+  m_Name: Cylinder (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &633392425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1119,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &633392427
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1473,7 +1479,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 5.1, z: 6.16}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: -89.984, z: 0}
 --- !u!1 &871327845
 GameObject:
@@ -1655,7 +1661,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 5.1, z: 6.16}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &983785787
 PrefabInstance:
@@ -1835,6 +1841,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &1202760864
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2033,6 +2040,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &1395518085
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2140,6 +2148,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &1565434001
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2212,85 +2221,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1583047578
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1583047582}
-  - component: {fileID: 1583047581}
-  - component: {fileID: 1583047580}
-  - component: {fileID: 1583047579}
-  - component: {fileID: 1583047583}
-  m_Layer: 11
-  m_Name: Test Door Left
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1583047579
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583047578}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1583047580
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583047578}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 32cab54e340bdb746a6a140fe90df293, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1583047581
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583047578}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1583047582
+--- !u!4 &1583047582 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 799608002348786959, guid: cd8181d76cf657e4394a6665840640d0,
     type: 3}
@@ -2446,6 +2377,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &1635671709
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2686,7 +2618,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 5.1, z: 6.16}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: -89.984, z: 0}
 --- !u!1 &1896948045
 GameObject:
@@ -2723,6 +2655,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 5
   AttractionSpeed: 0.005
+  DistanceFactor: 0
 --- !u!135 &1896948047
 SphereCollider:
   m_ObjectHideFlags: 0
