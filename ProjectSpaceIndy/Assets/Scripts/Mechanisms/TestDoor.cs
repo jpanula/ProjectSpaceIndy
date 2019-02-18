@@ -39,16 +39,17 @@ public class TestDoor : MechanismBase
             }
         }
 
-        if (activeCounter == Activators.Length && !_activated || !_activated && !_finished)
+        if (activeCounter == Activators.Length || !_activated && !_finished)
         {
+            _activated = false;
             _finished = false;
             Activation();
         }
 
-        if (_activated && activeCounter < Activators.Length || _activated && !_finished)
+        if (_activated && _finished && activeCounter < Activators.Length)
         {
-            _finished = false;
             Deactivation();
+            
         }
     }
 
@@ -70,11 +71,10 @@ public class TestDoor : MechanismBase
         if (transform.position == _startPosition)
         {
             _activated = false;
-            _finished = true;
         }
     }
     
-    protected override void Reset()
+    protected override void ResetDefaults()
     {
         _activated = false;
         _finished = true;

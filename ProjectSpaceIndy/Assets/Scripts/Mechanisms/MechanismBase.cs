@@ -8,5 +8,5 @@ public abstract class MechanismBase : MonoBehaviour
 
     public abstract void Activation();
 
-    protected abstract void Reset();
+    protected abstract void ResetDefaults();
 }
