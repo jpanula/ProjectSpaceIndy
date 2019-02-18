@@ -73,4 +73,11 @@ public class TestDoor : MechanismBase
             _finished = true;
         }
     }
+    
+    protected override void Reset()
+    {
+        _activated = false;
+        _finished = true;
+        transform.position = _startPosition;
+    }
 }

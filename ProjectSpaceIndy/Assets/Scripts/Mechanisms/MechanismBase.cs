@@ -7,4 +7,6 @@ public abstract class MechanismBase : MonoBehaviour
     public ActivatorBase[] Activators;
 
     public abstract void Activation();
+
+    protected abstract void Reset();
 }
