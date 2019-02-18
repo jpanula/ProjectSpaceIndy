@@ -110,7 +110,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		Debug.DrawLine(origin, newPosition);
 		if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
 		{
-			Debug.Log("Hit!");
+			//Debug.Log("Hit!");
 			//transform.position = hit.point;
 		}
 		
