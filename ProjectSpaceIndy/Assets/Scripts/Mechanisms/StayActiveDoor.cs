@@ -57,7 +57,7 @@ public class StayActiveDoor : MechanismBase
         }
     }
     
-    protected override void Reset()
+    protected override void ResetDefaults()
     {
         _activated = false;
         _finished = true;
