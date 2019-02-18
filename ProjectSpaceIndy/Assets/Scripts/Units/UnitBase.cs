@@ -12,7 +12,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
 
     public PooledSpawner Spawner { get; set; }
 
-    protected virtual void Awake()
+    public virtual void Awake()
     {
         Health = gameObject.GetOrAddComponent<Health>();
         Mover = GetComponent<IMover>();
