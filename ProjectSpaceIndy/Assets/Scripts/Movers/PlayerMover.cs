@@ -10,6 +10,7 @@ public class PlayerMover : MonoBehaviour, IMover
 	[Tooltip("Camera from which to take rotation when using the mouse")]
 	public Camera Camera;
 	public float _speed = 1;
+	public float BoostSpeed = 2;
 	[Range(0.1f, 1.0f), Tooltip("Bigger number = Ship turns slower")]
 	public float turnSmoothing;
 	[Tooltip("Time in seconds to wait before changing rotation to match movement direction")]
@@ -46,7 +47,10 @@ public class PlayerMover : MonoBehaviour, IMover
 
 	public float Speed
 	{
-		get { return _speed; }
+		get
+		{
+			return Input.GetAxisRaw("Fire3") > 0 ? BoostSpeed : _speed;
+		}
 		set { _speed = value; }
 	}
 	
@@ -55,7 +59,7 @@ public class PlayerMover : MonoBehaviour, IMover
 	public void Move(Vector3 movementVector)
 	{
 		Vector3 newPosition = transform.position;
-		newPosition = newPosition + movementVector * _speed;
+		newPosition = newPosition + movementVector * Speed;
 		Vector3 lookAt = newPosition - transform.position;
 		rotationSpeed = 1 / turnSmoothing;
 		// Make a vector from the right stick input
@@ -88,7 +92,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			}
 		}
 		// If mouse and right stick rotation fails, use movement
-		else if (Vector3.Magnitude(_movementVector) >= LeftStickDeadzone && _timeOutTimer >= RotationTimeout)
+		else if (Vector3.Magnitude(_movementVector) >= LeftStickDeadzone && _timeOutTimer >= RotationTimeout|| Input.GetAxisRaw("Fire3") > 0)
 		{
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAt),
 				rotationSpeed * Time.deltaTime);

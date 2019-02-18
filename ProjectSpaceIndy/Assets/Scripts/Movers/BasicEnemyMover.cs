@@ -23,7 +23,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
     private void Update()
     {
         Quaternion lookRotation = Quaternion.LookRotation(MovementVector);
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * TurnSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * TurnSpeed);
         Vector3 newPos = transform.position + transform.forward * Speed;
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);
     }
