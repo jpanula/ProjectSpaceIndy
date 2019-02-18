@@ -63,6 +63,12 @@ public class PlayerMover : MonoBehaviour, IMover
 		// Check if the input passes the deadzone threshold for the right stick
 		if (Vector3.Magnitude(rightStick) >= RightStickDeadzone)
 		{
+			rightStick = rightStick.normalized *
+			             ((rightStick.magnitude - RightStickDeadzone) / (1 - RightStickDeadzone));
+			if (rightStick.magnitude > 1)
+			{
+				rightStick = rightStick.normalized;
+			}
 			Vector3 lookVector = rightStick;
 			lookVector += transform.position;
 			transform.LookAt(lookVector);
@@ -121,7 +127,11 @@ public class PlayerMover : MonoBehaviour, IMover
 		{
 			inputVector = Vector3.zero;
 		}
-		Debug.DrawLine(transform.position, transform.position + inputVector * 5, Color.green, 0.2f);
+		else
+		{
+			inputVector = inputVector.normalized *
+			              ((inputVector.magnitude - LeftStickDeadzone) / (1 - LeftStickDeadzone));
+		}
 
 		// Kertomalla inputVector Time.deltaTime:lla saamme fps:stä
 		// riippumattoman liikevektorin
@@ -129,6 +139,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		{
 			inputVector = Vector3.Normalize(inputVector);
 		}
+		Debug.DrawLine(transform.position, transform.position + inputVector * 5, Color.green, 0.2f);
 		_movementVector = inputVector;
 
 		// Kutsutaan Moverin Move metodia ja välitetään syötevektori 

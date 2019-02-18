@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     public int Damage;
     public LayerMask LayerMask;
     public IMover Mover;
+    public float HitBoxRadius;
     public float Speed;
     private Weapon _weapon;
     private Vector3 _direction;
@@ -27,9 +28,8 @@ public class Projectile : MonoBehaviour
     {
         if (_isFired)
         {
-            Mover.MovementVector = _direction * Time.deltaTime;
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Mover.MovementVector, out hit,
+            if (Physics.SphereCast(transform.position, HitBoxRadius, Mover.MovementVector, out hit,
                 Vector3.Distance(transform.position, transform.position + Mover.MovementVector * Speed), LayerMask))
             {
                 Hit(hit.collider);
@@ -52,15 +52,14 @@ public class Projectile : MonoBehaviour
         _weapon = weapon;
         _direction = direction;
         _isFired = true;
+        Mover.MovementVector = _direction * Time.deltaTime;
         _lifeTimeTimer = 0;
     }
 
     public void ReturnProjectile()
     {
         Weapon owner = _weapon;
-        _weapon = null;
-        _isFired = false;
-        _lifeTimeTimer = 0;
+        Reset();
         owner.ReturnProjectile(this);
     }
 
@@ -81,5 +80,19 @@ public class Projectile : MonoBehaviour
             }
             ReturnProjectile();
         }
+    }
+
+    private void Reset()
+    {
+        _weapon = null;
+        _isFired = false;
+        _lifeTimeTimer = 0;
+        Mover.MovementVector = Vector3.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, HitBoxRadius);
     }
 }
