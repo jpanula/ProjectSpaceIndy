@@ -121,6 +121,11 @@ public class PlayerMover : MonoBehaviour, IMover
 		{
 			inputVector = Vector3.zero;
 		}
+		else
+		{
+			inputVector = inputVector.normalized *
+			              ((inputVector.magnitude - LeftStickDeadzone) / (1 - LeftStickDeadzone));
+		}
 		Debug.DrawLine(transform.position, transform.position + inputVector * 5, Color.green, 0.2f);
 
 		// Kertomalla inputVector Time.deltaTime:lla saamme fps:stä
