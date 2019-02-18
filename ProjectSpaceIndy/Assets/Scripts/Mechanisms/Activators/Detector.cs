@@ -6,8 +6,10 @@ public class Detector : ActivatorBase
 {
     public Vector3 Dimensions;
     public LayerMask LayerMask;
+    public float Cooldown;
     public Color GizmoColor = new Color(1, 1, 1, 1);
     private bool _active;
+    private float _cooldownTimer;
 
     public override bool Active
     {
@@ -17,7 +19,19 @@ public class Detector : ActivatorBase
 
     private void Update()
     {
-        _active = Physics.CheckBox(transform.position, Dimensions / 2, transform.rotation, LayerMask);
+        _cooldownTimer += Time.deltaTime;
+        if (Physics.CheckBox(transform.position, Dimensions / 2, transform.rotation, LayerMask))
+        {
+            _active = true;
+            _cooldownTimer = 0;
+        }
+        else
+        {
+            if (_cooldownTimer > Cooldown)
+            {
+                _active = false;
+            }
+        }
     }
 
     private void OnDrawGizmos()
