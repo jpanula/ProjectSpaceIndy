@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Runtime.Remoting;
 using UnityEngine;
 
-public class PooledSpawner : Spawner<UnitBase>
+public class PooledSpawner : MonoBehaviour
 {
     public UnitPool Pool;
 
-    public override UnitBase Spawn()
+    public UnitBase Spawn()
     {
         UnitBase result = null;
         PreSpawn();
@@ -21,4 +21,13 @@ public class PooledSpawner : Spawner<UnitBase>
     {
         return Pool.ReturnPooledItem(unit);
     }
+
+    protected virtual void PreSpawn()
+    {
+    }
+
+    protected virtual void PostSpawn(UnitBase spawnedUnit)
+    {
+    }
+    
 }
