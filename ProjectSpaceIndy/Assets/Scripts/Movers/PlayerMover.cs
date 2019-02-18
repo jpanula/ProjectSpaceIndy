@@ -67,6 +67,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		// Check if the input passes the deadzone threshold for the right stick
 		if (Vector3.Magnitude(rightStick) >= RightStickDeadzone)
 		{
+			UseMouse = false;
 			rightStick = rightStick.normalized *
 			             ((rightStick.magnitude - RightStickDeadzone) / (1 - RightStickDeadzone));
 			if (rightStick.magnitude > 1)
@@ -119,6 +120,11 @@ public class PlayerMover : MonoBehaviour, IMover
 
 	private void Update()
 	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			UseMouse = true;
+		}
+		
 		_timeOutTimer += Time.deltaTime;
 		float horizontal = Input.GetAxisRaw( "Horizontal" );
 		float vertical = Input.GetAxisRaw( "Vertical" );
