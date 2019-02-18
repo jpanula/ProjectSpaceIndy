@@ -63,17 +63,17 @@ public class Projectile : MonoBehaviour
         owner.ReturnProjectile(this);
     }
 
-    private void Hit(Collider collider)
+    private void Hit(Collider hitCollider)
     {
-        IDamageReceiver damageReceiver = collider.GetComponent<IDamageReceiver>();
+        IDamageReceiver damageReceiver = hitCollider.GetComponent<IDamageReceiver>();
         if (damageReceiver != null)
         {
             damageReceiver.TakeDamage(Damage);
             ReturnProjectile();
         }
-        else if (1 << collider.gameObject.layer == (int) Const.Layers.Environment || 1 << collider.gameObject.layer == (int) Const.Layers.Activator)
+        else if (1 << hitCollider.gameObject.layer == (int) Const.Layers.Environment || 1 << hitCollider.gameObject.layer == (int) Const.Layers.Activator)
         {
-            ActivatorBase activator = collider.GetComponent<ActivatorBase>();
+            ActivatorBase activator = hitCollider.GetComponent<ActivatorBase>();
             if (activator != null)
             {
                 activator.Active = true;

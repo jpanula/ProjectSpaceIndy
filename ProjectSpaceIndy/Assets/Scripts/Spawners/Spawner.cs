@@ -13,10 +13,10 @@ public class Spawner<TMonoBehaviour> : MonoBehaviour
     /// <summary>
     /// Sets the prefab to instantiate
     /// </summary>
-    /// <param name="prefab"></param>
-    public void SetPrefab(TMonoBehaviour prefab)
+    /// <param name="newPrefab"></param>
+    public void SetPrefab(TMonoBehaviour newPrefab)
     {
-        this.prefab = prefab;
+        this.prefab = newPrefab;
     }
 
     /// <summary>
