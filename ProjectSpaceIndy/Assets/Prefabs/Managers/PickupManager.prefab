@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bfab880c2fe7d644969a669878f656c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TestLevelScrapPoolSize: 20
   ScrapPool: {fileID: 3139743824514831521}
 --- !u!114 &3139743824514831521
 MonoBehaviour:
@@ -57,6 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25e7d5a97a8e134382847148956f4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: 20
   ObjectPrefab: {fileID: 5978674092566288268, guid: dad39e643125ab84b88fbc5acac32d32,
     type: 3}
+  _size: 0

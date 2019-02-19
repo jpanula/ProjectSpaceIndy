@@ -6,6 +6,8 @@ using UnityEngine;
 public class PickupManager : MonoBehaviour
 {
     public static PickupManager Instance;
+
+    public int TestLevelScrapPoolSize;
     public PickupPool ScrapPool;
     
     private void Awake()
@@ -25,7 +27,7 @@ public class PickupManager : MonoBehaviour
         switch (GameManager.Instance.CurrentLevel)
         {
             case GameManager.Level.Test:
-                ScrapPool.Size = 20;
+                ScrapPool.Size = TestLevelScrapPoolSize;
                 break;
             
             default:
