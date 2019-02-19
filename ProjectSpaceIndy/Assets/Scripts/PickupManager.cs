@@ -20,6 +20,20 @@ public class PickupManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        switch (GameManager.Instance.CurrentLevel)
+        {
+            case GameManager.Level.Test:
+                ScrapPool.Size = 20;
+                break;
+            
+            default:
+                ScrapPool.Size = 0;
+                break;
+        }
+    }
+
     public PickupBase GetScrap()
     {
         return ScrapPool.GetPooledItem();

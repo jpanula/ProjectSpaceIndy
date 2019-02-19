@@ -24,9 +24,34 @@ public class GenericPool<TPooledItem> : MonoBehaviour
         }
     }
 
-    public int Size;
+    public int Size
+    {
+        get { return _size; }
+        set
+        {
+            _size = value;
+            if (_pool.Count > _size)
+            {
+                foreach (PoolEntry entry in _pool)
+                {
+                    if (_pool.Count > _size)
+                    {
+                        _pool.Remove(entry);
+                    }
+                }
+            }
+
+            while (_pool.Count < _size)
+            {
+                AddObject();
+            }
+        }
+    }
+
     public TPooledItem ObjectPrefab;
     private List<PoolEntry> _pool;
+    [SerializeField]
+    private int _size;
 
     private void Awake()
     {
