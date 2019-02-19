@@ -89,12 +89,26 @@ public class BasicEnemy : UnitBase
             }
         }
     }
+    
+    protected override void Die()
+    {
+        List<PickupBase> scraps = new List<PickupBase>();
+        for (int i = 0; i < DroppedScrap; i++)
+        {
+            scraps.Add(PickupManager.Instance.GetScrap());
+        }
+        Vector3 dropAngle = Vector3.forward * ScrapDropDistance;
+        for (int i = 0; i < scraps.Count; i++)
+        {
+            scraps[i].transform.position = dropAngle + transform.position;
+            dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
+        }
+        base.Die();
+    }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, DetectionRadius);
     }
-    
-    
 }

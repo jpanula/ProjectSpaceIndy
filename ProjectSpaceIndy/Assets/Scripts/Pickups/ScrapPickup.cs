@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScrapPickup : PickupBase
 {
+    public int Score;
     public float AttractionRadius;
     public float AttractionSpeed;
     public float DistanceFactor;
@@ -41,7 +42,7 @@ public class ScrapPickup : PickupBase
     
     protected override void GrantEffect(PlayerUnit playerUnit)
     {
-        GameManager.Score += 1;
+        GameManager.Score += Score;
     }
 
     protected override void OnTriggerEnter(Collider other)
