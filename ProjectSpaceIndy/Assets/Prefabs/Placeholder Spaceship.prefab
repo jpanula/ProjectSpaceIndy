@@ -757,8 +757,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
   _speed: 8
-  BoostSpeed: 16
+  BoostSpeed: 40
+  AccelerationTime: 4
+  DecelerationMultiplier: 5
   turnSmoothing: 0.112
+  BoostTurnSmoothing: 0.3
   RotationTimeout: 0.5
   UseMouse: 0
   LeftStickDeadzone: 0.2

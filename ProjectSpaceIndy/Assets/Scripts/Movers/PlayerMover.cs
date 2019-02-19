@@ -11,8 +11,12 @@ public class PlayerMover : MonoBehaviour, IMover
 	public Camera Camera;
 	public float _speed = 1;
 	public float BoostSpeed = 2;
-	[Range(0.1f, 1.0f), Tooltip("Bigger number = Ship turns slower")]
+	public float AccelerationTime;
+	public float DecelerationMultiplier;
+	[Range(0.0f, 1.0f), Tooltip("Bigger number = Ship turns slower")]
 	public float turnSmoothing;
+	[Range(0.0f, 1.0f)]
+	public float BoostTurnSmoothing;
 	[Tooltip("Time in seconds to wait before changing rotation to match movement direction")]
 	public float RotationTimeout;
 	public bool UseMouse;
@@ -26,6 +30,7 @@ public class PlayerMover : MonoBehaviour, IMover
 	private Vector3 _pointOnPlane;
 	public Vector3 _movementVector;
 	private float _timeOutTimer;
+	private float _accelerationTimer;
 	
 	// Spherecast variables
 	private float _sphereRadius;
@@ -47,10 +52,7 @@ public class PlayerMover : MonoBehaviour, IMover
 
 	public float Speed
 	{
-		get
-		{
-			return Input.GetAxisRaw("Fire3") > 0 ? BoostSpeed : _speed;
-		}
+		get { return _speed; }
 		set { _speed = value; }
 	}
 	
@@ -59,13 +61,44 @@ public class PlayerMover : MonoBehaviour, IMover
 	public void Move(Vector3 movementVector)
 	{
 		Vector3 newPosition = transform.position;
-		newPosition = newPosition + movementVector * Speed;
+		
+		float speedDifference = BoostSpeed - Speed;
+		float turnSmoothingDifference = BoostTurnSmoothing - turnSmoothing;
+		if (Input.GetButton("Fire3"))
+		{
+			if (_accelerationTimer < AccelerationTime)
+			{
+				_accelerationTimer += Time.deltaTime;
+			}
+			else
+			{
+				_accelerationTimer = AccelerationTime;
+			}
+		}
+		else
+		{
+			if (_accelerationTimer > 0)
+			{
+				_accelerationTimer -= Time.deltaTime * DecelerationMultiplier;
+			}
+			else
+			{
+				_accelerationTimer = 0;
+			}
+		}
+		
+		rotationSpeed = 1 / (turnSmoothing + _accelerationTimer / AccelerationTime * turnSmoothingDifference);
+		if (Input.GetButton("Fire3") || _accelerationTimer > 0)
+		{
+			movementVector = Vector3.Slerp(movementVector.magnitude * transform.forward, movementVector, rotationSpeed * Time.deltaTime);
+		}
+		newPosition = newPosition + movementVector * (Speed + _accelerationTimer / AccelerationTime * speedDifference);
 		Vector3 lookAt = newPosition - transform.position;
-		rotationSpeed = 1 / turnSmoothing;
+		
 		// Make a vector from the right stick input
 		Vector3 rightStick = new Vector3(Input.GetAxisRaw("Horizontal_Look"), 0, Input.GetAxisRaw("Vertical_Look"));
 		// Check if the input passes the deadzone threshold for the right stick
-		if (Vector3.Magnitude(rightStick) >= RightStickDeadzone)
+		if (Vector3.Magnitude(rightStick) >= RightStickDeadzone && !Input.GetButton("Fire3") && _accelerationTimer <= 0)
 		{
 			UseMouse = false;
 			rightStick = rightStick.normalized *
@@ -81,7 +114,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			Debug.DrawLine(transform.position, transform.position + rightStick * 5, Color.magenta, 0.2f);
 		}
 		// If controller right stick fails, get from mouse if possible
-		else if (UseMouse)
+		else if (UseMouse && !Input.GetButton("Fire3") && _accelerationTimer <= 0)
 		{
 			
 			Ray mouseRay = Camera.ScreenPointToRay(Input.mousePosition);
@@ -168,5 +201,6 @@ public class PlayerMover : MonoBehaviour, IMover
 	public void Reset()
 	{
 		_timeOutTimer = 0;
+		_accelerationTimer = 0;
 	}
 }
