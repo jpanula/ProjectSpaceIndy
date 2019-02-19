@@ -5,6 +5,9 @@ using UnityEngine;
 public class DestructibleObject : MonoBehaviour, IDamageReceiver
 {
     private Health _health;
+    public int AmountOfScrapToDrop;
+    public float DropDistance;
+    
 
     private void Awake()
     {
@@ -22,8 +25,20 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
         return destroyed;
     }
 
-    private void Die()
+    protected virtual void Die()
     {
+        List<PickupBase> scraps = new List<PickupBase>();
+        for (int i = 0; i < AmountOfScrapToDrop; i++)
+        {
+            scraps.Add(PickupManager.Instance.GetScrap());
+        }
+        Vector3 dropAngle = Vector3.forward * DropDistance;
+        for (int i = 0; i < scraps.Count; i++)
+        {
+            scraps[i].transform.position = dropAngle + transform.position;
+            dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
+        }
+        
         Destroy(gameObject);
     }
 }
