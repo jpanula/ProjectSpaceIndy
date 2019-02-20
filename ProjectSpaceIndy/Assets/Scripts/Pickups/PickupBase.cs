@@ -5,6 +5,10 @@ using UnityEngine;
 public abstract class PickupBase : MonoBehaviour
 {
     public float LifeTime;
+    public float AttractionRadius;
+    public float AttractionSpeed;
+    private Transform _target;
+    private float _movementTimer;
     private bool _permanent;
     private float _lifeTimeTimer;
 
@@ -14,7 +18,7 @@ public abstract class PickupBase : MonoBehaviour
         else _permanent = false;
         _lifeTimeTimer = 0;
     }
-
+    
     protected virtual void Update()
     {
         if (!_permanent)
@@ -25,6 +29,30 @@ public abstract class PickupBase : MonoBehaviour
             }
             _lifeTimeTimer += Time.deltaTime;
         }
+        
+        Collider[] colliders = Physics.OverlapSphere(transform.position, AttractionRadius, (int) Const.Layers.Player);
+        if (colliders.Length > 0)
+        {
+            _target = colliders[0].transform;
+            float distanceToTarget = DistanceToTarget();
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                float distanceToCurrent = Vector3.Distance(transform.position, colliders[i].transform.position);
+                if (distanceToCurrent < distanceToTarget)
+                {
+                    _target = colliders[i].transform;
+                    distanceToTarget = distanceToCurrent;
+                }
+            }
+        }
+
+        if (_target != null)
+        {
+            _movementTimer += Time.deltaTime * AttractionSpeed;
+            transform.position = Vector3.Lerp(transform.position, _target.position, _movementTimer);
+        }
+
+        
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -35,6 +63,28 @@ public abstract class PickupBase : MonoBehaviour
             GrantEffect(player);
             Destroy(gameObject);
         }
+    }
+
+    protected virtual float DistanceToTarget()
+    {
+        if (_target != null)
+        {
+            return Vector3.Distance(_target.position, transform.position);
+        }
+
+        return 0;
+    }
+
+    protected virtual void Reset()
+    {
+        _target = null;
+        _movementTimer = 0;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, AttractionRadius);
     }
 
     protected abstract void GrantEffect(PlayerUnit playerUnit);
