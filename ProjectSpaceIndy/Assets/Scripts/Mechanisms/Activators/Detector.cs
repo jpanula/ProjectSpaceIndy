@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Detector : ActivatorBase
 {
     public Vector3 Dimensions;
     public LayerMask LayerMask;
+    public float Delay;
     public float Cooldown;
     public Color GizmoColor = new Color(1, 1, 1, 1);
     private bool _active;
     private float _cooldownTimer;
+    private float _delayTimer;
+    private bool _waitingForDelay;
 
     public override bool Active
     {
@@ -19,18 +23,33 @@ public class Detector : ActivatorBase
 
     private void Update()
     {
-        _cooldownTimer += Time.deltaTime;
+        
         if (Physics.CheckBox(transform.position, Dimensions / 2, transform.rotation, LayerMask))
         {
-            _active = true;
+            _waitingForDelay = true;
             _cooldownTimer = 0;
         }
         else
         {
-            if (_cooldownTimer > Cooldown)
+            if (_cooldownTimer >= Cooldown)
             {
                 _active = false;
+                _delayTimer = 0;
             }
+        }
+
+        if (_waitingForDelay)
+        {
+            _delayTimer += Time.deltaTime;
+            if (_delayTimer >= Delay)
+            {
+                _active = true;
+                _waitingForDelay = false;
+            }
+        }
+        else
+        {
+            _cooldownTimer += Time.deltaTime;
         }
     }
 
