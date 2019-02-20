@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerUnit : UnitBase
 {
-	public float FuelAmount;
+	[FormerlySerializedAs("FuelAmount")] public float _fuelAmount;
 	public float FuelCap;
 	public TextMeshProUGUI FuelText;
 
@@ -18,6 +19,12 @@ public class PlayerUnit : UnitBase
 	private float _boostSpeed;
 	private bool _speedValuesSaved;
 
+	public float FuelAmount
+	{
+		get { return _fuelAmount; }
+		set { _fuelAmount = Mathf.Min(FuelCap, value); }
+	}
+	
 	private void Start()
 	{
 		_playerMover = GetComponent<PlayerMover>();
@@ -28,8 +35,6 @@ public class PlayerUnit : UnitBase
 		float fillAmount = (float) Health.CurrentHealth / Health.MaxHealth;
 		HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, fillAmount, Time.deltaTime * HealthBarChangeSpeed);
 		FuelText.text = "Fuel: " + FuelAmount.ToString("0.00");
-
-		FuelAmount = Mathf.Min(FuelCap, FuelAmount);
 		
 		if (Input.GetButton("Fire3") || Input.GetAxis("Triggers") != 0)
 		{
@@ -44,6 +49,7 @@ public class PlayerUnit : UnitBase
 			{
 				_playerMover.Speed = _boostSpeed;
 				FuelAmount -= Time.deltaTime;
+				FuelAmount = Mathf.Max(0, FuelAmount);
 			}
 			else
 			{

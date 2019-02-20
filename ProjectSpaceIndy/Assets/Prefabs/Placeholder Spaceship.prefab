@@ -757,7 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
   _speed: 8
-  BoostSpeed: 40
+  BoostSpeed: 16
   turnSmoothing: 0.112
   RotationTimeout: 0.5
   UseMouse: 0
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapons: []
-  FuelAmount: 5
+  _fuelAmount: 5
   FuelCap: 10
   FuelText: {fileID: 9076813963188229804}
   HealthBar: {fileID: 2010641793552336769}
