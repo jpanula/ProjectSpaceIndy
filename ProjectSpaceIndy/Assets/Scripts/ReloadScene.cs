@@ -7,6 +7,7 @@ public class ReloadScene : MonoBehaviour
 {
     public ActivatorBase Activator;
     public ActivatorBase ResetDetector;
+    public GameObject PlayerPrefab;
     private GameObject _player;
     private bool _reloaded;
     public static ReloadScene Instance;
@@ -26,7 +27,21 @@ public class ReloadScene : MonoBehaviour
 
     private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (i == 0)
+            {
+                _player = players[0];
+            }
+            else { Destroy(players[i]);}
+        }
+
+        if (_player == null)
+        {
+            _player = Instantiate(PlayerPrefab);
+        }
     }
 
     void Update()
@@ -44,10 +59,10 @@ public class ReloadScene : MonoBehaviour
 
     private void Reload()
     {
-        GameObject oldPlayer = _player;
+         
         _reloaded = true;
         SceneManager.LoadScene("TestLevel");
-        GameObject newPlayer = GameObject.FindGameObjectWithTag("Player");
-        newPlayer = oldPlayer;
+        
+        
     }
 }
