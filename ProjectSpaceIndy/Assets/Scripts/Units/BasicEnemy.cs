@@ -66,9 +66,10 @@ public class BasicEnemy : UnitBase
         {
             Vector3 playerDirection = _target.position - transform.position;
             Mover.MovementVector = playerDirection;
+            float maxDistance = Vector3.Distance(transform.position, _target.position);
             
             // If player is in line of sight, execute the following
-            if (!Physics.Raycast(transform.position, playerDirection, DetectionRadius, (int) Const.Layers.Environment))
+            if (!Physics.Raycast(transform.position, playerDirection, maxDistance, (int) Const.Layers.Environment))
             {
                 // If player is not at the wanted distance, move appropriately
                 if (DistanceFromPlayer < Vector3.Distance(transform.position, _target.position))
