@@ -103,6 +103,9 @@ public class BasicEnemy : UnitBase
             scraps[i].transform.position = dropAngle + transform.position;
             dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
         }
+
+        PickupBase fuel = PickupManager.Instance.GetFuel();
+        fuel.transform.position = transform.position;
         base.Die();
     }
 

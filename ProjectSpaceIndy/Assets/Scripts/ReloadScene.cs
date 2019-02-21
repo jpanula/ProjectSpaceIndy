@@ -7,10 +7,16 @@ public class ReloadScene : MonoBehaviour
 {
     public ActivatorBase Activator;
     public ActivatorBase ResetDetector;
-    public GameObject PlayerPrefab;
-    private GameObject _player;
+    public PlayerUnit Player;
     private bool _reloaded;
     public static ReloadScene Instance;
+
+    private int _health;
+    private float _fuel;
+    private Vector3 _position;
+    private Quaternion _rotation;
+
+    private Vector3 _cameraPosition;
 
     private void Awake()
     {
@@ -25,25 +31,6 @@ public class ReloadScene : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-        for (int i = 0; i < players.Length; i++)
-        {
-            if (i == 0)
-            {
-                _player = players[0];
-            }
-            else { Destroy(players[i]);}
-        }
-
-        if (_player == null)
-        {
-            _player = Instantiate(PlayerPrefab);
-        }
-    }
-
     void Update()
     {
         if (ResetDetector.Active && _reloaded)
@@ -55,14 +42,30 @@ public class ReloadScene : MonoBehaviour
         {
             Reload();
         }
+
+        if (Player == null)
+        {
+            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUnit>();
+        
+            Player.GetComponent<Health>().CurrentHealth = _health;
+            Player.transform.position = _position;
+            Player.transform.rotation = _rotation;
+            Player.FuelAmount = _fuel;
+            Player.GetComponent<PlayerMover>().Camera.transform.position = _cameraPosition;
+        }
     }
 
     private void Reload()
     {
-         
-        _reloaded = true;
+
+        _health = Player.GetComponent<Health>().CurrentHealth;
+        _position = Player.transform.position;
+        _rotation = Player.transform.rotation;
+        _fuel = Player.FuelAmount;
+        _cameraPosition = Player.GetComponent<PlayerMover>().Camera.transform.position;
+        
         SceneManager.LoadScene("TestLevel");
-        
-        
+        _reloaded = true;
+
     }
 }
