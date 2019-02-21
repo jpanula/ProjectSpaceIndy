@@ -9,6 +9,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     public IHealth Health;
     public Weapon[] Weapons;
     private PooledSpawner _spawner;
+    protected bool _dead;
 
     public PooledSpawner Spawner { get; set; }
 
@@ -23,7 +24,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     public virtual bool TakeDamage(int amount)
     {
         bool died = Health.DecreaseHealth(amount);
-        if (died)
+        if (died && !_dead)
         {
             Die();
         }
@@ -50,11 +51,14 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
         {
             Destroy(gameObject);
         }
+
+        _dead = true;
     }
 
     protected virtual void Reset()
     {
         Health.Reset();
         Mover.Reset();
+        _dead = false;
     }
 }
