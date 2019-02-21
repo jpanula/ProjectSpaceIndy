@@ -24,13 +24,13 @@ public class Projectile : MonoBehaviour
         _lifeTimeTimer = 0;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_isFired)
         {
             RaycastHit hit;
             if (Physics.SphereCast(transform.position, HitBoxRadius, Mover.MovementVector, out hit,
-                Vector3.Distance(transform.position, transform.position + Mover.MovementVector * Speed), LayerMask))
+                Vector3.Distance(transform.position, transform.position + Mover.MovementVector * Speed * Time.deltaTime), LayerMask))
             {
                 Hit(hit.collider);
             }
@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour
         _weapon = weapon;
         _direction = direction;
         _isFired = true;
-        Mover.MovementVector = _direction * Time.deltaTime;
+        Mover.MovementVector = _direction;
         _lifeTimeTimer = 0;
     }
 

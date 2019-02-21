@@ -9,14 +9,9 @@ public class TestProjectileMover : MonoBehaviour, IMover
 
     public float Speed { get; set; }
 
-    public void Move(Vector3 movementVector)
-    {
-        transform.position += movementVector * Speed;
-    }
-
     private void FixedUpdate()
     {
-        Move(MovementVector);
+        transform.position += MovementVector * Speed * Time.deltaTime;
     }
 
     public void Reset()
