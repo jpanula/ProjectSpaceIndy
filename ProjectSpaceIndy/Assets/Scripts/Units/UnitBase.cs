@@ -24,7 +24,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     public virtual bool TakeDamage(int amount)
     {
         bool died = Health.DecreaseHealth(amount);
-        if (died && !_dead)
+        if ((died && !_dead) || Health.MinHealth == Health.CurrentHealth)
         {
             Die();
         }
