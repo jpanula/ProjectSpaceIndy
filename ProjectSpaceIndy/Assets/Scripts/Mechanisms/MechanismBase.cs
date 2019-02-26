@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class MechanismBase : MonoBehaviour
 {
     public ActivatorBase[] Activators;
+    public GameObject Target;
+    public float Speed;
 
     public abstract void Activation();
 
