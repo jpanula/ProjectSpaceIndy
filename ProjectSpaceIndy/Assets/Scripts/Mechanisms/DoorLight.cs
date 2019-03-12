@@ -2,30 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestButton : ActivatorBase
+public class DoorLight : MonoBehaviour
 {
     public Material Green;
     private Renderer _renderer;
+    public ActivatorBase activator;
     private bool _active;
-    private bool _activated;
 
     private void Awake()
     {
+        _active = false;
         _renderer = GetComponent<Renderer>();
     }
 
     private void Update()
     {
-        if (_active && !_activated)
+        if (activator.Active && !_active)
         {
             _renderer.material = Green;
-            _activated = true;
+            _active = true;
         }
-    }
-
-    public override bool Active
-    {
-        get { return _active; }
-        set { _active = value; }
     }
 }
