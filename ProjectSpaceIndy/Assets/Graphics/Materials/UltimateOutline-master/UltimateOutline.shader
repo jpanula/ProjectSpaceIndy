@@ -6,6 +6,10 @@ Shader "Outlined/UltimateOutline"
 	{
 		_Color("Main Color", Color) = (0.5,0.5,0.5,1)
 		_MainTex("Texture", 2D) = "white" {}
+		
+		[Toggle]_UseEmission("Use Emission", int) = 0
+		[HDR]_EmissionColor("Emission Color", Color) = (0,0,0,1)
+		[HDR]_EmissionMap("Emission Map", 2D) = "white" {}
 
 		_FirstOutlineColor("Outline color", Color) = (1,0,0,0.5)
 		_FirstOutlineWidth("Outlines width", Range(0.0, 2.0)) = 0.15
@@ -33,6 +37,10 @@ Shader "Outlined/UltimateOutline"
 	uniform sampler2D _MainTex;
 	uniform float4 _Color;
 	uniform float _Angle;
+	
+	int _UseEmission;
+	uniform float4 _EmissionColor;
+	uniform sampler2D _EmissionMap;
 
 	ENDCG
 
@@ -129,6 +137,7 @@ Shader "Outlined/UltimateOutline"
 
 		struct Input {
 			float2 uv_MainTex;
+			float2 uv_EmissionMap;
 			float4 color : COLOR;
 		};
 
@@ -136,6 +145,7 @@ Shader "Outlined/UltimateOutline"
 			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
 			o.Alpha = c.a;
+			o.Emission = tex2D(_EmissionMap, IN.uv_EmissionMap) * _EmissionColor * _UseEmission;
 		}
 		ENDCG
 	}
