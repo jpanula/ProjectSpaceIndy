@@ -4575,6 +4575,11 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6835954539538781076, guid: 662e6350a097a234d983b257aff26aab,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 662e6350a097a234d983b257aff26aab, type: 3}
 --- !u!1 &708843322
@@ -9267,7 +9272,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Green: {fileID: 2100000, guid: cb2556ac8f7ca5d4faa2ae1a4596b3aa, type: 2}
-  Renderer: {fileID: 1243081334}
 --- !u!136 &1243081333
 CapsuleCollider:
   m_ObjectHideFlags: 0
