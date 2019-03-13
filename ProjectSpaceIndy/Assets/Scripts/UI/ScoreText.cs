@@ -14,6 +14,6 @@ public class ScoreText : MonoBehaviour
 
     private void Update()
     {
-        _scoreText.text = "Score: " + GameManager.Score;
+        _scoreText.text = "Score\n" + GameManager.Score;
     }
 }
