@@ -6,22 +6,105 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-    public float Lifetime;
-    public int Damage;
+    #region BasicStuff
+    
+    [Header("Stats")]
+    
+    [Tooltip("Damage the projectile deals.")]
+    public int Damage = 1;
+    
+    [Tooltip("Speed in units/s")]
+    public float Speed = 15;
+    
+    [Tooltip("Choose who the projectile should hurt.\n\nCustom uses the layer mask from advanced stuff.")]
+    public HitLayer CollideWith;
+    
+    [Tooltip("Radius of the projectile hitbox in units.")]
+    public float HitBoxRadius = 0.3f;
+    
+    [Tooltip("Lifetime of the projectile in seconds")]
+    public float Lifetime = 1.5f;
+
+    
+    
+    [Space(15), Header("Effects")]
+    
+    [Tooltip("The particle effect to play when the projectile is fired.")]
+    public ParticleSystem FiringEffect;
+    
+    [Tooltip("The particle effect to play when the projectile hits something.")]
+    public ParticleSystem CollisionEffect;
+    
+    [Tooltip("The particle effect to play continuously on the projectile.")]
+    public ParticleSystem ConstantEffect;
+
+    [Tooltip("Trail effect")]
+    public TrailRenderer Trail;
+
+    #endregion BasicStuff
+    
+    
+    
+    [Space(15), Header("Advanced Stuff")]
+    
+    [Tooltip("Layers that the projectile can collide with.")]
     public LayerMask LayerMask;
+    
+    
+    
     public IMover Mover;
-    public float HitBoxRadius;
-    public float Speed;
+    
+    [HideInInspector]
+    public bool _isFired;
     private Weapon _weapon;
     private Vector3 _direction;
-    public bool _isFired;
     private float _lifeTimeTimer;
 
+    private bool _firingEffectIsNotNull;
+    private bool _collisionEffectIsNotNull;
+    private bool _constantEffectIsNotNull;
+    private bool _trailIsNotNull;
+    
+    private GameObject _firingEffectObject;
+    private GameObject _collisionEffectObject;
+    private GameObject _constantEffectObject;
+    private GameObject _trailObject;
+
+    private readonly LayerMask _playerProjectileMask =
+        (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.Activator);
+
+    private readonly LayerMask _enemyProjectileMask = (int) (Const.Layers.Player | Const.Layers.Environment);
+
+    public enum HitLayer
+    {
+        Player,
+        Enemy,
+        Custom
+    }
+    
     private void Awake()
     {
+        _firingEffectIsNotNull = FiringEffect != null;
+        _collisionEffectIsNotNull = CollisionEffect != null;
+        _constantEffectIsNotNull = ConstantEffect != null;
+        _trailIsNotNull = Trail != null;
+        
         Mover = GetComponent<IMover>();
         Mover.Speed = Speed;
         _lifeTimeTimer = 0;
+
+        switch (CollideWith)
+        {
+            case HitLayer.Player:
+                LayerMask = _enemyProjectileMask;
+                gameObject.layer = (int) Const.LayerNumbers.EnemyProjectile;
+                break;
+            
+            case HitLayer.Enemy:
+                LayerMask = _playerProjectileMask;
+                gameObject.layer = (int) Const.LayerNumbers.PlayerProjectile;
+                break;
+        }
     }
 
     private void FixedUpdate()
@@ -47,6 +130,12 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if (_constantEffectIsNotNull) _constantEffectObject.transform.position = transform.position;
+        if (_trailIsNotNull) _trailObject.transform.position = transform.position;
+    }
+
     public void Launch(Weapon weapon, Vector3 direction)
     {
         _weapon = weapon;
@@ -54,6 +143,9 @@ public class Projectile : MonoBehaviour
         _isFired = true;
         Mover.MovementVector = _direction;
         _lifeTimeTimer = 0;
+        if (_firingEffectIsNotNull) _firingEffectObject = Instantiate(FiringEffect.gameObject, transform.position, transform.rotation);
+        if (_constantEffectIsNotNull) _constantEffectObject = Instantiate(ConstantEffect.gameObject, transform.position, transform.rotation);
+        if (_trailIsNotNull) _trailObject = Instantiate(Trail.gameObject, transform.position, transform.rotation);
     }
 
     public void ReturnProjectile()
@@ -88,6 +180,19 @@ public class Projectile : MonoBehaviour
         _isFired = false;
         _lifeTimeTimer = 0;
         Mover.MovementVector = Vector3.zero;
+        
+        if (_constantEffectIsNotNull)
+        {
+            var main = ConstantEffect.main;
+            _constantEffectObject.GetComponent<ParticleSystem>().Stop();
+            Destroy(_constantEffectObject, main.startDelay.constant + main.startLifetime.constant);
+        }
+
+        if (_collisionEffectIsNotNull)
+        {
+            _collisionEffectObject = Instantiate(CollisionEffect.gameObject, transform.position, Quaternion.Inverse(transform.rotation));
+            Destroy(_collisionEffectObject, CollisionEffect.main.duration);
+        }
     }
 
     private void OnDrawGizmos()

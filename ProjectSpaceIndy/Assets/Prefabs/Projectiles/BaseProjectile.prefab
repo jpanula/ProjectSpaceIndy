@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2400708553649503811}
   - component: {fileID: 4355489381707614896}
   - component: {fileID: 175302695525387767}
-  m_Layer: 12
-  m_Name: Capsule
+  m_Layer: 0
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 5778243456058951121}
   - component: {fileID: 3014772748916913563}
   - component: {fileID: 5104800923316740134}
-  m_Layer: 12
-  m_Name: PlayerProjectile
+  m_Layer: 0
+  m_Name: BaseProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,13 +122,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328741884ef08614e8a0ab4c8cffc5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lifetime: 1.5
   Damage: 1
+  Speed: 30
+  CollideWith: 1
+  HitBoxRadius: 0.5
+  Lifetime: 1.5
+  FiringEffect: {fileID: 4652280285647851101, guid: 4fea37fb1bcdd9b4f86bff64e06a4476,
+    type: 3}
+  CollisionEffect: {fileID: 4652280285647851101, guid: 4fea37fb1bcdd9b4f86bff64e06a4476,
+    type: 3}
+  ConstantEffect: {fileID: 6418110384594887523, guid: dcb4883246738414f90a74b231452d13,
+    type: 3}
+  Trail: {fileID: 353506457236511149, guid: d1eab3525843ad94f8ebf327639d47f5, type: 3}
   LayerMask:
     serializedVersion: 2
     m_Bits: 19456
-  HitBoxRadius: 0.5
-  Speed: 30
   _isFired: 0
 --- !u!114 &5104800923316740134
 MonoBehaviour:
