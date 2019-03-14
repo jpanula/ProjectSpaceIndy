@@ -52,7 +52,7 @@ public class Health : MonoBehaviour, IHealth
             CurrentHealth += 1;
         }
 
-        return CurrentHealth == MinHealth;
+        return CurrentHealth <= MinHealth;
     }
 
     public void ResetHealth()

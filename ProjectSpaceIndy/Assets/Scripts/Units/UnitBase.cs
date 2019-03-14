@@ -24,8 +24,9 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     public virtual bool TakeDamage(int amount)
     {
         bool died = Health.DecreaseHealth(amount);
-        if ((died && !_dead) || Health.MinHealth == Health.CurrentHealth)
+        if (died && !_dead)
         {
+            _dead = true;
             Die();
         }
 
@@ -52,7 +53,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
             Destroy(gameObject);
         }
 
-        _dead = true;
+        
     }
 
     protected virtual void ResetUnit()

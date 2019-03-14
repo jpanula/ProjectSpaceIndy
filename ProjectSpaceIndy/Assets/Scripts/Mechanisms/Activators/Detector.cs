@@ -25,6 +25,11 @@ public class Detector : ActivatorBase
         set { _active = value; }
     }
 
+    private void Awake()
+    {
+        _active = Inverted;
+    }
+
     private void Update()
     {
         
