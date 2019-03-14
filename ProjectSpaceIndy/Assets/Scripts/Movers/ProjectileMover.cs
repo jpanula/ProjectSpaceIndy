@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestProjectileMover : MonoBehaviour, IMover
+public class ProjectileMover : MonoBehaviour, IMover
 {
 
     public Vector3 MovementVector { get; set; }
