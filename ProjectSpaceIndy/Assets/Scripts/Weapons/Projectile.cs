@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
     public void ReturnProjectile()
     {
         Weapon owner = _weapon;
-        Reset();
+        ResetProjectile();
         owner.ReturnProjectile(this);
     }
 
@@ -82,7 +82,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void Reset()
+    private void ResetProjectile()
     {
         _weapon = null;
         _isFired = false;

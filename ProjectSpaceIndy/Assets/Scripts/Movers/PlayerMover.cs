@@ -164,7 +164,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		}
 	}
 
-	public void Reset()
+	public void ResetMover()
 	{
 		_timeOutTimer = 0;
 	}

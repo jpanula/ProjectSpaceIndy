@@ -40,9 +40,9 @@ public class EnemyUnit : UnitBase
         base.Die();
     }
 
-    protected override void Reset()
+    protected override void ResetUnit()
     {
-        base.Reset();
+        base.ResetUnit();
         _timer = 0;
     }
 }

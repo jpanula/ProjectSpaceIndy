@@ -44,7 +44,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     {
         if (Spawner != null)
         {
-            Reset();
+            ResetUnit();
             Spawner.ReturnUnit(this);
         }
         else
@@ -55,10 +55,10 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
         _dead = true;
     }
 
-    protected virtual void Reset()
+    protected virtual void ResetUnit()
     {
-        Health.Reset();
-        Mover.Reset();
+        Health.ResetHealth();
+        Mover.ResetMover();
         _dead = false;
     }
 }

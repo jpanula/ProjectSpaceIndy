@@ -18,7 +18,7 @@ public class FuelPickup : PickupBase
         if (player != null)
         {
             GrantEffect(player);
-            Reset();
+            ResetPickup();
             if (!PickupManager.Instance.ReturnFuel(this))
             {
                 Destroy(gameObject);

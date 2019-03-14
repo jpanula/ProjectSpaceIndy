@@ -14,8 +14,9 @@ public class ProjectileMover : MonoBehaviour, IMover
         transform.position += MovementVector * Speed * Time.deltaTime;
     }
 
-    public void Reset()
+    public void ResetMover()
     {
         
     }
+    
 }
