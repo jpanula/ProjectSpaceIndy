@@ -5,9 +5,11 @@ using UnityEngine;
 public abstract class UnitBase : MonoBehaviour, IDamageReceiver
 {
 
+    public Weapon[] Weapons;
+    public ParticleSystem DeathEffect;
+    
     public IMover Mover;
     public IHealth Health;
-    public Weapon[] Weapons;
     private PooledSpawner _spawner;
     protected bool _dead;
 
@@ -43,6 +45,10 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
 
     protected virtual void Die()
     {
+        if (DeathEffect != null)
+        {
+            DeathEffect.Play();
+        }
         if (Spawner != null)
         {
             ResetUnit();

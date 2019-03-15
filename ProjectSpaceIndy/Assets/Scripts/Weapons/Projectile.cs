@@ -83,11 +83,16 @@ public class Projectile : MonoBehaviour
     }
     
     private void Awake()
-    {
+    {   
         _firingEffectIsNotNull = FiringEffect != null;
         _collisionEffectIsNotNull = CollisionEffect != null;
         _constantEffectIsNotNull = ConstantEffect != null;
         _trailIsNotNull = Trail != null;
+
+        if (_firingEffectIsNotNull)
+        {
+            
+        }
         
         Mover = GetComponent<IMover>();
         Mover.Speed = Speed;
@@ -143,9 +148,18 @@ public class Projectile : MonoBehaviour
         _isFired = true;
         Mover.MovementVector = _direction;
         _lifeTimeTimer = 0;
-        if (_firingEffectIsNotNull) _firingEffectObject = Instantiate(FiringEffect.gameObject, transform.position, transform.rotation);
+        if (_firingEffectIsNotNull)
+        {
+            _firingEffectObject = Instantiate(FiringEffect.gameObject, transform.position, transform.rotation);
+            var mainModule = _firingEffectObject.GetComponent<ParticleSystem>().main;
+            mainModule.stopAction = ParticleSystemStopAction.Destroy;
+        }
         if (_constantEffectIsNotNull) _constantEffectObject = Instantiate(ConstantEffect.gameObject, transform.position, transform.rotation);
-        if (_trailIsNotNull) _trailObject = Instantiate(Trail.gameObject, transform.position, transform.rotation);
+        if (_trailIsNotNull)
+        {
+            _trailObject = Instantiate(Trail.gameObject, transform.position, transform.rotation);
+            _trailObject.GetComponent<TrailRenderer>().autodestruct = true;
+        }
     }
 
     public void ReturnProjectile()
@@ -191,7 +205,8 @@ public class Projectile : MonoBehaviour
         if (_collisionEffectIsNotNull)
         {
             _collisionEffectObject = Instantiate(CollisionEffect.gameObject, transform.position, Quaternion.Inverse(transform.rotation));
-            Destroy(_collisionEffectObject, CollisionEffect.main.duration);
+            var mainModule = _collisionEffectObject.GetComponent<ParticleSystem>().main;
+            mainModule.stopAction = ParticleSystemStopAction.Destroy;
         }
     }
 
