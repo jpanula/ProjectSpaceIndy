@@ -47,7 +47,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     {
         if (DeathEffect != null)
         {
-            DeathEffect.Play();
+            Instantiate(DeathEffect.gameObject, transform.position, transform.rotation);
         }
         if (Spawner != null)
         {
