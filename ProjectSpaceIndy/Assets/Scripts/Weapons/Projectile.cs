@@ -71,9 +71,9 @@ public class Projectile : MonoBehaviour
     private GameObject _trailObject;
 
     private readonly LayerMask _playerProjectileMask =
-        (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.Activator);
+        (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.Activator | Const.Layers.InvisibleWall);
 
-    private readonly LayerMask _enemyProjectileMask = (int) (Const.Layers.Player | Const.Layers.Environment);
+    private readonly LayerMask _enemyProjectileMask = (int) (Const.Layers.Player | Const.Layers.Environment | Const.Layers.InvisibleWall);
 
     public enum HitLayer
     {
@@ -177,7 +177,7 @@ public class Projectile : MonoBehaviour
             damageReceiver.TakeDamage(Damage);
             ReturnProjectile();
         }
-        else if (1 << hitCollider.gameObject.layer == (int) Const.Layers.Environment || 1 << hitCollider.gameObject.layer == (int) Const.Layers.Activator)
+        else //if (1 << hitCollider.gameObject.layer == (int) Const.Layers.Environment || 1 << hitCollider.gameObject.layer == (int) Const.Layers.Activator || 1 << hitCollider.gameObject.layer == (int) Const.Layers.InvisibleWall)
         {
             ActivatorBase activator = hitCollider.GetComponent<ActivatorBase>();
             if (activator != null)

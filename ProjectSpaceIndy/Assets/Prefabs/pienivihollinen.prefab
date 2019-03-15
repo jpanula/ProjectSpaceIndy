@@ -108,9 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee29269ca6166946bacf06c2a801bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingHealth: 10
+  _startingHealth: 5
   _currentHealth: 0
-  _maxHealth: 10
+  _maxHealth: 5
   _minHealth: 0
   _isImmortal: 0
   _isInvulnerable: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnSpeed: 4
-  _speed: 4
+  _speed: 5
 --- !u!114 &1318954891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   - {fileID: 8627920163059155383}
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
-  DetectionRadius: 15
+  DetectionRadius: 25
   DistanceFromPlayer: 4
   DroppedScrap: 5
   ScrapDropDistance: 1

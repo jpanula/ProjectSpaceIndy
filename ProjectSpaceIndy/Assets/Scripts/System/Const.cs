@@ -22,7 +22,8 @@ public static class Const
         PlayerProjectile = 1 << 12,
         EnemyProjectile = 1 << 13,
         Activator = 1 << 14,
-        Pickup = 1 << 15
+        Pickup = 1 << 15,
+        InvisibleWall = 1 << 16
     }
 
     public enum LayerNumbers
@@ -40,7 +41,7 @@ public static class Const
         PlayerProjectile = 12,
         EnemyProjectile = 13,
         Activator = 14,
-        Pickup = 15
-        
+        Pickup = 15,
+        InvisibleWall = 16
     }
 }
