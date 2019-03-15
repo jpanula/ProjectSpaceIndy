@@ -521,6 +521,8 @@ MonoBehaviour:
   Weapons:
   - {fileID: 2821871113873350939}
   - {fileID: 3812432521843497274}
+  DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
+    type: 3}
   CoolDownTime: 1
   AmountOfScrapToDrop: 5
   DropDistance: 1
@@ -868,9 +870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67adc61dc8dc8f47abaa33eec490f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: 10
   ObjectPrefab: {fileID: 3014772748916913563, guid: b117b560ba928f54d9179152a5c2f50c,
     type: 3}
+  _size: 0
 --- !u!1 &3961849850489682480
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67adc61dc8dc8f47abaa33eec490f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: 10
   ObjectPrefab: {fileID: 3014772748916913563, guid: b117b560ba928f54d9179152a5c2f50c,
     type: 3}
+  _size: 0

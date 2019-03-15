@@ -47,7 +47,9 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     {
         if (DeathEffect != null)
         {
-            DeathEffect.Play();
+            GameObject deathEffectObject = Instantiate(DeathEffect.gameObject, transform.position, transform.rotation);
+            var main = deathEffectObject.GetComponent<ParticleSystem>().main;
+            main.stopAction = ParticleSystemStopAction.Destroy;
         }
         if (Spawner != null)
         {
