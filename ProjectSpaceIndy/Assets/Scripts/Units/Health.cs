@@ -55,7 +55,7 @@ public class Health : MonoBehaviour, IHealth
         return CurrentHealth <= MinHealth;
     }
 
-    public void Reset()
+    public void ResetHealth()
     {
         CurrentHealth = MaxHealth;
     }

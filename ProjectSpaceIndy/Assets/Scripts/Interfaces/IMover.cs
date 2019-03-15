@@ -10,5 +10,5 @@ public interface IMover {
 
     Vector3 MovementVector { get; set; }
 
-    void Reset();
+    void ResetMover();
 }

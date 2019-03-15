@@ -75,7 +75,7 @@ public abstract class PickupBase : MonoBehaviour
         return 0;
     }
 
-    protected virtual void Reset()
+    protected virtual void ResetPickup()
     {
         _target = null;
         _movementTimer = 0;

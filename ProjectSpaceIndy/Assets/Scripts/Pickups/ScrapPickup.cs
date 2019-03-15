@@ -17,7 +17,7 @@ public class ScrapPickup : PickupBase
         if (player != null)
         {
             GrantEffect(player);
-            Reset();
+            ResetPickup();
             if (!PickupManager.Instance.ReturnScrap(this))
             {
                 Destroy(gameObject);

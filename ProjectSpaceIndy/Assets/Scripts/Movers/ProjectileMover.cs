@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestProjectileMover : MonoBehaviour, IMover
+public class ProjectileMover : MonoBehaviour, IMover
 {
 
     public Vector3 MovementVector { get; set; }
@@ -14,8 +14,9 @@ public class TestProjectileMover : MonoBehaviour, IMover
         transform.position += MovementVector * Speed * Time.deltaTime;
     }
 
-    public void Reset()
+    public void ResetMover()
     {
         
     }
+    
 }

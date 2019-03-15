@@ -93,7 +93,7 @@ public class EnemyMover : MonoBehaviour, IMover
         }
     }
 
-    public void Reset()
+    public void ResetMover()
     {
         _strafeTimer = 0;
         _waitTimer = 0;

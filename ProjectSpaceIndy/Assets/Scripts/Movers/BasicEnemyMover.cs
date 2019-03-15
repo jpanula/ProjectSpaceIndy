@@ -14,7 +14,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
     public float TurnSpeed;
 
     public float _speed;
-    public void Reset()
+    public void ResetMover()
     {
         Speed = 0;
         MovementVector = Vector3.zero;
