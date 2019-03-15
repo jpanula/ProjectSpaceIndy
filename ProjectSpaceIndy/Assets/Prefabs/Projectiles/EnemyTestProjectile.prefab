@@ -122,13 +122,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328741884ef08614e8a0ab4c8cffc5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lifetime: 1.5
   Damage: 1
+  Speed: 15
+  CollideWith: 2
+  HitBoxRadius: 0.05
+  Lifetime: 1.5
+  FiringEffect: {fileID: 0}
+  CollisionEffect: {fileID: 0}
+  ConstantEffect: {fileID: 0}
+  Trail: {fileID: 0}
   LayerMask:
     serializedVersion: 2
-    m_Bits: 2560
-  HitBoxRadius: 0.05
-  Speed: 15
+    m_Bits: 68096
   _isFired: 0
 --- !u!114 &5104800923316740134
 MonoBehaviour:
