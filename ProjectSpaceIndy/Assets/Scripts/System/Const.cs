@@ -22,6 +22,26 @@ public static class Const
         PlayerProjectile = 1 << 12,
         EnemyProjectile = 1 << 13,
         Activator = 1 << 14,
-        Pickup = 1 << 15
+        Pickup = 1 << 15,
+        InvisibleWall = 1 << 16
+    }
+
+    public enum LayerNumbers
+    {
+        Default = 0,
+        TransparentFX = 1,
+        IgnoreRaycast = 2,
+        Water = 4,
+        UI = 5,
+        PostProcessing = 8,
+        
+        Player = 9,
+        Enemy = 10,
+        Environment = 11,
+        PlayerProjectile = 12,
+        EnemyProjectile = 13,
+        Activator = 14,
+        Pickup = 15,
+        InvisibleWall = 16
     }
 }

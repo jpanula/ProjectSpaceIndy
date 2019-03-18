@@ -7,13 +7,11 @@ public class TestDoor : MechanismBase
     
     private bool _activated;
     private bool _finished;
-    public float Speed;
-    public GameObject Target;
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
     
 
-    private void Awake()
+    protected void Awake()
     {
         _activated = false;
         _finished = true;
@@ -23,7 +21,7 @@ public class TestDoor : MechanismBase
 
     // Checks every activator in the array to see if they are active
     // If all are active, go to Activation();
-    void Update()
+    protected void Update()
     {
         int activeCounter = 0;
         foreach (ActivatorBase activator in Activators)
@@ -65,7 +63,7 @@ public class TestDoor : MechanismBase
         }
     }
 
-    public void Deactivation()
+    protected void Deactivation()
     {
         transform.position = Vector3.MoveTowards(transform.position, _startPosition, Speed * Time.deltaTime);
         if (transform.position == _startPosition)

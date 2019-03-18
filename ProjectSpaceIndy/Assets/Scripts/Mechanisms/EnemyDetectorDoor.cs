@@ -7,8 +7,6 @@ public class EnemyDetectorDoor : MechanismBase
 {
     private bool _activated;
     private bool _finished;
-    public float Speed;
-    public GameObject Target;
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
     

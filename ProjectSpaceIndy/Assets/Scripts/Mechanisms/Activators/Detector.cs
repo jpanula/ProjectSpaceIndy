@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Detector : ActivatorBase
 {
     public Vector3 Dimensions;
     public LayerMask LayerMask;
+    public bool Inverted;
     public float Delay;
     public float Cooldown;
     public Color GizmoColor = new Color(1, 1, 1, 1);
@@ -17,8 +17,17 @@ public class Detector : ActivatorBase
 
     public override bool Active
     {
-        get { return _active; }
+        get
+        {
+            if (Inverted) return !_active;
+            return _active;
+        }
         set { _active = value; }
+    }
+
+    private void Awake()
+    {
+        _active = Inverted;
     }
 
     private void Update()

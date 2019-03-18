@@ -17,7 +17,8 @@ public class FuelPickup : PickupBase
         PlayerUnit player = other.GetComponent<PlayerUnit>();
         if (player != null)
         {
-            GrantEffect(player);;
+            GrantEffect(player);
+            ResetPickup();
             if (!PickupManager.Instance.ReturnFuel(this))
             {
                 Destroy(gameObject);

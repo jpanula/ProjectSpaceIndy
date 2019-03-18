@@ -44,5 +44,5 @@ public interface IHealth {
     /// <summary>
     /// Resets the health
     /// </summary>
-    void Reset();
+    void ResetHealth();
 }

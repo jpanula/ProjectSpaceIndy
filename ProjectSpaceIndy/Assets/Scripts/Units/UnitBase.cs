@@ -5,10 +5,13 @@ using UnityEngine;
 public abstract class UnitBase : MonoBehaviour, IDamageReceiver
 {
 
+    public Weapon[] Weapons;
+    public ParticleSystem DeathEffect;
+    
     public IMover Mover;
     public IHealth Health;
-    public Weapon[] Weapons;
     private PooledSpawner _spawner;
+    protected bool _dead;
 
     public PooledSpawner Spawner { get; set; }
 
@@ -23,8 +26,9 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
     public virtual bool TakeDamage(int amount)
     {
         bool died = Health.DecreaseHealth(amount);
-        if (died)
+        if (died && !_dead)
         {
+            _dead = true;
             Die();
         }
 
@@ -41,20 +45,29 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
 
     protected virtual void Die()
     {
+        if (DeathEffect != null)
+        {
+            GameObject deathEffectObject = Instantiate(DeathEffect.gameObject, transform.position, transform.rotation);
+            var main = deathEffectObject.GetComponent<ParticleSystem>().main;
+            main.stopAction = ParticleSystemStopAction.Destroy;
+        }
         if (Spawner != null)
         {
-            Reset();
+            ResetUnit();
             Spawner.ReturnUnit(this);
         }
         else
         {
             Destroy(gameObject);
         }
+
+        
     }
 
-    protected virtual void Reset()
+    protected virtual void ResetUnit()
     {
-        Health.Reset();
-        Mover.Reset();
+        Health.ResetHealth();
+        Mover.ResetMover();
+        _dead = false;
     }
 }

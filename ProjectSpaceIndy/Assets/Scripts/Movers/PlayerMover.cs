@@ -98,7 +98,7 @@ public class PlayerMover : MonoBehaviour, IMover
 				rotationSpeed * Time.deltaTime);
 		}
 
-		int layerMask = (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.EnemyProjectile);
+		int layerMask = (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.EnemyProjectile | Const.Layers.InvisibleWall);
 		//layerMask = ~layerMask;
 
 		Vector3 origin = transform.position;
@@ -164,7 +164,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		}
 	}
 
-	public void Reset()
+	public void ResetMover()
 	{
 		_timeOutTimer = 0;
 	}

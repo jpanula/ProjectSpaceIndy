@@ -5,15 +5,20 @@ using UnityEngine;
 public class TestButton : ActivatorBase
 {
     public Material Green;
-    public Renderer Renderer;
+    private Renderer _renderer;
     private bool _active;
     private bool _activated;
+
+    private void Awake()
+    {
+        _renderer = GetComponent<Renderer>();
+    }
 
     private void Update()
     {
         if (_active && !_activated)
         {
-            Renderer.material = Green;
+            _renderer.material = Green;
             _activated = true;
         }
     }

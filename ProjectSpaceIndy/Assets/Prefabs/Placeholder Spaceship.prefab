@@ -777,6 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapons: []
+  DeathEffect: {fileID: 0}
   _fuelAmount: 5
   FuelCap: 10
   FuelText: {fileID: 9076813963188229804}
@@ -1085,7 +1086,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2933166530342732561}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.533, y: 0, z: 0.86899996}
+  m_LocalPosition: {x: -0.533, y: 0, z: 0.805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4233615534918490}
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDownTime: 0.1
+  StartupDelay: 0
   Projectiles: {fileID: 4564346862170443174}
 --- !u!114 &4564346862170443174
 MonoBehaviour:
@@ -1117,7 +1119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67adc61dc8dc8f47abaa33eec490f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectPrefab: {fileID: 3014772748916913563, guid: a3e0287050141334885dcfdeb583e8b3,
+  ObjectPrefab: {fileID: 3014772748916913563, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
     type: 3}
   _size: 20
 --- !u!1 &3751669079919710783
@@ -1146,7 +1148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3751669079919710783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.542, y: 0, z: 0.8679999}
+  m_LocalPosition: {x: 0.542, y: 0, z: 0.805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4233615534918490}
@@ -1165,6 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDownTime: 0.1
+  StartupDelay: 0
   Projectiles: {fileID: 3141822975377848009}
 --- !u!114 &3141822975377848009
 MonoBehaviour:
@@ -1178,7 +1181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67adc61dc8dc8f47abaa33eec490f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectPrefab: {fileID: 3014772748916913563, guid: a3e0287050141334885dcfdeb583e8b3,
+  ObjectPrefab: {fileID: 3014772748916913563, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
     type: 3}
   _size: 20
 --- !u!1001 &3779620523328010066
@@ -1296,6 +1299,16 @@ PrefabInstance:
     - target: {fileID: 4876911755807592706, guid: 9a6331772d0f99a4689902ce9e4f4c30,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297564542973125118, guid: 9a6331772d0f99a4689902ce9e4f4c30,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297564542973125118, guid: 9a6331772d0f99a4689902ce9e4f4c30,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
