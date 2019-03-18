@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class GameManager : MonoBehaviour
     public enum Level
     {
         Error = -1,
-        None = 0,
-        Test = 1
+        MainMenu = 0,
+        Test = 1,
+        Level1 = 2
     }
     
     public static int Score;
@@ -37,6 +39,15 @@ public class GameManager : MonoBehaviour
         if (PickupManager.Instance == null)
         {
             PickupManager = Instantiate(PickupManager);
+        }
+    }
+
+    private void Update()
+    {
+        // Return to main menu if Esc is pressed
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }
