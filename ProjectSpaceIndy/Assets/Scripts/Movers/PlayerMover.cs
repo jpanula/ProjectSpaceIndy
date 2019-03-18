@@ -111,8 +111,17 @@ public class PlayerMover : MonoBehaviour, IMover
 		{
 			direction = Vector3.ProjectOnPlane(direction, hit.normal);
 			newPosition = transform.position + direction;
-			transform.position = newPosition;
-
+			
+			if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
+			{
+				direction = Vector3.ProjectOnPlane(direction, hit.normal);
+				newPosition = transform.position + direction;
+				transform.position = newPosition;
+			}
+			else
+			{
+				transform.position = newPosition;
+			}
 		}
 		
 		else { transform.position = newPosition; }
