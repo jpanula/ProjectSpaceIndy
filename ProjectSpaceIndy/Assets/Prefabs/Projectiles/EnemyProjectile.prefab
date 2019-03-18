@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c06c08454c8ec0a4d9c8bb707bb486f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3014772748916913563}
   - component: {fileID: 5104800923316740134}
   m_Layer: 13
-  m_Name: EnemyTestProjectile
+  m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,10 +127,12 @@ MonoBehaviour:
   CollideWith: 2
   HitBoxRadius: 0.05
   Lifetime: 1.5
-  FiringEffect: {fileID: 0}
-  CollisionEffect: {fileID: 0}
+  FiringEffect: {fileID: 1561548727445552558, guid: 2d677da3b904dbd4ba27d5392f424065,
+    type: 3}
+  CollisionEffect: {fileID: 1561548727445552558, guid: 2d677da3b904dbd4ba27d5392f424065,
+    type: 3}
   ConstantEffect: {fileID: 0}
-  Trail: {fileID: 0}
+  Trail: {fileID: 353506457236511149, guid: 6f0f96d957057044bbec0ba69f830495, type: 3}
   LayerMask:
     serializedVersion: 2
     m_Bits: 68096
