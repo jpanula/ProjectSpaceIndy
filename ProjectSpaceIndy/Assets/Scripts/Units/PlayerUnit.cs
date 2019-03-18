@@ -67,6 +67,19 @@ public class PlayerUnit : UnitBase
 			}
 		}
 		
+		float rightStickDeadzone = _playerMover.RightStickDeadzone;
+		bool useMouse = _playerMover.UseMouse;
+		
+		Vector3 rightStickVector = new Vector3(Input.GetAxisRaw("Horizontal_Look"), 0, Input.GetAxisRaw("Vertical_Look"));
+		float rightStickMagnitude = Vector3.Magnitude(rightStickVector);
+		if (Input.GetAxisRaw("Fire1") > 0 || rightStickMagnitude >= rightStickDeadzone && !useMouse)
+		{
+			foreach (Weapon weapon in Weapons)
+			{
+				weapon.Fire();
+			}
+		}
+		
 	}
 
 	private void OnEnable()
