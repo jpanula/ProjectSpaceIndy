@@ -109,9 +109,10 @@ public class PlayerMover : MonoBehaviour, IMover
 		Debug.DrawLine(origin, newPosition);
 		if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
 		{
-			Vector3 newPositionVector = hit.point - transform.position;
-			newPositionVector = Vector3.ProjectOnPlane(newPositionVector, hit.normal);
-			transform.position += newPositionVector;
+			direction = Vector3.ProjectOnPlane(direction, hit.normal);
+			newPosition = transform.position + direction;
+			transform.position = newPosition;
+
 		}
 		
 		else { transform.position = newPosition; }
