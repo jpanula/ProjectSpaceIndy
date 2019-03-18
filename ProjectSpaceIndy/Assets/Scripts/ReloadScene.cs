@@ -53,6 +53,11 @@ public class ReloadScene : MonoBehaviour
             Player.FuelAmount = _fuel;
             Player.GetComponent<PlayerMover>().Camera.transform.position = _cameraPosition;
         }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Reload()

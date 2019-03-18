@@ -777,6 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapons: []
+  DeathEffect: {fileID: 0}
   _fuelAmount: 5
   FuelCap: 10
   FuelText: {fileID: 9076813963188229804}
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDownTime: 0.1
+  StartupDelay: 0
   Projectiles: {fileID: 4564346862170443174}
 --- !u!114 &4564346862170443174
 MonoBehaviour:
@@ -1165,6 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDownTime: 0.1
+  StartupDelay: 0
   Projectiles: {fileID: 3141822975377848009}
 --- !u!114 &3141822975377848009
 MonoBehaviour:
