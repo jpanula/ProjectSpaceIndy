@@ -66,7 +66,10 @@ public class PlayerUnit : UnitBase
 				_speedValuesSaved = false;
 			}
 		}
-		
+	}
+
+	private void LateUpdate()
+	{
 		float rightStickDeadzone = _playerMover.RightStickDeadzone;
 		bool useMouse = _playerMover.UseMouse;
 		
@@ -79,7 +82,6 @@ public class PlayerUnit : UnitBase
 				weapon.Fire();
 			}
 		}
-		
 	}
 
 	private void OnEnable()
