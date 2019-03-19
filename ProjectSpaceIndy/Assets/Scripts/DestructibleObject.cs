@@ -14,7 +14,10 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
     private void Awake()
     {
         _health = GetComponent<Health>();
-        
+        if (MaxDistance < 1)
+        {
+            MaxDistance = 22;
+        }
     }
 
     public virtual bool TakeDamage(int amount)

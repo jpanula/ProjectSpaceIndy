@@ -9,11 +9,15 @@ public class TestButton : ActivatorBase
     private Renderer _renderer;
     private bool _active;
     private bool _activated;
-    public float MaxDistance = 20f;
+    public float MaxDistance = 20;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
+        if (MaxDistance < 1)
+        {
+            MaxDistance = 20;
+        }
     }
 
     private void Update()
