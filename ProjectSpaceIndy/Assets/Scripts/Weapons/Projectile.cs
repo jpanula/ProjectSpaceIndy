@@ -188,8 +188,10 @@ public class Projectile : MonoBehaviour
         }
         else //if (1 << hitCollider.gameObject.layer == (int) Const.Layers.Environment || 1 << hitCollider.gameObject.layer == (int) Const.Layers.Activator || 1 << hitCollider.gameObject.layer == (int) Const.Layers.InvisibleWall)
         {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            float maxDistance = 20f;
             ActivatorBase activator = hitCollider.GetComponent<ActivatorBase>();
-            if (activator != null)
+            if (activator != null && Vector3.Distance(player.transform.position, transform.position) <= maxDistance)
             {
                 activator.Active = true;
             }
