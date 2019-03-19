@@ -706,7 +706,6 @@ GameObject:
   - component: {fileID: 114997143367041604}
   - component: {fileID: 114182059755915736}
   - component: {fileID: 3394699431409138645}
-  - component: {fileID: 1496916968121200306}
   m_Layer: 9
   m_Name: Placeholder Spaceship
   m_TagString: Player
@@ -776,7 +775,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc8f742dede0374e962cd9f4729dad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapons: []
+  Weapons:
+  - {fileID: 2567831740140409751}
+  - {fileID: 1570296220084109310}
   DeathEffect: {fileID: 0}
   _fuelAmount: 5
   FuelCap: 10
@@ -814,21 +815,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.61929107
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1496916968121200306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714050269312900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4806a53f6756c74f86ed94aa1c58764, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Weapons:
-  - {fileID: 2567831740140409751}
-  - {fileID: 1570296220084109310}
 --- !u!1 &1766857896928318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDownTime: 0.1
-  StartupDelay: 0
   Projectiles: {fileID: 4564346862170443174}
 --- !u!114 &4564346862170443174
 MonoBehaviour:
@@ -1167,7 +1152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDownTime: 0.1
-  StartupDelay: 0
   Projectiles: {fileID: 3141822975377848009}
 --- !u!114 &3141822975377848009
 MonoBehaviour:

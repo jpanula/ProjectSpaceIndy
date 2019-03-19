@@ -160,6 +160,15 @@ public class Projectile : MonoBehaviour
             _trailObject = Instantiate(Trail.gameObject, transform.position, transform.rotation);
             _trailObject.GetComponent<TrailRenderer>().autodestruct = true;
         }
+
+        Transform pt = weapon.transform.parent;
+        Vector3 launchPos = transform.position - pt.position;
+        RaycastHit hit;
+        if (Physics.SphereCast(pt.position, HitBoxRadius, launchPos, out hit,
+            Vector3.Distance(pt.position, transform.position), LayerMask))
+        {
+            Hit(hit.collider);
+        }
     }
 
     public void ReturnProjectile()
