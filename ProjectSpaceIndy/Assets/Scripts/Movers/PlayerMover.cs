@@ -11,6 +11,10 @@ public class PlayerMover : MonoBehaviour, IMover
 	public Camera Camera;
 	public float _speed = 1;
 	public float BoostSpeed = 2;
+	[Tooltip("How fast should the player turn when using the right stick.")]
+	public float LookTurnSpeed;
+	[Tooltip("How much smoothing should be applied when turning with the right stick.")]
+	public float LookTurnSmoothing;
 	[Range(0.0f, 1.0f), Tooltip("Bigger number = Ship turns slower")]
 	public float turnSmoothing;
 	[Tooltip("Time in seconds to wait before changing rotation to match movement direction")]
@@ -74,8 +78,10 @@ public class PlayerMover : MonoBehaviour, IMover
 				rightStick = rightStick.normalized;
 			}
 			Vector3 lookVector = rightStick;
-			lookVector += transform.position;
-			transform.LookAt(lookVector);
+			Quaternion lookRotation = Quaternion.LookRotation(lookVector, Vector3.up);
+			//lookVector += transform.position;
+			//transform.LookAt(lookVector);
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, LookTurnSpeed * Time.deltaTime / LookTurnSmoothing);
 			_timeOutTimer = 0;
 			Debug.DrawLine(transform.position, transform.position + rightStick * 5, Color.magenta, 0.2f);
 		}
