@@ -9,6 +9,7 @@ public class PlayerUnit : UnitBase
 {
 	[FormerlySerializedAs("FuelAmount")] public float _fuelAmount;
 	public float FuelCap;
+	public float ShootDelay;
 	public TextMeshProUGUI FuelText;
 
 	public Image HealthBar;
@@ -18,6 +19,7 @@ public class PlayerUnit : UnitBase
 	private float _speed;
 	private float _boostSpeed;
 	private bool _speedValuesSaved;
+	private float _shootDelayTimer;
 
 	public float FuelAmount
 	{
@@ -48,8 +50,11 @@ public class PlayerUnit : UnitBase
 			if (FuelAmount > 0)
 			{
 				_playerMover.Speed = _boostSpeed;
-				FuelAmount -= Time.deltaTime;
-				FuelAmount = Mathf.Max(0, FuelAmount);
+				if (_playerMover.MovementVector.magnitude > _playerMover.LeftStickDeadzone)
+				{
+					FuelAmount -= Time.deltaTime;
+					FuelAmount = Mathf.Max(0, FuelAmount);
+				}
 			}
 			else
 			{
@@ -77,10 +82,18 @@ public class PlayerUnit : UnitBase
 		float rightStickMagnitude = Vector3.Magnitude(rightStickVector);
 		if (Input.GetAxisRaw("Fire1") > 0 || rightStickMagnitude >= rightStickDeadzone && !useMouse)
 		{
-			foreach (Weapon weapon in Weapons)
+			_shootDelayTimer += Time.deltaTime;
+			if (_shootDelayTimer >= ShootDelay)
 			{
-				weapon.Fire();
+				foreach (Weapon weapon in Weapons)
+				{
+					weapon.Fire();
+				}
 			}
+		}
+		else
+		{
+			_shootDelayTimer = 0;
 		}
 	}
 

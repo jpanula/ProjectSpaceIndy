@@ -757,6 +757,8 @@ MonoBehaviour:
   Camera: {fileID: 0}
   _speed: 8
   BoostSpeed: 16
+  LookTurnSpeed: 1
+  LookTurnSmoothing: 0.025
   turnSmoothing: 0.112
   RotationTimeout: 0.5
   UseMouse: 0
@@ -781,6 +783,7 @@ MonoBehaviour:
   DeathEffect: {fileID: 0}
   _fuelAmount: 5
   FuelCap: 10
+  ShootDelay: 0.07
   FuelText: {fileID: 9076813963188229804}
   HealthBar: {fileID: 2010641793552336769}
   HealthBarChangeSpeed: 10
