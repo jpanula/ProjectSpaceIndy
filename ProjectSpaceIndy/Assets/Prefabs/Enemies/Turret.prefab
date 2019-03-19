@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 6150377660379970192}
   - component: {fileID: 6150377660379970193}
   - component: {fileID: 6150377660379970198}
-  - component: {fileID: 8191282336055705843}
+  - component: {fileID: 5266836592200930041}
   m_Layer: 10
   m_Name: Turret
   m_TagString: Untagged
@@ -523,8 +523,8 @@ MonoBehaviour:
   _minHealth: 0
   _isImmortal: 0
   _isInvulnerable: 0
---- !u!136 &8191282336055705843
-CapsuleCollider:
+--- !u!135 &5266836592200930041
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -533,7 +533,6 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.9974461
-  m_Direction: 0
-  m_Center: {x: -0.004954815, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
