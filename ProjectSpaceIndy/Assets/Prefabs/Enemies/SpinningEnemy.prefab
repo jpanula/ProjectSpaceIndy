@@ -273,8 +273,8 @@ MonoBehaviour:
     type: 3}
   DetectionRadius: 30
   DistanceFromPlayer: 0
-  DroppedScrap: 1
-  ScrapDropDistance: 0
+  DroppedScrap: 10
+  ScrapDropDistance: 1
 --- !u!114 &6037484077997579886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnSpeed: 0
-  _speed: 1
+  _speed: 3
   Forward: 1
 --- !u!114 &2576106367871265214
 MonoBehaviour:
