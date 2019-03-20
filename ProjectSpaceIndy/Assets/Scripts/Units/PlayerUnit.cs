@@ -21,6 +21,21 @@ public class PlayerUnit : UnitBase
 	private bool _speedValuesSaved;
 	private float _shootDelayTimer;
 
+	private bool _checkPoint;
+	private Vector3 _checkpointPos;
+
+	public Vector3 CheckpointPos
+	{
+		get { return _checkpointPos; }
+		set { _checkpointPos = value; }
+	}
+
+	public bool PassedCheckpoint
+	{
+		get { return _checkPoint; }
+		set { _checkPoint = value; }
+	}
+	
 	public float FuelAmount
 	{
 		get { return _fuelAmount; }
@@ -104,7 +119,13 @@ public class PlayerUnit : UnitBase
 
 	protected override void Die()
 	{
-		transform.position = _spawnPosition;
+		if (_checkPoint)
+		{
+			transform.position = _checkpointPos;
+		}
+		
+		else { transform.position = _spawnPosition; }
+
 		ResetUnit();
 	}
 }
