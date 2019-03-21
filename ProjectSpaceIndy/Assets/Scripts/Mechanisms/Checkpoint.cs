@@ -17,8 +17,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (Activator.Active && !_activated)
         {
-            _player.GetComponent<PlayerUnit>().CheckpointPos = transform.position;
-            _player.GetComponent<PlayerUnit>().PassedCheckpoint = true;
+            _player.GetComponent<PlayerUnit>().SpawnPos = transform.position;
             _activated = true;
         }
     }
