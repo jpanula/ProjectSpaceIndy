@@ -39,6 +39,7 @@ public class PlayerUnit : UnitBase
 	private float _fuelHUDTimeoutTimer;
 	private float _shipHUDTimeoutTimer;
 	private int _lastHP;
+	private float _lastFuel;
 
 	public float FuelAmount
 	{
@@ -82,6 +83,7 @@ public class PlayerUnit : UnitBase
 		}
 		
 		_lastHP = Health.CurrentHealth;
+		_lastFuel = FuelAmount;
 	}
 
 	protected override void Update ()
@@ -95,7 +97,6 @@ public class PlayerUnit : UnitBase
 		
 		if (Input.GetButton("Fire3") || Input.GetAxis("Triggers") != 0)
 		{
-			_fuelHUDTimeoutTimer = 0;
 			if (!_speedValuesSaved)
 			{
 				_speed = _playerMover.Speed;
@@ -132,6 +133,12 @@ public class PlayerUnit : UnitBase
 		{
 			_lastHP = Health.CurrentHealth;
 			_healthHUDTimeoutTimer = 0;
+		}
+
+		if (_lastFuel != FuelAmount)
+		{
+			_lastFuel = FuelAmount;
+			_fuelHUDTimeoutTimer = 0;
 		}
 		
 		_healthHUDTimeoutTimer += Time.deltaTime;
