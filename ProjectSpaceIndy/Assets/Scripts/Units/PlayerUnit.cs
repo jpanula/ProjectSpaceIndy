@@ -30,7 +30,13 @@ public class PlayerUnit : UnitBase
 
 	private Image _hpBarFill;
 	private Image _fuelBarFill;
+	private Image[] _healthHUD = new Image[3];
+	private Image[] _fuelHUD = new Image[3];
 	private float[] _shipHUDAlpha;
+	private float[] _healthHUDAlpha;
+	private float[] _fuelHUDAlpha;
+	private float _healthHUDTimeoutTimer;
+	private float _fuelHUDTimeoutTimer;
 	private float _shipHUDTimeoutTimer;
 	private int _lastHP;
 
@@ -43,21 +49,25 @@ public class PlayerUnit : UnitBase
 	private void Start()
 	{
 		_playerMover = GetComponent<PlayerMover>();
-		foreach (var image in ShipHUDElements)
-		{
-			if (image.name.Contains("HPBarFill"))
-			{
-				_hpBarFill = image;
-			}
-			else if (image.name.Contains("FuelBarFill"))
-			{
-				_fuelBarFill = image;
-			}
-		}
+
+		//TODO make this part less shit maybe
+		
 		_shipHUDAlpha = new float[ShipHUDElements.Length];
+		_healthHUDAlpha = new float[3];
+		_fuelHUDAlpha = new float[3];
 		for (int i = 0; i < ShipHUDElements.Length; i++)
 		{
 			_shipHUDAlpha[i] = ShipHUDElements[i].color.a;
+			if (i < 3)
+			{
+				_healthHUDAlpha[i] = _shipHUDAlpha[i];
+				_healthHUD[i] = ShipHUDElements[i];
+			}
+			else
+			{
+				_fuelHUDAlpha[i - 3] = _shipHUDAlpha[i];
+				_fuelHUD[i - 3] = ShipHUDElements[i];
+			}
 			
 			Image image = ShipHUDElements[i];
 			
@@ -70,7 +80,7 @@ public class PlayerUnit : UnitBase
 				_fuelBarFill = image;
 			}		
 		}
-
+		
 		_lastHP = Health.CurrentHealth;
 	}
 
@@ -85,7 +95,7 @@ public class PlayerUnit : UnitBase
 		
 		if (Input.GetButton("Fire3") || Input.GetAxis("Triggers") != 0)
 		{
-			_shipHUDTimeoutTimer = 0;
+			_fuelHUDTimeoutTimer = 0;
 			if (!_speedValuesSaved)
 			{
 				_speed = _playerMover.Speed;
@@ -121,13 +131,15 @@ public class PlayerUnit : UnitBase
 		if (_lastHP != Health.CurrentHealth)
 		{
 			_lastHP = Health.CurrentHealth;
-			_shipHUDTimeoutTimer = 0;
+			_healthHUDTimeoutTimer = 0;
 		}
 		
-		_shipHUDTimeoutTimer += Time.deltaTime;
-		if (_shipHUDTimeoutTimer >= ShipHUDTimeout)
+		_healthHUDTimeoutTimer += Time.deltaTime;
+		_fuelHUDTimeoutTimer += Time.deltaTime;
+		
+		if (_healthHUDTimeoutTimer >= ShipHUDTimeout)
 		{
-			foreach (var image in ShipHUDElements)
+			foreach (var image in _healthHUD)
 			{
 				if (image.color.a > 0)
 				{
@@ -139,13 +151,38 @@ public class PlayerUnit : UnitBase
 		}
 		else
 		{
-			for (int i = 0; i < ShipHUDElements.Length; i++)
+			for (int i = 0; i < _healthHUD.Length; i++)
 			{
-				var image = ShipHUDElements[i];
-				if (image.color.a < _shipHUDAlpha[i])
+				var image = _healthHUD[i];
+				if (image.color.a < _healthHUDAlpha[i])
 				{
 					var imageColor = image.color;
-					imageColor.a = Mathf.Lerp(imageColor.a, _shipHUDAlpha[i], Time.deltaTime * ShipHUDFadeInSpeed);
+					imageColor.a = Mathf.Lerp(imageColor.a, _healthHUDAlpha[i], Time.deltaTime * ShipHUDFadeInSpeed);
+					image.color = imageColor;
+				}
+			}
+		}
+		if (_fuelHUDTimeoutTimer >= ShipHUDTimeout)
+		{
+			foreach (var image in _fuelHUD)
+			{
+				if (image.color.a > 0)
+				{
+					var imageColor = image.color;
+					imageColor.a = Mathf.Lerp(imageColor.a, 0, Time.deltaTime * ShipHUDFadeOutSpeed);
+					image.color = imageColor;
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < _fuelHUD.Length; i++)
+			{
+				var image = _fuelHUD[i];
+				if (image.color.a < _fuelHUDAlpha[i])
+				{
+					var imageColor = image.color;
+					imageColor.a = Mathf.Lerp(imageColor.a, _fuelHUDAlpha[i], Time.deltaTime * ShipHUDFadeInSpeed);
 					image.color = imageColor;
 				}
 			}
