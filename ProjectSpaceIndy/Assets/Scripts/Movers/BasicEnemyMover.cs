@@ -8,7 +8,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
     public float TurnSpeed;
     public float _speed;
     public ForwardVector Forward = ForwardVector.Forward;
-    private LayerMask _layerMask = (int) (Const.Layers.Player | Const.Layers.Activator | Const.Layers.Environment | Const.Layers.Enemy);
+    private LayerMask _layerMask = (int) (Const.Layers.Player | Const.Layers.Activator | Const.Layers.Environment | Const.Layers.Enemy | Const.Layers.EnemyBarrier);
     private SphereCollider _collider;
 
     public enum ForwardVector

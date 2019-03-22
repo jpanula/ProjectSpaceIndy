@@ -271,7 +271,7 @@ MonoBehaviour:
   - {fileID: 2576106366811399905}
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
-  DetectionRadius: 30
+  DetectionRadius: 26
   DistanceFromPlayer: 0
   DroppedScrap: 10
   ScrapDropDistance: 1
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31940a2ecd08a44991c62a0416b8f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedMultiplier: 2.5
+  SpeedMultiplier: 3
   animator: {fileID: 2576106368043940480}
   Weapons:
   - {fileID: 2576106367243509474}
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnSpeed: 0
-  _speed: 3
+  _speed: 0
   Forward: 1
 --- !u!114 &2576106367871265214
 MonoBehaviour:
