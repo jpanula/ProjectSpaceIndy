@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public PickupManager PickupManager;
     public TimerManager TimerManager;
     public MenuManager MenuManager;
+    public InputManager InputManager;
     
     #endregion Manager Prefabs
 
@@ -53,6 +54,11 @@ public class GameManager : MonoBehaviour
         if (MenuManager.Instance == null)
         {
             MenuManager = Instantiate(MenuManager);
+        }
+
+        if (InputManager.Instance == null)
+        {
+            InputManager = Instantiate(InputManager);
         }
     }
 

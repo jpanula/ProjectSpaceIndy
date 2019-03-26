@@ -113,7 +113,7 @@ public class PlayerUnit : UnitBase
 			if (FuelAmount > 0)
 			{
 				_playerMover.Speed = _boostSpeed;
-				if (_playerMover.MovementVector.magnitude > _playerMover.LeftStickDeadzone)
+				if (_playerMover.MovementVector.magnitude > InputManager.Instance.LeftStickDeadzone)
 				{
 					FuelAmount -= TimerManager.Instance.GameDeltaTime;
 					FuelAmount = Mathf.Max(0, FuelAmount);
@@ -209,7 +209,7 @@ public class PlayerUnit : UnitBase
 
 	private void LateUpdate()
 	{
-		float rightStickDeadzone = _playerMover.RightStickDeadzone;
+		float rightStickDeadzone = InputManager.Instance.RightStickDeadzone;
 		bool useMouse = _playerMover.UseMouse;
 		
 		Vector3 rightStickVector = new Vector3(Input.GetAxisRaw("Horizontal_Look"), 0, Input.GetAxisRaw("Vertical_Look"));

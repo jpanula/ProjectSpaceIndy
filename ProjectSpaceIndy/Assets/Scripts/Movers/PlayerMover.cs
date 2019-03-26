@@ -20,10 +20,6 @@ public class PlayerMover : MonoBehaviour, IMover
 	[Tooltip("Time in seconds to wait before changing rotation to match movement direction")]
 	public float RotationTimeout;
 	public bool UseMouse;
-	[Range(0.0f, 1.0f),Tooltip("The deadzone for the left stick in the gamepad")]
-	public float LeftStickDeadzone;
-	[Range(0.0f, 1.0f),Tooltip("The deadzone for the right stick in the gamepad")]
-	public float RightStickDeadzone;
 	private float rotationSpeed;
 	private Plane _plane;
 	private float _distanceToPlane;
@@ -74,11 +70,11 @@ public class PlayerMover : MonoBehaviour, IMover
 		// Make a vector from the right stick input
 		Vector3 rightStick = new Vector3(Input.GetAxisRaw("Horizontal_Look"), 0, Input.GetAxisRaw("Vertical_Look"));
 		// Check if the input passes the deadzone threshold for the right stick
-		if (Vector3.Magnitude(rightStick) >= RightStickDeadzone)
+		if (Vector3.Magnitude(rightStick) >= InputManager.Instance.RightStickDeadzone)
 		{
 			UseMouse = false;
 			rightStick = rightStick.normalized *
-			             ((rightStick.magnitude - RightStickDeadzone) / (1 - RightStickDeadzone));
+			             ((rightStick.magnitude - InputManager.Instance.RightStickDeadzone) / (1 - InputManager.Instance.RightStickDeadzone));
 			if (rightStick.magnitude > 1)
 			{
 				rightStick = rightStick.normalized;
@@ -92,7 +88,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			Debug.DrawLine(transform.position, transform.position + rightStick * 5, Color.magenta, 0.2f);
 		}
 		// If controller right stick fails, get from mouse if possible
-		else if (UseMouse)
+		else if (UseMouse && TimerManager.Instance.GameDeltaScale > 0)
 		{
 			
 			Ray mouseRay = Camera.ScreenPointToRay(Input.mousePosition);
@@ -104,7 +100,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			}
 		}
 		// If mouse and right stick rotation fails, use movement
-		else if (Vector3.Magnitude(_movementVector) >= LeftStickDeadzone && _timeOutTimer >= RotationTimeout)
+		else if (Vector3.Magnitude(_movementVector) >= InputManager.Instance.LeftStickDeadzone && _timeOutTimer >= RotationTimeout)
 		{
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAt),
 				rotationSpeed * TimerManager.Instance.GameDeltaTime);
@@ -175,7 +171,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		Vector3 inputVector = new Vector3( horizontal, 0, vertical );
 		
 		// Check if the input passes the deadzone threshold, and if it doesn't, make it zero
-		if (Vector3.Magnitude(inputVector) < LeftStickDeadzone)
+		if (Vector3.Magnitude(inputVector) < InputManager.Instance.LeftStickDeadzone)
 		{
 			inputVector = Vector3.zero;
 			if (NormalMovement != null && NormalMovement.isPlaying)
@@ -186,7 +182,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		else
 		{
 			inputVector = inputVector.normalized *
-			              ((inputVector.magnitude - LeftStickDeadzone) / (1 - LeftStickDeadzone));
+			              ((inputVector.magnitude - InputManager.Instance.LeftStickDeadzone) / (1 - InputManager.Instance.LeftStickDeadzone));
 		}
 
 		// Kertomalla inputVector TimerManager.Instance.GameDeltaTime:lla saamme fps:stä
