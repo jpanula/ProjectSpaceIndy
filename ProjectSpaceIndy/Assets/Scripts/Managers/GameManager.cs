@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public PickupManager PickupManager;
     public TimerManager TimerManager;
+    public MenuManager MenuManager;
     
     #endregion Manager Prefabs
 
@@ -46,14 +47,19 @@ public class GameManager : MonoBehaviour
         {
             TimerManager = Instantiate(TimerManager);
         }
+
+        if (MenuManager.Instance == null)
+        {
+            MenuManager = Instantiate(MenuManager);
+        }
     }
 
-    private void Update()
+    /*private void Update()
     {
         // Return to main menu if Esc is pressed
         if (Input.GetKey(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
         }
-    }
+    }*/
 }
