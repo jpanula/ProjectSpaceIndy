@@ -11,7 +11,7 @@ public class ProjectileMover : MonoBehaviour, IMover
 
     private void FixedUpdate()
     {
-        transform.position += MovementVector * Speed * Time.deltaTime;
+        transform.position += MovementVector * Speed * TimerManager.Instance.GameDeltaTime;
     }
 
     public void ResetMover()

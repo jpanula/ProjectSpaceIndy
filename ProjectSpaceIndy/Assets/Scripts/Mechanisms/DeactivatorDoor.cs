@@ -66,7 +66,7 @@ public class DeactivatorDoor : MechanismBase
 
     public override void Activation()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * TimerManager.Instance.GameDeltaTime);
         if (transform.position == _targetPosition)
         {
             _activated = true;
@@ -76,7 +76,7 @@ public class DeactivatorDoor : MechanismBase
 
     protected void Deactivation()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _startPosition, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _startPosition, Speed * TimerManager.Instance.GameDeltaTime);
         if (transform.position == _startPosition)
         {
             _activated = false;

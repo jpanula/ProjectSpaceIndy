@@ -34,7 +34,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
         if (MovementVector != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(MovementVector);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * TurnSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, TimerManager.Instance.GameDeltaTime * TurnSpeed);
         }
 
         var t = transform;
@@ -53,7 +53,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
                 break;
         }
         
-        newPos = Vector3.Lerp(position, newPos, Time.deltaTime);
+        newPos = Vector3.Lerp(position, newPos, TimerManager.Instance.GameDeltaTime);
         Vector3 direction = newPos - position;
 
         RaycastHit hit;

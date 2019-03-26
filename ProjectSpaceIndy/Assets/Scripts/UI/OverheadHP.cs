@@ -22,7 +22,7 @@ public class OverheadHP : MonoBehaviour
     private void Update()
     {
         var healthRatio = (float) ParentHealth.CurrentHealth / ParentHealth.MaxHealth;
-        HealthBarFill.fillAmount = Mathf.Lerp(HealthBarFill.fillAmount, healthRatio, Time.deltaTime * HealthBarChangeSpeed);
+        HealthBarFill.fillAmount = Mathf.Lerp(HealthBarFill.fillAmount, healthRatio, TimerManager.Instance.UiDeltaTime * HealthBarChangeSpeed);
         switch (Rotation)
         {
                 case RotationType.None:

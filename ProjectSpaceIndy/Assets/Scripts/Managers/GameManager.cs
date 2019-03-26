@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     #region Manager Prefabs
 
     public PickupManager PickupManager;
+    public TimerManager TimerManager;
     
     #endregion Manager Prefabs
 
@@ -39,6 +40,11 @@ public class GameManager : MonoBehaviour
         if (PickupManager.Instance == null)
         {
             PickupManager = Instantiate(PickupManager);
+        }
+
+        if (TimerManager.Instance == null)
+        {
+            TimerManager = Instantiate(TimerManager);
         }
     }
 

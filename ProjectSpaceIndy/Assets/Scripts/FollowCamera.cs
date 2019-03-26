@@ -31,7 +31,7 @@ public class FollowCamera : MonoBehaviour
 			_newPos = target.transform.position +
 			          Vector3.Normalize(new Vector3(0, Mathf.Sin(Mathf.Deg2Rad * Angle),
 				          -Mathf.Cos(Mathf.Deg2Rad * Angle))) * Distance;
-			transform.position = Vector3.Lerp(transform.position, _newPos, 1 / MovementSmoothing * Time.deltaTime);
+			transform.position = Vector3.Lerp(transform.position, _newPos, 1 / MovementSmoothing * TimerManager.Instance.GameDeltaTime);
 		}
 
 	}

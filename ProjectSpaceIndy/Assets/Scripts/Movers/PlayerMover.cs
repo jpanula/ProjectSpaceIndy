@@ -82,7 +82,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			Quaternion lookRotation = Quaternion.LookRotation(lookVector, Vector3.up);
 			//lookVector += transform.position;
 			//transform.LookAt(lookVector);
-			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, LookTurnSpeed * Time.deltaTime / LookTurnSmoothing);
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, LookTurnSpeed * TimerManager.Instance.GameDeltaTime / LookTurnSmoothing);
 			_timeOutTimer = 0;
 			Debug.DrawLine(transform.position, transform.position + rightStick * 5, Color.magenta, 0.2f);
 		}
@@ -102,7 +102,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		else if (Vector3.Magnitude(_movementVector) >= LeftStickDeadzone && _timeOutTimer >= RotationTimeout)
 		{
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAt),
-				rotationSpeed * Time.deltaTime);
+				rotationSpeed * TimerManager.Instance.GameDeltaTime);
 		}
 
 		int layerMask = (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.EnemyProjectile | Const.Layers.InvisibleWall);
@@ -142,7 +142,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			UseMouse = true;
 		}
 		
-		_timeOutTimer += Time.deltaTime;
+		_timeOutTimer += TimerManager.Instance.GameDeltaTime;
 		float horizontal = Input.GetAxisRaw( "Horizontal" );
 		float vertical = Input.GetAxisRaw( "Vertical" );
 
@@ -160,7 +160,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			              ((inputVector.magnitude - LeftStickDeadzone) / (1 - LeftStickDeadzone));
 		}
 
-		// Kertomalla inputVector Time.deltaTime:lla saamme fps:stä
+		// Kertomalla inputVector TimerManager.Instance.GameDeltaTime:lla saamme fps:stä
 		// riippumattoman liikevektorin
 		if (Vector3.Magnitude(inputVector) > 1.0f)
 		{
@@ -171,7 +171,7 @@ public class PlayerMover : MonoBehaviour, IMover
 
 		// Kutsutaan Moverin Move metodia ja välitetään syötevektori 
 		// parametrina.
-		Move( _movementVector * Time.deltaTime);
+		Move( _movementVector * TimerManager.Instance.GameDeltaTime);
 		
 		//Debug.Log("X: " + Input.GetAxisRaw("Horizontal_Look") + " Y: " + Input.GetAxisRaw("Vertical_Look"));
 		

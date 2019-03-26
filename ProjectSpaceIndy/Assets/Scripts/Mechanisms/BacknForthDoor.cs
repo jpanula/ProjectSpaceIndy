@@ -54,7 +54,7 @@ public class BacknForthDoor : MechanismBase
     // When targetPosition is reached, the bool _activated is set to true
     public override void Activation()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * TimerManager.Instance.GameDeltaTime);
         if (transform.position == _targetPosition)
         {
             _activated = true;
@@ -64,7 +64,7 @@ public class BacknForthDoor : MechanismBase
 
     protected void Deactivation()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _startPosition, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _startPosition, Speed * TimerManager.Instance.GameDeltaTime);
         if (transform.position == _startPosition)
         {
             _activated = false;
