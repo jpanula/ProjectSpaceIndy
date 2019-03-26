@@ -135,6 +135,11 @@ public class PlayerUnit : UnitBase
 			_healthHUDTimeoutTimer = 0;
 		}
 
+		if (Health.CurrentHealth < Health.MaxHealth)
+		{
+			_healthHUDTimeoutTimer = 0;
+		}
+
 		if (_lastFuel != FuelAmount)
 		{
 			_lastFuel = FuelAmount;
