@@ -45,10 +45,10 @@ public class EnemyMover : MonoBehaviour, IMover
         }
         else lookRotation = transform.rotation;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 1 / TurnSmoothing * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 1 / TurnSmoothing * TimerManager.Instance.GameDeltaTime);
 
         transform.position =
-            Vector3.Lerp(transform.position, transform.position + movementVector * _speed, 1 / MoveSmoothing * Time.deltaTime);
+            Vector3.Lerp(transform.position, transform.position + movementVector * _speed, 1 / MoveSmoothing * TimerManager.Instance.GameDeltaTime);
     }
 
     private void Update()
@@ -56,8 +56,8 @@ public class EnemyMover : MonoBehaviour, IMover
         _movementVector = Vector3.zero;
         if (Waiting)
         {
-            _waitTimer += Time.deltaTime;
-            Move(_movementVector * Time.deltaTime);
+            _waitTimer += TimerManager.Instance.GameDeltaTime;
+            Move(_movementVector * TimerManager.Instance.GameDeltaTime);
             if (_waitTimer >= WaitTime)
             {
                 Waiting = false;
@@ -66,7 +66,7 @@ public class EnemyMover : MonoBehaviour, IMover
         }
         else
         {
-            _strafeTimer += Time.deltaTime;
+            _strafeTimer += TimerManager.Instance.GameDeltaTime;
             if (MoveLeft)
             {
                 _movementVector = -transform.right;
@@ -88,7 +88,7 @@ public class EnemyMover : MonoBehaviour, IMover
                 Vector3 playerVector = Vector3.Normalize(Player.transform.position - transform.position);
                 float distanceFromPlayer = Vector3.Distance(Player.transform.position, transform.position);
                 playerVector *= (distanceFromPlayer - Distance) / Distance;
-                Move((_movementVector + playerVector) * Time.deltaTime);
+                Move((_movementVector + playerVector) * TimerManager.Instance.GameDeltaTime);
             }
         }
     }

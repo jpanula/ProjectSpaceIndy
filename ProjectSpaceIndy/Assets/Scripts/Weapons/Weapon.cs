@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        _coolDownTimer += Time.deltaTime;
+        _coolDownTimer += TimerManager.Instance.GameDeltaTime;
     }
     
     /// <summary>

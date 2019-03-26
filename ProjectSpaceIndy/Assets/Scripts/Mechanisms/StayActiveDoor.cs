@@ -53,7 +53,7 @@ public class StayActiveDoor : MechanismBase
     // When targetPosition is reached, the bool _activated is set to true
     public override void Activation()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * TimerManager.Instance.GameDeltaTime);
         if (transform.position == _targetPosition)
         {
             _activated = true;

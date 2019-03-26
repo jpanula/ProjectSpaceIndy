@@ -69,6 +69,8 @@ public class Projectile : MonoBehaviour
     private GameObject _collisionEffectObject;
     private GameObject _constantEffectObject;
     private GameObject _trailObject;
+    
+    private float _trailTime;
 
     private readonly LayerMask _playerProjectileMask =
         (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.Activator | Const.Layers.InvisibleWall);
@@ -118,7 +120,7 @@ public class Projectile : MonoBehaviour
         {
             RaycastHit hit;
             if (Physics.SphereCast(transform.position, HitBoxRadius, Mover.MovementVector, out hit,
-                Vector3.Distance(transform.position, transform.position + Mover.MovementVector * Speed * Time.deltaTime), LayerMask))
+                Vector3.Distance(transform.position, transform.position + Mover.MovementVector * Speed * TimerManager.Instance.GameDeltaTime), LayerMask))
             {
                 Hit(hit.collider);
             }
@@ -128,11 +130,11 @@ public class Projectile : MonoBehaviour
             Mover.MovementVector = Vector3.zero;
         }
         
-        _lifeTimeTimer += Time.deltaTime;
+        _lifeTimeTimer += TimerManager.Instance.GameDeltaTime;
         if (_lifeTimeTimer >= Lifetime)
         {
             ReturnProjectile();
-        }
+        }               
     }
 
     private void LateUpdate()
@@ -153,12 +155,20 @@ public class Projectile : MonoBehaviour
             _firingEffectObject = Instantiate(FiringEffect.gameObject, transform.position, transform.rotation);
             var mainModule = _firingEffectObject.GetComponent<ParticleSystem>().main;
             mainModule.stopAction = ParticleSystemStopAction.Destroy;
+            mainModule.simulationSpeed = TimerManager.Instance.GameDeltaScale;
         }
-        if (_constantEffectIsNotNull) _constantEffectObject = Instantiate(ConstantEffect.gameObject, transform.position, transform.rotation);
+        if (_constantEffectIsNotNull)
+        {
+            _constantEffectObject = Instantiate(ConstantEffect.gameObject, transform.position, transform.rotation);
+            var main = _constantEffectObject.GetComponent<ParticleSystem>().main;
+            main.simulationSpeed = TimerManager.Instance.GameDeltaScale;
+        }
         if (_trailIsNotNull)
         {
             _trailObject = Instantiate(Trail.gameObject, transform.position, transform.rotation);
-            _trailObject.GetComponent<TrailRenderer>().autodestruct = true;
+            var trailRenderer = _trailObject.GetComponent<TrailRenderer>();
+            trailRenderer.autodestruct = false;
+            trailRenderer.time /= TimerManager.Instance.GameDeltaScale;
         }
 
         Transform pt = weapon.transform.parent;
@@ -218,6 +228,13 @@ public class Projectile : MonoBehaviour
             _collisionEffectObject = Instantiate(CollisionEffect.gameObject, transform.position, Quaternion.Inverse(transform.rotation));
             var mainModule = _collisionEffectObject.GetComponent<ParticleSystem>().main;
             mainModule.stopAction = ParticleSystemStopAction.Destroy;
+            mainModule.simulationSpeed = TimerManager.Instance.GameDeltaScale;
+        }
+
+        if (_trailIsNotNull)
+        {
+            _trailObject.GetComponent<TrailRenderer>().autodestruct = true;
+            Destroy(_trailObject);
         }
     }
 

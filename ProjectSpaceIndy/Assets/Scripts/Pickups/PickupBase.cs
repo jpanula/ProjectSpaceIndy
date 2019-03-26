@@ -27,7 +27,7 @@ public abstract class PickupBase : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            _lifeTimeTimer += Time.deltaTime;
+            _lifeTimeTimer += TimerManager.Instance.GameDeltaTime;
         }
         
         Collider[] colliders = Physics.OverlapSphere(transform.position, AttractionRadius, (int) Const.Layers.Player);
@@ -48,7 +48,7 @@ public abstract class PickupBase : MonoBehaviour
 
         if (_target != null)
         {
-            _movementTimer += Time.deltaTime * AttractionSpeed;
+            _movementTimer += TimerManager.Instance.GameDeltaTime * AttractionSpeed;
             transform.position = Vector3.Lerp(transform.position, _target.position, _movementTimer);
         }
 
