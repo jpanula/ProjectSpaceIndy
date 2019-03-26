@@ -4,5 +4,10 @@ using UnityEngine;
 
 public abstract class ActivatorBase : MonoBehaviour
 {
-    public abstract bool Active { get; set; }
+    public abstract bool Active
+    { 
+        get; 
+        set;
+        
+    }
 }

@@ -19,10 +19,18 @@ public class EnemySpawner : PooledSpawner
     private bool _endlessSpawn;
     private bool _ActivatorExists;
 
+    private bool _finishedSpawning;
+
+    public bool FinishedSpawning
+    {
+        get { return _finishedSpawning; }
+    }
+
     private void Awake()
     {
         if (MaxSpawns == 0) _endlessSpawn = true;
         _ActivatorExists = Activator != null;
+        _finishedSpawning = false;
     }
 
     private void Start()
@@ -40,6 +48,11 @@ public class EnemySpawner : PooledSpawner
             _spawnTimer = 0;
             _currentSpawns++;
             if (!_endlessSpawn) MaxSpawns--;
+        }
+
+        if (!_finishedSpawning && (MaxSpawns == 0 && !_endlessSpawn))
+        {
+            _finishedSpawning = true;
         }
     }
 

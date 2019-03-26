@@ -34,6 +34,7 @@ public class PlayerMover : MonoBehaviour, IMover
 	// Spherecast variables
 	private float _sphereRadius;
 	private float _maxDistance;
+	public float AdditionalSphereRadius;
 	
 
 	public Vector3 MovementVector
@@ -46,7 +47,7 @@ public class PlayerMover : MonoBehaviour, IMover
 	{
 		_plane = new Plane(Vector3.up, 0);
 		_timeOutTimer = 0;
-		_sphereRadius = gameObject.GetComponent<SphereCollider>().radius;
+		_sphereRadius = gameObject.GetComponent<SphereCollider>().radius + AdditionalSphereRadius;
 	}
 
 	public float Speed

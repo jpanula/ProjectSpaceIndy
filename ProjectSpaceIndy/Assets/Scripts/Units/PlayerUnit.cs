@@ -41,6 +41,12 @@ public class PlayerUnit : UnitBase
 	private int _lastHP;
 	private float _lastFuel;
 
+	public Vector3 SpawnPos
+	{
+		get { return _spawnPosition; }
+		set { _spawnPosition = value; }
+	}
+	
 	public float FuelAmount
 	{
 		get { return _fuelAmount; }
@@ -233,6 +239,7 @@ public class PlayerUnit : UnitBase
 	protected override void Die()
 	{
 		transform.position = _spawnPosition;
+
 		ResetUnit();
 	}
 }

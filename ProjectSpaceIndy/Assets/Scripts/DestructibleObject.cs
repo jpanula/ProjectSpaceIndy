@@ -7,19 +7,31 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
     private Health _health;
     public int AmountOfScrapToDrop;
     public float DropDistance;
+    [Tooltip("Max distance from player for object to be destroyed")]
+    public float MaxDistance = 22f;
     
 
     private void Awake()
     {
         _health = GetComponent<Health>();
+        if (MaxDistance < 1)
+        {
+            MaxDistance = 22;
+        }
     }
 
     public virtual bool TakeDamage(int amount)
     {
-        bool destroyed = _health.DecreaseHealth(amount);
-        if (destroyed)
+        bool destroyed = false;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (Vector3.Distance(player.transform.position, transform.position) <= MaxDistance)
         {
-            Die();
+
+            destroyed = _health.DecreaseHealth(amount);
+            if (destroyed)
+            {
+                Die();
+            }
         }
 
         return destroyed;
@@ -40,5 +52,11 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
         }
         
         Destroy(gameObject);
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, MaxDistance);
     }
 }
