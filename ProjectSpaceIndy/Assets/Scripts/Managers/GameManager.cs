@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     
     public static int Score;
     public Level CurrentLevel;
+
+    private static bool _escapePhase;
     
     #region Manager Prefabs
 
@@ -49,5 +51,11 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    public static bool EscapePhase
+    {
+        get { return _escapePhase; }
+        set { _escapePhase = value; }
     }
 }
