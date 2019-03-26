@@ -36,6 +36,11 @@ public class PlayerMover : MonoBehaviour, IMover
 	private float _maxDistance;
 	public float AdditionalSphereRadius;
 	
+	[Tooltip("AudioSource for when the player is moving (without boost)")]
+	public AudioSource NormalMovement;
+	[Tooltip("How fast the movement sound fades away")]
+	public float FadeTime;
+	
 
 	public Vector3 MovementVector
 	{
@@ -124,14 +129,34 @@ public class PlayerMover : MonoBehaviour, IMover
 				direction = Vector3.ProjectOnPlane(direction, hit.normal);
 				newPosition = transform.position + direction;
 				transform.position = newPosition;
+				if (NormalMovement != null && !NormalMovement.isPlaying)
+				{
+					NormalMovement.Play();
+				}
 			}
 			else
 			{
 				transform.position = newPosition;
+				if (NormalMovement != null && !NormalMovement.isPlaying)
+				{
+					NormalMovement.Play();
+				}
 			}
 		}
-		
-		else { transform.position = newPosition; }
+
+		else
+		{
+			if (transform.position != newPosition)
+			{
+				if (NormalMovement != null && !NormalMovement.isPlaying)
+				{
+					NormalMovement.Play();
+				}
+			}
+			transform.position = newPosition; 
+			
+		}
+
 		
 	}
 
@@ -153,6 +178,10 @@ public class PlayerMover : MonoBehaviour, IMover
 		if (Vector3.Magnitude(inputVector) < LeftStickDeadzone)
 		{
 			inputVector = Vector3.zero;
+			if (NormalMovement != null && NormalMovement.isPlaying)
+			{
+				AudioFadeOut(NormalMovement);
+			}
 		}
 		else
 		{
@@ -180,6 +209,17 @@ public class PlayerMover : MonoBehaviour, IMover
 		{
 			UseMouse = !UseMouse;
 		}
+	}
+
+	private void AudioFadeOut(AudioSource audioSource)
+	{
+		float startVolume = audioSource.volume;
+
+			audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+		
+		
+		audioSource.Stop();
+		audioSource.volume = startVolume;
 	}
 
 	public void ResetMover()
