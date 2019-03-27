@@ -11,8 +11,9 @@ public class FuelPickup : PickupBase
     private Animator _animator;
     private float _animatorSpeed;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _animator = GetComponent<Animator>();
         _animatorSpeed = _animator.speed;
     }
