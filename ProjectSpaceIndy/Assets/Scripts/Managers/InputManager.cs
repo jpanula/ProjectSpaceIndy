@@ -35,4 +35,10 @@ public class InputManager : MonoBehaviour
         get { return _rightStickDeadzone; }
         set { _rightStickDeadzone = Mathf.Clamp01(value); }
     }
+
+    public void ResetDeadzones()
+    {
+        _leftStickDeadzone = 0.2f;
+        _rightStickDeadzone = 0.5f;
+    }
 }
