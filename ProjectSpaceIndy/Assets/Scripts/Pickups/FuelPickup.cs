@@ -37,8 +37,9 @@ public class FuelPickup : PickupBase
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         _animator.speed = _animatorSpeed * TimerManager.Instance.GameDeltaScale;
     }
 }
