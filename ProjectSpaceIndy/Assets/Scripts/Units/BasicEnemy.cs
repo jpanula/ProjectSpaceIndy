@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BasicEnemy : UnitBase
 {
     [Tooltip("Radius in units where the enemy tries to detect the player")]
     public float DetectionRadius;
+    [Tooltip("The layers that are able to block the enemy's vision of the player")]
+    public LayerMask VisionBlockedBy = (int) Const.Layers.Environment;
     [Tooltip("Distance in units at which the enemy tries to stay at from player")]
     public float DistanceFromPlayer;
     [Tooltip("The amount of scrap the enemy drops when killed")]
     public int DroppedScrap;
-    [Tooltip("The distance at which to drop the scrap")]
-    public float ScrapDropDistance;
+    [FormerlySerializedAs("ScrapDropDistance")] [Tooltip("The maximum radius at which to drop the scrap")]
+    public float ScrapDropRadius;
 
     private bool _playerFound;
     private Collider[] _colliders;
@@ -69,7 +72,7 @@ public class BasicEnemy : UnitBase
             float maxDistance = Vector3.Distance(transform.position, _target.position);
             
             // If player is in line of sight, execute the following
-            if (!Physics.Raycast(transform.position, playerDirection, maxDistance, (int) Const.Layers.Environment))
+            if (!Physics.Raycast(transform.position, playerDirection, maxDistance, VisionBlockedBy))
             {
                 // If player is not at the wanted distance, move appropriately
                 if (DistanceFromPlayer < Vector3.Distance(transform.position, _target.position))
@@ -98,7 +101,7 @@ public class BasicEnemy : UnitBase
         {
             scraps.Add(PickupManager.Instance.GetScrap());
         }
-        Vector3 dropAngle = Vector3.forward * ScrapDropDistance;
+        Vector3 dropAngle = Vector3.forward * ScrapDropRadius;
         for (int i = 0; i < scraps.Count; i++)
         {
             if (scraps[i] != null)

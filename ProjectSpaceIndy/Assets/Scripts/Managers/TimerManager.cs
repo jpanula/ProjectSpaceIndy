@@ -20,9 +20,9 @@ public class TimerManager : MonoBehaviour
 
     private float _gameDeltaTime = 0;
     private float _uiDeltaTime = 0;
-    [SerializeField, Range(0,1)]
+    [SerializeField]
     private float _gameDeltaScale = 1;
-    [SerializeField, Range(0,1)]
+    [SerializeField]
     private float _uiDeltaScale = 1;
     private float _gameTime = 0;
     private float _scaledGameTime;
@@ -65,6 +65,12 @@ public class TimerManager : MonoBehaviour
     public void SetUITimeScale(float timeScale)
     {
         _uiDeltaScale = Mathf.Clamp01(timeScale);
+    }
+
+    private void OnValidate()
+    {
+        _gameDeltaScale = Mathf.Clamp(_gameDeltaScale, 0, float.MaxValue);
+        _uiDeltaScale = Mathf.Clamp(_uiDeltaScale, 0, float.MaxValue);
     }
 
     private void Update()
