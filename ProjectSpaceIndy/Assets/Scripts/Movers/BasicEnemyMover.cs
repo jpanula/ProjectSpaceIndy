@@ -10,6 +10,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
     public ForwardVector Forward = ForwardVector.Forward;
     private LayerMask _layerMask = (int) (Const.Layers.Player | Const.Layers.Activator | Const.Layers.Environment | Const.Layers.Enemy | Const.Layers.EnemyBarrier);
     private SphereCollider _collider;
+    private Collider[] _colliders;
 
     public enum ForwardVector
     {
@@ -40,34 +41,53 @@ public class BasicEnemyMover : MonoBehaviour, IMover
         var t = transform;
         var position = t.position;
         Vector3 newPos;
-        switch (Forward)
+        _colliders = Physics.OverlapSphere(position, _collider.radius, (int) Const.Layers.Enemy);
+        if (_colliders.Length > 0)
         {
-            case ForwardVector.Forward:
-                newPos = position + t.forward * Speed;
-                break;
-            case ForwardVector.MovementVector:
-                newPos = position + MovementVector.normalized * Speed;
-                break;
-            default:
-                newPos = position + t.forward * Speed;
-                break;
+            Vector3 avgPos = Vector3.zero;
+
+            foreach (var collider in _colliders)
+            {
+                avgPos += collider.transform.position;
+            }
+
+            avgPos /= _colliders.Length;
+
+            Vector3 avgDirection = avgPos - position;
+            
+
+
+        }
+        else
+        {
+            switch (Forward)
+            {
+                case ForwardVector.Forward:
+                    newPos = position + t.forward * Speed;
+                    break;
+                case ForwardVector.MovementVector:
+                    newPos = position + MovementVector.normalized * Speed;
+                    break;
+                default:
+                    newPos = position + t.forward * Speed;
+                    break;
+            }
         }
         
         newPos = Vector3.Lerp(position, newPos, TimerManager.Instance.GameDeltaTime);
         Vector3 direction = newPos - position;
 
         RaycastHit hit;
-        if (Physics.SphereCast(position, _collider.radius, direction, out hit,
+        while (Physics.SphereCast(position, _collider.radius, direction, out hit,
             Vector3.Distance(position, newPos), _layerMask))
         {
             direction = Vector3.ProjectOnPlane(direction, hit.normal);
             newPos = position + direction;
 
-            if (Physics.SphereCast(position, _collider.radius, direction, out hit,
-                Vector3.Distance(position, newPos), _layerMask))
+            if (direction.magnitude < 0.00001)
             {
-                direction = Vector3.ProjectOnPlane(direction, hit.normal);
-                newPos = position + direction;
+                newPos = transform.position;
+                break;
             }
         }
         
