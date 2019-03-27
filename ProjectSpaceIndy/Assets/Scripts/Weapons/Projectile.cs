@@ -49,6 +49,9 @@ public class Projectile : MonoBehaviour
     
     [Tooltip("Layers that the projectile can collide with.")]
     public LayerMask LayerMask;
+
+    [Tooltip("Layers that the projectile will deal damage to")]
+    public LayerMask DamageLayer;
     
     
     
@@ -122,7 +125,10 @@ public class Projectile : MonoBehaviour
             if (Physics.SphereCast(transform.position, HitBoxRadius, Mover.MovementVector, out hit,
                 Vector3.Distance(transform.position, transform.position + Mover.MovementVector * Speed * TimerManager.Instance.GameDeltaTime), LayerMask))
             {
-                Hit(hit.collider);
+                if (DamageLayer == (DamageLayer | (1 << hit.collider.gameObject.layer))) {
+                    Hit(hit.collider);
+                }
+                else ReturnProjectile();
             }
         }
         else
