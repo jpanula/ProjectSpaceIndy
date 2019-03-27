@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     public ProjectilePool Projectiles;
     private float _coolDownTimer;
 
+    public AudioSource AudioSource;
+
     private void Awake()
     {
         _coolDownTimer = 0;
@@ -34,6 +36,11 @@ public class Weapon : MonoBehaviour
                 projectile.transform.position = transform.position;
                 projectile.transform.rotation = transform.rotation;
                 projectile.Launch(this, transform.forward);
+                if (AudioSource != null)
+                {
+                    AudioSource.Play();
+                }
+                
                 return true;
             }
         }

@@ -9,6 +9,8 @@ public class StayActiveDoor : MechanismBase
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
     
+    public AudioSource AudioSource;
+    
 
     private void Awake()
     {
@@ -39,6 +41,10 @@ public class StayActiveDoor : MechanismBase
         if (activeCounter == Activators.Length && !_activated || !_activated && !_finished)
         {
             _finished = false;
+            if (AudioSource != null && !AudioSource.isPlaying && !_finished)
+            {
+                AudioSource.Play();
+            }
             Activation();
         }
     }

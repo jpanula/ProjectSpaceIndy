@@ -25,6 +25,17 @@ public class TimerManager : MonoBehaviour
     [SerializeField]
     private float _uiDeltaScale = 1;
     private float _gameTime = 0;
+    private float _scaledGameTime;
+
+    public float ScaledGameTime
+    {
+        get { return _scaledGameTime; }
+    }
+
+    public float GameTime
+    {
+        get { return _gameTime; }
+    }
 
     public float GameDeltaTime
     {
@@ -67,5 +78,6 @@ public class TimerManager : MonoBehaviour
         _gameDeltaTime = Time.deltaTime * _gameDeltaScale;
         _uiDeltaTime = Time.deltaTime * _uiDeltaScale;
         _gameTime += Time.deltaTime;
+        _scaledGameTime += _gameDeltaTime;
     }
 }
