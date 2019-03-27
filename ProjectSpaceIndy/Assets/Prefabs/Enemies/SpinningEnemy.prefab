@@ -273,9 +273,12 @@ MonoBehaviour:
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
   DetectionRadius: 26
+  VisionBlockedBy:
+    serializedVersion: 2
+    m_Bits: 0
   DistanceFromPlayer: 0
   DroppedScrap: 10
-  ScrapDropDistance: 1
+  ScrapDropRadius: 1
 --- !u!114 &6037484077997579886
 MonoBehaviour:
   m_ObjectHideFlags: 0
