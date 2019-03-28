@@ -115,45 +115,28 @@ public class PlayerMover : MonoBehaviour, IMover
 		RaycastHit hit;
 
 		Debug.DrawLine(origin, newPosition);
-		if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
+		while (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
 		{
 			direction = Vector3.ProjectOnPlane(direction, hit.normal);
 			newPosition = transform.position + direction;
-			
-			if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
+
+			if (direction.magnitude < 0.00001)
 			{
-				direction = Vector3.ProjectOnPlane(direction, hit.normal);
-				newPosition = transform.position + direction;
-				transform.position = newPosition;
-				if (NormalMovement != null && !NormalMovement.isPlaying)
-				{
-					NormalMovement.Play();
-				}
+				newPosition = transform.position;
+				break;
 			}
-			else
-			{
-				transform.position = newPosition;
-				if (NormalMovement != null && !NormalMovement.isPlaying)
-				{
-					NormalMovement.Play();
-				}
-			}
+
 		}
 
-		else
+		if (transform.position != newPosition)
 		{
-			if (transform.position != newPosition)
+			if (NormalMovement != null && !NormalMovement.isPlaying)
 			{
-				if (NormalMovement != null && !NormalMovement.isPlaying)
-				{
-					NormalMovement.Play();
-				}
+				NormalMovement.Play();
 			}
-			transform.position = newPosition; 
-			
 		}
 
-		
+		transform.position = newPosition;		
 	}
 
 	private void Update()
