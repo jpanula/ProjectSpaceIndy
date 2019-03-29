@@ -129,6 +129,7 @@ MonoBehaviour:
   TurnSpeed: 4
   _speed: 5
   Forward: 0
+  SeparationSpeed: 5
 --- !u!114 &1318954891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,9 +148,12 @@ MonoBehaviour:
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
   DetectionRadius: 40
+  VisionBlockedBy:
+    serializedVersion: 2
+    m_Bits: 2048
   DistanceFromPlayer: 4
   DroppedScrap: 3
-  ScrapDropDistance: 1
+  ScrapDropRadius: 1
 --- !u!1 &387492239455428056
 GameObject:
   m_ObjectHideFlags: 0

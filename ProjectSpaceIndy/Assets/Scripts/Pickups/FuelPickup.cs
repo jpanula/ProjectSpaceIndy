@@ -14,7 +14,7 @@ public class FuelPickup : PickupBase
     protected override void Awake()
     {
         base.Awake();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _animatorSpeed = _animator.speed;
     }
 
