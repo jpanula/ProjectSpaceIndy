@@ -7029,8 +7029,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373237193}
-  m_LocalRotation: {x: 0.47500998, y: 0, z: 0, w: 0.8799804}
-  m_LocalPosition: {x: 3, y: 20.9, z: -10}
+  m_LocalRotation: {x: 0.53729963, y: 0, z: 0, w: 0.8433914}
+  m_LocalPosition: {x: 3, y: 20.84508, z: -3.7202196}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -19563,6 +19563,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 2
   AttractionSpeed: 0.45
+  SeparationRadius: 0.3
   Score: 30
 --- !u!95 &1080062937
 Animator:
@@ -23692,6 +23693,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 2
   AttractionSpeed: 0.45
+  SeparationRadius: 0.3
   Score: 30
 --- !u!54 &1323189182
 Rigidbody:
@@ -40355,6 +40357,7 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 0
   AttractionSpeed: 0
+  SeparationRadius: 0.3
   Score: 100
   FinalRelic: 1
 --- !u!135 &2145803825
