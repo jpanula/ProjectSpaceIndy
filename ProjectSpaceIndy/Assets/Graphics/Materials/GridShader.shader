@@ -1,6 +1,6 @@
 ﻿Shader "Custom/GridShader" {
     Properties {
-        _BackgroundColor ("Background Color", Color) = (0,0,0,0)
+        _BackgroundColor ("Background Color", Color) = (0,0,0,1)
         _GridColor ("Grid Color", Color) = (1,1,1,1)
         _GridBase ("Units per Gridline", float) = 1
         _OffsetX ("X Offset", float) = 0

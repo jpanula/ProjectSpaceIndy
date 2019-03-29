@@ -6,7 +6,9 @@ public interface IMover {
     /// <summary>
     /// Speed of movement
     /// </summary>
-    float Speed { get; }
+    float Speed { get; set; }
 
     Vector3 MovementVector { get; set; }
+
+    void ResetMover();
 }
