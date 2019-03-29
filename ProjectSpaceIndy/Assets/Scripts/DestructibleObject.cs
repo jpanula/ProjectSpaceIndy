@@ -47,8 +47,11 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
         Vector3 dropAngle = Vector3.forward * DropDistance;
         for (int i = 0; i < scraps.Count; i++)
         {
-            scraps[i].transform.position = dropAngle + transform.position;
-            dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
+            if(scraps[i] != null)
+            {
+                scraps[i].transform.position = dropAngle + transform.position;
+                dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
+            }
         }
         
         Destroy(gameObject);
