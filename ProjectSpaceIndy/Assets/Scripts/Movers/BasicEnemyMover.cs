@@ -8,6 +8,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
     public float TurnSpeed;
     public float _speed;
     public ForwardVector Forward = ForwardVector.Forward;
+    public float SeparationSpeed = 5;
     private LayerMask _layerMask = (int) (Const.Layers.Player | Const.Layers.Activator | Const.Layers.Environment | Const.Layers.Enemy | Const.Layers.EnemyBarrier);
     private SphereCollider _collider;
     private Collider[] _colliders;
@@ -24,7 +25,6 @@ public class BasicEnemyMover : MonoBehaviour, IMover
         set { _speed = value; }
     }
     public Vector3 MovementVector { get; set; }
-    
     private void Awake()
     {
         _collider = GetComponent<SphereCollider>();
@@ -42,21 +42,31 @@ public class BasicEnemyMover : MonoBehaviour, IMover
         var position = t.position;
         Vector3 newPos;
         _colliders = Physics.OverlapSphere(position, _collider.radius, (int) Const.Layers.Enemy);
-        if (_colliders.Length > 0)
+        if (_colliders.Length > 1)
         {
             Vector3 avgPos = Vector3.zero;
 
             foreach (var collider in _colliders)
             {
-                avgPos += collider.transform.position;
+                if (collider.gameObject != gameObject)
+                {
+                    avgPos += collider.transform.position;
+                }
             }
 
-            avgPos /= _colliders.Length;
+            avgPos /= _colliders.Length - 1;
 
-            Vector3 avgDirection = avgPos - position;
-            
-
-
+            if (avgPos == position)
+            {
+                var randomDir = new Vector3(Random.value, 0, Random.value);
+                randomDir = Vector3.Normalize(randomDir);
+                newPos = position + randomDir * SeparationSpeed;
+            }
+            else
+            {
+                Vector3 avgDirection = Vector3.Normalize(avgPos - position);
+                newPos = position - avgDirection * SeparationSpeed;
+            }
         }
         else
         {
@@ -93,7 +103,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
         
         transform.position = newPos;
     }
-    
+
     public void ResetMover()
     {
         Speed = 0;
