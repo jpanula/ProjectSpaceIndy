@@ -21,12 +21,4 @@ public class ParticleEffectOnDestroy : MonoBehaviour
     {
         _isQuitting = true;
     }
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            Destroy(gameObject);
-        }
-    }
 }
