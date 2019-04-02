@@ -7,7 +7,6 @@ public class SpawnRoomDoor : MonoBehaviour
     public GameObject Target;
     public float Speed;
     private bool _activated;
-    private bool _finished;
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
 
@@ -18,7 +17,6 @@ public class SpawnRoomDoor : MonoBehaviour
     protected void Awake()
     {
         _activated = false;
-        _finished = true;
         _targetPosition = Target.transform.position;
         _startPosition = transform.position;
     }
@@ -46,7 +44,6 @@ public class SpawnRoomDoor : MonoBehaviour
         if (transform.position == _targetPosition)
         {
             _activated = true;
-            _finished = true;
         }
     }
 
@@ -62,7 +59,6 @@ public class SpawnRoomDoor : MonoBehaviour
     protected void ResetDefaults()
     {
         _activated = false;
-        _finished = true;
         transform.position = _startPosition;
     }
 }
