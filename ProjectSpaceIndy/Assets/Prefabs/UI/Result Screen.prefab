@@ -500,7 +500,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7643876473259127476}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8761557282763612490}
+        m_MethodName: Retry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &4251087212398609617
@@ -618,7 +629,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7902969419261862830}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8761557282763612490}
+        m_MethodName: LevelSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &4416925092251858019
@@ -634,7 +656,6 @@ GameObject:
   - component: {fileID: 7848217431601385111}
   - component: {fileID: 4736442131275947474}
   - component: {fileID: 8761557282763612490}
-  - component: {fileID: 4445061829563867592}
   m_Layer: 5
   m_Name: Result Screen
   m_TagString: Untagged
@@ -740,18 +761,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: {fileID: 6665899533363620366}
   Time: {fileID: 3024850313924723346}
---- !u!114 &4445061829563867592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4416925092251858019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a92312241d508b34291c6394292fa515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6082371677664712709
 GameObject:
   m_ObjectHideFlags: 0
