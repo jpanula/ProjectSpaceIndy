@@ -27,8 +27,17 @@ public class Health : MonoBehaviour, IHealth
         get { return _minHealth; }
     }
 
-    public bool IsImmortal { get; set; }
-    public bool IsInvulnerable { get; set; }
+    public bool IsImmortal
+    {
+        get { return _isImmortal; }
+        set { _isImmortal = value; }
+    }
+
+    public bool IsInvulnerable
+    {
+        get { return _isInvulnerable; }
+        set { _isInvulnerable = value; }
+    }
 
     private void Awake()
     {

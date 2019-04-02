@@ -114,6 +114,7 @@ public abstract class PickupBase : MonoBehaviour
     {
         _target = null;
         _movementTimer = 0;
+        _lifeTimeTimer = 0;
     }
 
     private void OnDrawGizmosSelected()
