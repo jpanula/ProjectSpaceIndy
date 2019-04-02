@@ -49,7 +49,7 @@ public class Detector : ActivatorBase
 
         if (_waitingForDelay)
         {
-            _delayTimer += Time.deltaTime;
+            _delayTimer += TimerManager.Instance.GameDeltaTime;
             if (_delayTimer >= Delay)
             {
                 _active = true;
@@ -58,7 +58,7 @@ public class Detector : ActivatorBase
         }
         else
         {
-            _cooldownTimer += Time.deltaTime;
+            _cooldownTimer += TimerManager.Instance.GameDeltaTime;
         }
     }
 

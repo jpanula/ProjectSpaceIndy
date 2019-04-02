@@ -9,6 +9,8 @@ public class BacknForthDoor : MechanismBase
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
     
+    public AudioSource AudioSource;
+    
 
     protected void Awake()
     {
@@ -36,15 +38,24 @@ public class BacknForthDoor : MechanismBase
             }
         }
 
-        if (activeCounter == Activators.Length || !_activated && !_finished)
+        if (activeCounter == Activators.Length)
         {
             _activated = false;
-            //_finished = false;
+            if (AudioSource != null && !AudioSource.isPlaying && !_activated)
+            {
+                AudioSource.Play();
+                //Debug.Log("Activation");
+            }
             Activation();
         }
 
-        if (_activated && _finished && activeCounter < Activators.Length)
+        if (_activated && activeCounter < Activators.Length)
         {
+            if (AudioSource != null && !AudioSource.isPlaying && _activated)
+            {
+                AudioSource.Play();
+                //Debug.Log("Deactivation");
+            }
             Deactivation();
             
         }
@@ -54,17 +65,16 @@ public class BacknForthDoor : MechanismBase
     // When targetPosition is reached, the bool _activated is set to true
     public override void Activation()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * TimerManager.Instance.GameDeltaTime);
         if (transform.position == _targetPosition)
         {
             _activated = true;
-            //_finished = true;
         }
     }
 
     protected void Deactivation()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _startPosition, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _startPosition, Speed * TimerManager.Instance.GameDeltaTime);
         if (transform.position == _startPosition)
         {
             _activated = false;

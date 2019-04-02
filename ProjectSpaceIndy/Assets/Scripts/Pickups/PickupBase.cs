@@ -7,6 +7,7 @@ public abstract class PickupBase : MonoBehaviour
     public float LifeTime;
     public float AttractionRadius;
     public float AttractionSpeed;
+    public float SeparationRadius = 0.3f;
     private Transform _target;
     private float _movementTimer;
     private bool _permanent;
@@ -27,7 +28,7 @@ public abstract class PickupBase : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            _lifeTimeTimer += Time.deltaTime;
+            _lifeTimeTimer += TimerManager.Instance.GameDeltaTime;
         }
         
         Collider[] colliders = Physics.OverlapSphere(transform.position, AttractionRadius, (int) Const.Layers.Player);
@@ -45,10 +46,44 @@ public abstract class PickupBase : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            Vector3 position = transform.position;
+            Collider[] pickupColliders = Physics.OverlapSphere(position, SeparationRadius, (int) Const.Layers.Pickup);
+            if (pickupColliders.Length > 1)
+            {
+                Vector3 newPos;
+                Vector3 avgPos = Vector3.zero;
+
+                foreach (var collider in pickupColliders)
+                {
+                    if (collider.gameObject != gameObject)
+                    {
+                        avgPos += collider.transform.position;
+                    }
+                }
+
+                avgPos /= pickupColliders.Length - 1;
+
+                if (avgPos == position)
+                {
+                    var randomDir = new Vector3(Random.value, 0, Random.value);
+                    randomDir = Vector3.Normalize(randomDir);
+                    newPos = position + randomDir;
+                }
+                else
+                {
+                    Vector3 avgDirection = Vector3.Normalize(avgPos - position);
+                    newPos = position - avgDirection;
+                }
+
+                transform.position = Vector3.Lerp(position, newPos, TimerManager.Instance.GameDeltaTime);
+            }
+        }
 
         if (_target != null)
         {
-            _movementTimer += Time.deltaTime * AttractionSpeed;
+            _movementTimer += TimerManager.Instance.GameDeltaTime * AttractionSpeed;
             transform.position = Vector3.Lerp(transform.position, _target.position, _movementTimer);
         }
 

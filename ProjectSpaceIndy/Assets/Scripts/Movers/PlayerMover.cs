@@ -20,10 +20,6 @@ public class PlayerMover : MonoBehaviour, IMover
 	[Tooltip("Time in seconds to wait before changing rotation to match movement direction")]
 	public float RotationTimeout;
 	public bool UseMouse;
-	[Range(0.0f, 1.0f),Tooltip("The deadzone for the left stick in the gamepad")]
-	public float LeftStickDeadzone;
-	[Range(0.0f, 1.0f),Tooltip("The deadzone for the right stick in the gamepad")]
-	public float RightStickDeadzone;
 	private float rotationSpeed;
 	private Plane _plane;
 	private float _distanceToPlane;
@@ -35,6 +31,11 @@ public class PlayerMover : MonoBehaviour, IMover
 	private float _sphereRadius;
 	private float _maxDistance;
 	public float AdditionalSphereRadius;
+	
+	[Tooltip("AudioSource for when the player is moving (without boost)")]
+	public AudioSource NormalMovement;
+	[Tooltip("How fast the movement sound fades away")]
+	public float FadeTime;
 	
 
 	public Vector3 MovementVector
@@ -69,11 +70,11 @@ public class PlayerMover : MonoBehaviour, IMover
 		// Make a vector from the right stick input
 		Vector3 rightStick = new Vector3(Input.GetAxisRaw("Horizontal_Look"), 0, Input.GetAxisRaw("Vertical_Look"));
 		// Check if the input passes the deadzone threshold for the right stick
-		if (Vector3.Magnitude(rightStick) >= RightStickDeadzone)
+		if (Vector3.Magnitude(rightStick) >= InputManager.Instance.RightStickDeadzone)
 		{
 			UseMouse = false;
 			rightStick = rightStick.normalized *
-			             ((rightStick.magnitude - RightStickDeadzone) / (1 - RightStickDeadzone));
+			             ((rightStick.magnitude - InputManager.Instance.RightStickDeadzone) / (1 - InputManager.Instance.RightStickDeadzone));
 			if (rightStick.magnitude > 1)
 			{
 				rightStick = rightStick.normalized;
@@ -82,12 +83,12 @@ public class PlayerMover : MonoBehaviour, IMover
 			Quaternion lookRotation = Quaternion.LookRotation(lookVector, Vector3.up);
 			//lookVector += transform.position;
 			//transform.LookAt(lookVector);
-			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, LookTurnSpeed * Time.deltaTime / LookTurnSmoothing);
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, LookTurnSpeed * TimerManager.Instance.GameDeltaTime / LookTurnSmoothing);
 			_timeOutTimer = 0;
 			Debug.DrawLine(transform.position, transform.position + rightStick * 5, Color.magenta, 0.2f);
 		}
 		// If controller right stick fails, get from mouse if possible
-		else if (UseMouse)
+		else if (UseMouse && TimerManager.Instance.GameDeltaScale > 0)
 		{
 			
 			Ray mouseRay = Camera.ScreenPointToRay(Input.mousePosition);
@@ -99,10 +100,10 @@ public class PlayerMover : MonoBehaviour, IMover
 			}
 		}
 		// If mouse and right stick rotation fails, use movement
-		else if (Vector3.Magnitude(_movementVector) >= LeftStickDeadzone && _timeOutTimer >= RotationTimeout)
+		else if (Vector3.Magnitude(_movementVector) >= InputManager.Instance.LeftStickDeadzone && _timeOutTimer >= RotationTimeout)
 		{
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAt),
-				rotationSpeed * Time.deltaTime);
+				rotationSpeed * TimerManager.Instance.GameDeltaTime);
 		}
 
 		int layerMask = (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.EnemyProjectile | Const.Layers.InvisibleWall);
@@ -114,25 +115,28 @@ public class PlayerMover : MonoBehaviour, IMover
 		RaycastHit hit;
 
 		Debug.DrawLine(origin, newPosition);
-		if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
+		while (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
 		{
 			direction = Vector3.ProjectOnPlane(direction, hit.normal);
 			newPosition = transform.position + direction;
-			
-			if (Physics.SphereCast(origin, _sphereRadius, direction, out hit, _maxDistance, layerMask))
+
+			if (direction.magnitude < 0.00001)
 			{
-				direction = Vector3.ProjectOnPlane(direction, hit.normal);
-				newPosition = transform.position + direction;
-				transform.position = newPosition;
+				newPosition = transform.position;
+				break;
 			}
-			else
+
+		}
+
+		if (transform.position != newPosition)
+		{
+			if (NormalMovement != null && !NormalMovement.isPlaying)
 			{
-				transform.position = newPosition;
+				NormalMovement.Play();
 			}
 		}
-		
-		else { transform.position = newPosition; }
-		
+
+		transform.position = newPosition;		
 	}
 
 	private void Update()
@@ -142,7 +146,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			UseMouse = true;
 		}
 		
-		_timeOutTimer += Time.deltaTime;
+		_timeOutTimer += TimerManager.Instance.GameDeltaTime;
 		float horizontal = Input.GetAxisRaw( "Horizontal" );
 		float vertical = Input.GetAxisRaw( "Vertical" );
 
@@ -150,17 +154,21 @@ public class PlayerMover : MonoBehaviour, IMover
 		Vector3 inputVector = new Vector3( horizontal, 0, vertical );
 		
 		// Check if the input passes the deadzone threshold, and if it doesn't, make it zero
-		if (Vector3.Magnitude(inputVector) < LeftStickDeadzone)
+		if (Vector3.Magnitude(inputVector) < InputManager.Instance.LeftStickDeadzone)
 		{
 			inputVector = Vector3.zero;
+			if (NormalMovement != null && NormalMovement.isPlaying)
+			{
+				AudioFadeOut(NormalMovement);
+			}
 		}
 		else
 		{
 			inputVector = inputVector.normalized *
-			              ((inputVector.magnitude - LeftStickDeadzone) / (1 - LeftStickDeadzone));
+			              ((inputVector.magnitude - InputManager.Instance.LeftStickDeadzone) / (1 - InputManager.Instance.LeftStickDeadzone));
 		}
 
-		// Kertomalla inputVector Time.deltaTime:lla saamme fps:stä
+		// Kertomalla inputVector TimerManager.Instance.GameDeltaTime:lla saamme fps:stä
 		// riippumattoman liikevektorin
 		if (Vector3.Magnitude(inputVector) > 1.0f)
 		{
@@ -171,7 +179,7 @@ public class PlayerMover : MonoBehaviour, IMover
 
 		// Kutsutaan Moverin Move metodia ja välitetään syötevektori 
 		// parametrina.
-		Move( _movementVector * Time.deltaTime);
+		Move( _movementVector * TimerManager.Instance.GameDeltaTime);
 		
 		//Debug.Log("X: " + Input.GetAxisRaw("Horizontal_Look") + " Y: " + Input.GetAxisRaw("Vertical_Look"));
 		
@@ -180,6 +188,17 @@ public class PlayerMover : MonoBehaviour, IMover
 		{
 			UseMouse = !UseMouse;
 		}
+	}
+
+	private void AudioFadeOut(AudioSource audioSource)
+	{
+		float startVolume = audioSource.volume;
+
+			audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+		
+		
+		audioSource.Stop();
+		audioSource.volume = startVolume;
 	}
 
 	public void ResetMover()

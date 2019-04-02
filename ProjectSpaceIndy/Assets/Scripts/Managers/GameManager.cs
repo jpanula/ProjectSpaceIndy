@@ -17,10 +17,15 @@ public class GameManager : MonoBehaviour
     
     public static int Score;
     public Level CurrentLevel;
+
+    private static bool _escapePhase;
     
     #region Manager Prefabs
 
     public PickupManager PickupManager;
+    public TimerManager TimerManager;
+    public MenuManager MenuManager;
+    public InputManager InputManager;
     
     #endregion Manager Prefabs
 
@@ -40,14 +45,35 @@ public class GameManager : MonoBehaviour
         {
             PickupManager = Instantiate(PickupManager);
         }
+
+        if (TimerManager.Instance == null)
+        {
+            TimerManager = Instantiate(TimerManager);
+        }
+
+        if (MenuManager.Instance == null)
+        {
+            MenuManager = Instantiate(MenuManager);
+        }
+
+        if (InputManager.Instance == null)
+        {
+            InputManager = Instantiate(InputManager);
+        }
     }
 
-    private void Update()
+    /*private void Update()
     {
         // Return to main menu if Esc is pressed
         if (Input.GetKey(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
         }
+    }*/
+
+    public static bool EscapePhase
+    {
+        get { return _escapePhase; }
+        set { _escapePhase = value; }
     }
 }

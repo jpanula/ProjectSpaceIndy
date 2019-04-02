@@ -40,7 +40,7 @@ public class EnemySpawner : PooledSpawner
 
     private void Update()
     {
-        _spawnTimer += Time.deltaTime;
+        _spawnTimer += TimerManager.Instance.GameDeltaTime;
         if (_currentSpawns < _maxSimultaneousSpawns && (MaxSpawns > 0 || _endlessSpawn) && _spawnTimer > SpawnCooldown && (!_ActivatorExists || Activator.Active))
         {
             UnitBase enemy = Spawn();

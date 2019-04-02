@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoolDownTime: 0.2
   Projectiles: {fileID: 5615741277625661231}
+  AudioSource: {fileID: 0}
 --- !u!1 &2576106366916826852
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoolDownTime: 0.2
   Projectiles: {fileID: 5615741277625661231}
+  AudioSource: {fileID: 0}
 --- !u!1 &2576106367199584141
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoolDownTime: 0.2
   Projectiles: {fileID: 5615741277625661231}
+  AudioSource: {fileID: 0}
 --- !u!1 &2576106367871265204
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,9 +276,12 @@ MonoBehaviour:
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
   DetectionRadius: 26
+  VisionBlockedBy:
+    serializedVersion: 2
+    m_Bits: 0
   DistanceFromPlayer: 0
   DroppedScrap: 10
-  ScrapDropDistance: 1
+  ScrapDropRadius: 1
 --- !u!114 &6037484077997579886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,7 +696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectPrefab: {fileID: 6498218508172054333, guid: 6e311ecdc888e0944bcfa73e3ce1a10a,
     type: 3}
-  _size: 150
+  _size: 190
 --- !u!1001 &4785267730374066595
 PrefabInstance:
   m_ObjectHideFlags: 0

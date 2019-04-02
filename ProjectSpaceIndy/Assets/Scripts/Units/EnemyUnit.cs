@@ -11,7 +11,7 @@ public class EnemyUnit : UnitBase
     
     protected override void Update()
     {
-        _timer += Time.deltaTime;
+        _timer += TimerManager.Instance.GameDeltaTime;
 
         if (_timer >= CoolDownTime)
         {

@@ -95,10 +95,10 @@ public class PlayerUnit : UnitBase
 	protected override void Update ()
 	{
 		float fillAmount = (float) Health.CurrentHealth / Health.MaxHealth;
-		HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, fillAmount, Time.deltaTime * HealthBarChangeSpeed);
+		HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, fillAmount, TimerManager.Instance.UiDeltaTime * HealthBarChangeSpeed);
 		_hpBarFill.fillAmount = HealthBar.fillAmount;
 		fillAmount = FuelAmount / FuelCap;
-		_fuelBarFill.fillAmount = Mathf.Lerp(_fuelBarFill.fillAmount, fillAmount, Time.deltaTime * FuelBarChangeSpeed);
+		_fuelBarFill.fillAmount = Mathf.Lerp(_fuelBarFill.fillAmount, fillAmount, TimerManager.Instance.UiDeltaTime * FuelBarChangeSpeed);
 		FuelText.text = "Fuel: " + FuelAmount.ToString("0.00");
 		
 		if (Input.GetButton("Fire3") || Input.GetAxis("Triggers") != 0)
@@ -113,9 +113,9 @@ public class PlayerUnit : UnitBase
 			if (FuelAmount > 0)
 			{
 				_playerMover.Speed = _boostSpeed;
-				if (_playerMover.MovementVector.magnitude > _playerMover.LeftStickDeadzone)
+				if (_playerMover.MovementVector.magnitude > InputManager.Instance.LeftStickDeadzone)
 				{
-					FuelAmount -= Time.deltaTime;
+					FuelAmount -= TimerManager.Instance.GameDeltaTime;
 					FuelAmount = Mathf.Max(0, FuelAmount);
 				}
 			}
@@ -141,14 +141,19 @@ public class PlayerUnit : UnitBase
 			_healthHUDTimeoutTimer = 0;
 		}
 
+		if (Health.CurrentHealth < Health.MaxHealth)
+		{
+			_healthHUDTimeoutTimer = 0;
+		}
+
 		if (_lastFuel != FuelAmount)
 		{
 			_lastFuel = FuelAmount;
 			_fuelHUDTimeoutTimer = 0;
 		}
 		
-		_healthHUDTimeoutTimer += Time.deltaTime;
-		_fuelHUDTimeoutTimer += Time.deltaTime;
+		_healthHUDTimeoutTimer += TimerManager.Instance.UiDeltaTime;
+		_fuelHUDTimeoutTimer += TimerManager.Instance.UiDeltaTime;
 		
 		if (_healthHUDTimeoutTimer >= ShipHUDTimeout)
 		{
@@ -157,7 +162,7 @@ public class PlayerUnit : UnitBase
 				if (image.color.a > 0)
 				{
 					var imageColor = image.color;
-					imageColor.a = Mathf.Lerp(imageColor.a, 0, Time.deltaTime * ShipHUDFadeOutSpeed);
+					imageColor.a = Mathf.Lerp(imageColor.a, 0, TimerManager.Instance.UiDeltaTime * ShipHUDFadeOutSpeed);
 					image.color = imageColor;
 				}
 			}
@@ -170,7 +175,7 @@ public class PlayerUnit : UnitBase
 				if (image.color.a < _healthHUDAlpha[i])
 				{
 					var imageColor = image.color;
-					imageColor.a = Mathf.Lerp(imageColor.a, _healthHUDAlpha[i], Time.deltaTime * ShipHUDFadeInSpeed);
+					imageColor.a = Mathf.Lerp(imageColor.a, _healthHUDAlpha[i], TimerManager.Instance.UiDeltaTime * ShipHUDFadeInSpeed);
 					image.color = imageColor;
 				}
 			}
@@ -182,7 +187,7 @@ public class PlayerUnit : UnitBase
 				if (image.color.a > 0)
 				{
 					var imageColor = image.color;
-					imageColor.a = Mathf.Lerp(imageColor.a, 0, Time.deltaTime * ShipHUDFadeOutSpeed);
+					imageColor.a = Mathf.Lerp(imageColor.a, 0, TimerManager.Instance.UiDeltaTime * ShipHUDFadeOutSpeed);
 					image.color = imageColor;
 				}
 			}
@@ -195,7 +200,7 @@ public class PlayerUnit : UnitBase
 				if (image.color.a < _fuelHUDAlpha[i])
 				{
 					var imageColor = image.color;
-					imageColor.a = Mathf.Lerp(imageColor.a, _fuelHUDAlpha[i], Time.deltaTime * ShipHUDFadeInSpeed);
+					imageColor.a = Mathf.Lerp(imageColor.a, _fuelHUDAlpha[i], TimerManager.Instance.UiDeltaTime * ShipHUDFadeInSpeed);
 					image.color = imageColor;
 				}
 			}
@@ -204,14 +209,14 @@ public class PlayerUnit : UnitBase
 
 	private void LateUpdate()
 	{
-		float rightStickDeadzone = _playerMover.RightStickDeadzone;
+		float rightStickDeadzone = InputManager.Instance.RightStickDeadzone;
 		bool useMouse = _playerMover.UseMouse;
 		
 		Vector3 rightStickVector = new Vector3(Input.GetAxisRaw("Horizontal_Look"), 0, Input.GetAxisRaw("Vertical_Look"));
 		float rightStickMagnitude = Vector3.Magnitude(rightStickVector);
 		if (Input.GetAxisRaw("Fire1") > 0 || rightStickMagnitude >= rightStickDeadzone && !useMouse)
 		{
-			_shootDelayTimer += Time.deltaTime;
+			_shootDelayTimer += TimerManager.Instance.GameDeltaTime;
 			if (_shootDelayTimer >= ShootDelay)
 			{
 				foreach (Weapon weapon in Weapons)

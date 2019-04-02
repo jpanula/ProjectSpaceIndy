@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5556060727196846132}
   - component: {fileID: 5556060727196846136}
   - component: {fileID: 5556060727196846135}
-  - component: {fileID: 5556060727196846134}
+  - component: {fileID: 3211958112578881512}
   m_Layer: 15
   m_Name: FuelPickup
   m_TagString: Untagged
@@ -78,19 +78,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5556060727196846134
-BoxCollider:
+--- !u!95 &3211958112578881512
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5556060727196846131}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 29230b64feb1ba643a9c3bb28b9660c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5556060727595822567
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,8 +107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5556060727595822570}
   - component: {fileID: 5556060727595822569}
-  - component: {fileID: 5556060727595822568}
   - component: {fileID: 3648378568996502600}
+  - component: {fileID: 1329291071005035556}
   m_Layer: 15
   m_Name: FuelPickup
   m_TagString: Untagged
@@ -140,26 +146,8 @@ MonoBehaviour:
   LifeTime: 0
   AttractionRadius: 3
   AttractionSpeed: 0.7
+  SeparationRadius: 0.5
   FuelAmount: 0.5
---- !u!95 &5556060727595822568
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5556060727595822567}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 29230b64feb1ba643a9c3bb28b9660c2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &3648378568996502600
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,3 +164,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &1329291071005035556
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556060727595822567}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.29
+  m_Center: {x: 0, y: 0, z: 0}

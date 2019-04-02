@@ -13,6 +13,7 @@ public class SpinningEnemySpeedMultiplier : MonoBehaviour
     private int _numberOfParts;
     private float _baseAnimatorSpeed;
     private float[] _weaponCooldowns;
+    private float _scaledAnimatorSpeed;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class SpinningEnemySpeedMultiplier : MonoBehaviour
 
     private void LateUpdate()
     {
+        _scaledAnimatorSpeed = _baseAnimatorSpeed * TimerManager.Instance.GameDeltaScale;
         float speedModifier = 1;
         foreach (var part in _parts)
         {
@@ -50,6 +52,6 @@ public class SpinningEnemySpeedMultiplier : MonoBehaviour
                 weapon.CoolDownTime = _weaponCooldowns[i] / speedModifier;
             }
         }
-        animator.speed = speedModifier * _baseAnimatorSpeed;
+        animator.speed = speedModifier * _scaledAnimatorSpeed;
     }
 }
