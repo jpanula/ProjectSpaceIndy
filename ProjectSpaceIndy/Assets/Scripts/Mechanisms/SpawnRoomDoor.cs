@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnRoomDoor : MechanismBase
+public class SpawnRoomDoor : MonoBehaviour
 {
+    public GameObject Target;
+    public float Speed;
     private bool _activated;
     private bool _finished;
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
 
+    public ActivatorBase Activator;
     public ActivatorBase PlayerDetector;
     
 
@@ -24,29 +27,20 @@ public class SpawnRoomDoor : MechanismBase
     // If all are active, go to Activation();
     protected void Update()
     {
-        int activeCounter = 0;
-        foreach (ActivatorBase activator in Activators)
+        if (Activator.Active && PlayerDetector.Active && !_activated || !PlayerDetector.Active && !_activated)
         {
-            if (activator.Active)
-            {
-                activeCounter += 1;
-            }
-
-            if (!activator.Active && activeCounter > 0)
-            {
-                activeCounter -= 1;
-            }
+            Activation();
         }
 
-        if (PlayerDetector && activeCounter != Activators.Length)
+        if (PlayerDetector.Active && !Activator.Active && _activated)
         {
-            
+            Deactivation();
         }
     }
 
     // When all activators are active, the door moves to its targetPosition
     // When targetPosition is reached, the bool _activated is set to true
-    public override void Activation()
+    public void Activation()
     {
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * TimerManager.Instance.GameDeltaTime);
         if (transform.position == _targetPosition)
@@ -65,7 +59,7 @@ public class SpawnRoomDoor : MechanismBase
         }
     }
     
-    protected override void ResetDefaults()
+    protected void ResetDefaults()
     {
         _activated = false;
         _finished = true;

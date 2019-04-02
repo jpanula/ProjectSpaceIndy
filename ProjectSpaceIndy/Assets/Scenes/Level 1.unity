@@ -1263,14 +1263,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 90186093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aea1140dc4d12f41970146aa6ce266f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a39c37c32caff0498b3e392f2ac79cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Activators:
-  - {fileID: 204721203}
   Target: {fileID: 90186092}
   Speed: 5
-  AudioSource: {fileID: 0}
+  Activator: {fileID: 880277078}
+  PlayerDetector: {fileID: 1890546450}
 --- !u!1 &90441419
 GameObject:
   m_ObjectHideFlags: 0
@@ -17706,14 +17705,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 970001306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aea1140dc4d12f41970146aa6ce266f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a39c37c32caff0498b3e392f2ac79cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Activators:
-  - {fileID: 204721203}
   Target: {fileID: 970001305}
   Speed: 5
-  AudioSource: {fileID: 0}
+  Activator: {fileID: 880277078}
+  PlayerDetector: {fileID: 1890546450}
 --- !u!1001 &970039115
 PrefabInstance:
   m_ObjectHideFlags: 0
