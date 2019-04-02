@@ -5,7 +5,6 @@ using UnityEngine;
 public class BacknForthDoor : MechanismBase
 {
     private bool _activated;
-    private bool _finished;
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
     
@@ -15,7 +14,6 @@ public class BacknForthDoor : MechanismBase
     protected void Awake()
     {
         _activated = false;
-        _finished = true;
         _targetPosition = Target.transform.position;
         _startPosition = transform.position;
     }
@@ -84,7 +82,6 @@ public class BacknForthDoor : MechanismBase
     protected override void ResetDefaults()
     {
         _activated = false;
-        _finished = true;
         transform.position = _startPosition;
     }
 }
