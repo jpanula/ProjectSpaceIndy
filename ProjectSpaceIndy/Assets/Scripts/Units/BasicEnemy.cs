@@ -16,6 +16,9 @@ public class BasicEnemy : UnitBase
     [FormerlySerializedAs("ScrapDropDistance")] [Tooltip("The maximum radius at which to drop the scrap")]
     public float ScrapDropRadius;
 
+    [Range(0f, 100f)] [Tooltip("0 = Never drop health, 100 = Always drop health")]
+    public float HealthDropProbability;
+
     private bool _playerFound;
     private Collider[] _colliders;
     private Transform _target;
@@ -111,12 +114,27 @@ public class BasicEnemy : UnitBase
             }
         }
 
-        PickupBase fuel = PickupManager.Instance.GetFuel();
-        if (fuel != null)
+        float probability = HealthDropProbability / 100;
+        if (Random.value <= probability)
         {
-            fuel.transform.position = transform.position;
+            PickupBase health = PickupManager.Instance.GetHealth();
+            if (health != null)
+            {
+                health.transform.position = transform.position;
+            }
+            base.Die();
         }
-        base.Die();
+        
+        else
+        {
+            PickupBase fuel = PickupManager.Instance.GetFuel();
+            if (fuel != null)
+            {
+                fuel.transform.position = transform.position;
+            }
+
+            base.Die();
+        }
     }
 
     private void OnDrawGizmosSelected()
