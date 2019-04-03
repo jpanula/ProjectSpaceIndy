@@ -6,6 +6,7 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
 {
     private Health _health;
     public int AmountOfScrapToDrop;
+    public int AmountOfFuelToDrop;
     public float DropDistance;
     [Tooltip("Max distance from player for object to be destroyed")]
     public float MaxDistance = 22f;
@@ -39,18 +40,41 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
 
     protected virtual void Die()
     {
-        List<PickupBase> scraps = new List<PickupBase>();
-        for (int i = 0; i < AmountOfScrapToDrop; i++)
+        if(AmountOfScrapToDrop > 0)   
         {
-            scraps.Add(PickupManager.Instance.GetScrap());
-        }
-        Vector3 dropAngle = Vector3.forward * DropDistance;
-        for (int i = 0; i < scraps.Count; i++)
-        {
-            if(scraps[i] != null)
+            List<PickupBase> scraps = new List<PickupBase>();
+            for (int i = 0; i < AmountOfScrapToDrop; i++)
             {
-                scraps[i].transform.position = dropAngle + transform.position;
-                dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
+                scraps.Add(PickupManager.Instance.GetScrap());
+            }
+
+            Vector3 dropAngle = Vector3.forward * DropDistance;
+            for (int i = 0; i < scraps.Count; i++)
+            {
+                if (scraps[i] != null)
+                {
+                    scraps[i].transform.position = dropAngle + transform.position;
+                    dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
+                }
+            }
+        }
+
+        if (AmountOfFuelToDrop > 0)
+        {
+            List<PickupBase> fuel = new List<PickupBase>();
+            for (int i = 0; i < AmountOfFuelToDrop; i++)
+            {
+                fuel.Add(PickupManager.Instance.GetFuel());
+            }
+
+            Vector3 dropAngle = Vector3.forward * DropDistance;
+            for (int i = 0; i < fuel.Count; i++)
+            {
+                if (fuel[i] != null)
+                {
+                    fuel[i].transform.position = dropAngle + transform.position;
+                    dropAngle = Quaternion.AngleAxis(360.0f / fuel.Count, Vector3.up) * dropAngle;
+                }
             }
         }
         

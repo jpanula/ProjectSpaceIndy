@@ -11,7 +11,8 @@ public class MenuManager : MonoBehaviour
         Pause,
         Settings,
         LevelSelect,
-        Title
+        Title,
+        ResultScreen
     }
     
     public static MenuManager Instance;
@@ -28,6 +29,7 @@ public class MenuManager : MonoBehaviour
     }
 
     public GameObject PauseMenu;
+    public GameObject ResultScreen;
 
     private Menu _currentMenu;
     private float _gameTimeScale;
@@ -89,5 +91,22 @@ public class MenuManager : MonoBehaviour
     public void ShowTitleMenu(bool show)
     {
         
+    }
+
+    public void ShowResultScreen(bool show)
+    {
+        if (show)
+        {
+            _currentMenu = Menu.ResultScreen;
+            ResultScreen.SetActive(true);
+            _gameTimeScale = TimerManager.Instance.GameDeltaScale;
+            TimerManager.Instance.SetGameTimeScale(0);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            ResultScreen.SetActive(false);
+            TimerManager.Instance.SetGameTimeScale(_gameTimeScale);
+        }
     }
 }
