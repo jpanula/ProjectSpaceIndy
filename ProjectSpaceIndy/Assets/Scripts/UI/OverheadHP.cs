@@ -19,6 +19,14 @@ public class OverheadHP : MonoBehaviour
         CameraFacing
     }
 
+    private void Awake()
+    {
+        if (CameraToFace == null)
+        {
+            CameraToFace = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }
+    }
+
     private void Update()
     {
         var healthRatio = (float) ParentHealth.CurrentHealth / ParentHealth.MaxHealth;

@@ -49,6 +49,10 @@ public class PlayerMover : MonoBehaviour, IMover
 		_plane = new Plane(Vector3.up, 0);
 		_timeOutTimer = 0;
 		_sphereRadius = gameObject.GetComponent<SphereCollider>().radius + AdditionalSphereRadius;
+		if (Camera == null)
+		{
+			Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		}
 	}
 
 	public float Speed
