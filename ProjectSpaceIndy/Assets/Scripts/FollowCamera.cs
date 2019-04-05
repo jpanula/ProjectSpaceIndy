@@ -16,6 +16,8 @@ public class FollowCamera : MonoBehaviour
 	public float AdjustMultiplier;
 	[Tooltip("How many seconds should the camera adjustment stay before resetting")]
 	public float AdjustTimeout;
+	[Tooltip("Lower values make the camera more springy when adjusting")]
+	public float Stiffness;
 	//private Vector3 defaultCamPos;
 	private Vector3 _newPos;
 	private float _adjustTimer;
@@ -23,6 +25,7 @@ public class FollowCamera : MonoBehaviour
 	private Vector3 _adjustmentVector;
 	private float _smoothing;
 	private float _adjustMultiplier;
+	private float _stiffValue;
 
 	// Use this for initialization
 	void Start ()
@@ -35,6 +38,8 @@ public class FollowCamera : MonoBehaviour
 	{
 		/*Vector3 newCamPos = target.transform.position + defaultCamPos;
 		transform.position = newCamPos;*/
+		_stiffValue -= TimerManager.Instance.GameDeltaTime / Stiffness;
+		_stiffValue = Mathf.Max(0, _stiffValue);
 		transform.eulerAngles = new Vector3(Angle, 0, 0);
 		if (target != null)
 		{
@@ -53,12 +58,20 @@ public class FollowCamera : MonoBehaviour
 
 			if (rightStickVector.magnitude >= InputManager.Instance.RightStickDeadzone)
 			{
-				_adjustmentVector = rightStickVector;
+				if (rightStickVector.magnitude > _stiffValue)
+				{
+					_stiffValue = rightStickVector.magnitude;
+				}
+				_adjustmentVector = rightStickVector.normalized * _stiffValue;
 				_adjusting = true;
 			}
 			else if (leftStickVector.magnitude >= InputManager.Instance.LeftStickDeadzone)
 			{
-				_adjustmentVector = leftStickVector;
+				if (leftStickVector.magnitude > _stiffValue)
+				{
+					_stiffValue = leftStickVector.magnitude;
+				}
+				_adjustmentVector = leftStickVector.normalized * _stiffValue;
 				_adjusting = true;
 				if (Input.GetAxisRaw("Triggers") != 0)
 				{
