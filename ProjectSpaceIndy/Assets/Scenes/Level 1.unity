@@ -8284,10 +8284,11 @@ MonoBehaviour:
   Distance: 23
   Angle: 65
   MovementSmoothing: 0.1
-  AdjustSmoothing: 0.3
-  AdjustMultiplier: 4
-  AdjustTimeout: 3
+  AdjustSmoothing: 0.5
+  AdjustMultiplier: 5
   Stiffness: 1
+  MovementAdjustRelax: 0.5
+  HoldFor: 1
 --- !u!114 &373237198
 MonoBehaviour:
   m_ObjectHideFlags: 0
