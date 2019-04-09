@@ -238,6 +238,7 @@ public class PlayerUnit : UnitBase
 
 	protected override void Die()
 	{
+		_playerMover.Knockback = false;
 		transform.position = _spawnPosition;
 
 		ResetUnit();
