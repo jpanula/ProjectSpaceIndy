@@ -20,11 +20,13 @@ public class ResultScreen : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         gameObject.SetActive(false);
+        GameManager.EscapePhase = false;
     }
 
     public void Retry()
     {
         SceneManager.LoadScene(2);
         gameObject.SetActive((false));
+        GameManager.EscapePhase = false;
     }
 }
