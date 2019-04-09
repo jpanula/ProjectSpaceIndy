@@ -9,8 +9,8 @@ public class BasicEnemyMover : MonoBehaviour, IMover
     public float _speed;
     public ForwardVector Forward = ForwardVector.Forward;
     public float SeparationSpeed = 5;
-    private LayerMask _layerMask = (int) (Const.Layers.Player | Const.Layers.Activator | Const.Layers.Environment | Const.Layers.Enemy | Const.Layers.EnemyBarrier);
-    private SphereCollider _collider;
+    protected LayerMask _layerMask = (int) (Const.Layers.Player | Const.Layers.Activator | Const.Layers.Environment | Const.Layers.Enemy | Const.Layers.EnemyBarrier);
+    protected SphereCollider _collider;
     private Collider[] _colliders;
 
     public enum ForwardVector
@@ -30,7 +30,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
         _collider = GetComponent<SphereCollider>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (MovementVector != Vector3.zero)
         {
@@ -104,7 +104,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
         transform.position = newPos;
     }
 
-    public void ResetMover()
+    public virtual void ResetMover()
     {
         Speed = 0;
         MovementVector = Vector3.zero;
