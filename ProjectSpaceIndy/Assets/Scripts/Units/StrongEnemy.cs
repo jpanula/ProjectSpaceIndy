@@ -31,7 +31,7 @@ public class StrongEnemy : UnitBase
         if (_colliders.Length > 0)
         {
             var direction = _colliders[0].transform.position - position;
-            if (!Physics.Raycast(position, direction, PlayerDetectionRadius, VisionBlockedBy))
+            if (!Physics.Raycast(position, direction, direction.magnitude, VisionBlockedBy))
             {
                 _targetAcquired = true;
                 _target = _colliders[0].gameObject;

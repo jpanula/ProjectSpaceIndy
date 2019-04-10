@@ -14,6 +14,7 @@ public class ChargingEnemy : UnitBase
     public float ChargeSpeedMultiplier;
     public float TurnSpeed;
     public LayerMask VisionBlockedBy;
+    public AfterImage AfterImage;
     
     public BoxCollider Bumper;
     public State CurrentState;
@@ -39,6 +40,7 @@ public class ChargingEnemy : UnitBase
         base.Awake();
         _baseSpeed = Mover.Speed;
         _targetPos = Vector3.zero;
+        AfterImage.enabled = false;
     }
 
     protected override void Update()
@@ -58,11 +60,17 @@ public class ChargingEnemy : UnitBase
                 if (_colliders.Length > 0)
                 {
                     var direction = _colliders[0].transform.position - pos;
-                    if (!Physics.Raycast(pos, direction, PlayerDetectionRadius, VisionBlockedBy))
+                    Debug.DrawRay(pos, direction, Color.cyan, 0.2f);
+                    RaycastHit hit;
+                    if (!Physics.Raycast(pos, direction, out hit, direction.magnitude, VisionBlockedBy))
                     {
                         _target = _colliders[0].gameObject;
                         _targetPos = _target.transform.position;
                         CurrentState = State.PlayerDetected;
+                    }
+                    else
+                    {
+                        Debug.DrawLine(pos, hit.point, Color.red, 0.2f);
                     }
                 }
 
@@ -108,6 +116,7 @@ public class ChargingEnemy : UnitBase
             
             case State.ChargeAttack:
                 Bumper.gameObject.SetActive(true);
+                AfterImage.enabled = true;
                 
                 Mover.Speed = _baseSpeed * ChargeSpeedMultiplier;
                 _chargedDistance += Vector3.Distance(_lastPosition, pos);
@@ -120,6 +129,7 @@ public class ChargingEnemy : UnitBase
                     _chargeTimer = 0;
                     Mover.Speed = _baseSpeed;
                     CurrentState = State.Patrol;
+                    AfterImage.enabled = false;
                 }
                 break;
         }

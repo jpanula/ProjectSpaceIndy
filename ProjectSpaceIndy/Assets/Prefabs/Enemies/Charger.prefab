@@ -1,5 +1,70 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!137 &2516537442848528842
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642691921990376487}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0b1fa4ec493b3904baa3552b2d2ffe27, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.00007939339, y: -0.1312755, z: 0.19985092}
+    m_Extent: {x: 1.6820825, y: 0.893093, z: 2.2437224}
+  m_DirtyAABB: 0
+--- !u!114 &9102098774746892237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642691921990376487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cda7778ca436c84eb12891d84bdcda7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderer: {fileID: 2516537442848528842}
+  AfterImagePrefab: {fileID: 1241038746389400753, guid: 5b4670862c74a7d4580cd429ee671e99,
+    type: 3}
+  Frequency: 0.03
 --- !u!1 &6642691921997612390
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +127,7 @@ MonoBehaviour:
   VisionBlockedBy:
     serializedVersion: 2
     m_Bits: 2048
+  AfterImage: {fileID: 9102098774746892237}
   Bumper: {fileID: 6642691922685555827}
   CurrentState: 0
 --- !u!135 &6642691921997612391
@@ -264,8 +330,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a05d4c9ccd6eee24c8e2d78f78ec336a, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2300000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
+--- !u!1 &6642691921990376487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396,
+    type: 3}
+  m_PrefabInstance: {fileID: 6642691921990277767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6642691921989877767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1c58e03e0142dd842b79e8904f4f5396,
