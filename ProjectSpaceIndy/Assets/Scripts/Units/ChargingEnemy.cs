@@ -60,17 +60,12 @@ public class ChargingEnemy : UnitBase
                 if (_colliders.Length > 0)
                 {
                     var direction = _colliders[0].transform.position - pos;
-                    Debug.DrawRay(pos, direction, Color.cyan, 0.2f);
                     RaycastHit hit;
                     if (!Physics.Raycast(pos, direction, out hit, direction.magnitude, VisionBlockedBy))
                     {
                         _target = _colliders[0].gameObject;
                         _targetPos = _target.transform.position;
                         CurrentState = State.PlayerDetected;
-                    }
-                    else
-                    {
-                        Debug.DrawLine(pos, hit.point, Color.red, 0.2f);
                     }
                 }
 

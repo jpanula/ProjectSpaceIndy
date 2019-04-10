@@ -25,7 +25,7 @@ public class BasicEnemyMover : MonoBehaviour, IMover
         set { _speed = value; }
     }
     public Vector3 MovementVector { get; set; }
-    private void Awake()
+    protected virtual void Awake()
     {
         _collider = GetComponent<SphereCollider>();
     }

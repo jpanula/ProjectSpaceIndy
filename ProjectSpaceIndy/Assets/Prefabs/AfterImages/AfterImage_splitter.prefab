@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5855708792886936842
+--- !u!1001 &281171745228857800
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4646208713544239547, guid: a4555be1a65b42e48a0dfc5ff6978d41,
         type: 3}
       propertyPath: m_Name
-      value: AfterImage_charger
+      value: AfterImage_splitter
       objectReference: {fileID: 0}
     - target: {fileID: 5416683855467383870, guid: a4555be1a65b42e48a0dfc5ff6978d41,
         type: 3}
@@ -67,45 +67,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5416683855467383870, guid: a4555be1a65b42e48a0dfc5ff6978d41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5416683855467383870, guid: a4555be1a65b42e48a0dfc5ff6978d41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5416683855467383870, guid: a4555be1a65b42e48a0dfc5ff6978d41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 5982577693303262997, guid: a4555be1a65b42e48a0dfc5ff6978d41,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: dff6d2319fe559c4aa2425ed9c6c91dc, type: 2}
+      objectReference: {fileID: 2100000, guid: c9384d7a1cbcb4c499e73889b5944d86, type: 2}
     - target: {fileID: 3755759921466050222, guid: a4555be1a65b42e48a0dfc5ff6978d41,
         type: 3}
       propertyPath: StartAlpha
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3755759921466050222, guid: a4555be1a65b42e48a0dfc5ff6978d41,
         type: 3}
       propertyPath: FadeTime
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 6223180747455473342, guid: a4555be1a65b42e48a0dfc5ff6978d41,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6223180747455473342, guid: a4555be1a65b42e48a0dfc5ff6978d41,
-        type: 3}
-      propertyPath: Speed
-      value: -0.2
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4555be1a65b42e48a0dfc5ff6978d41, type: 3}

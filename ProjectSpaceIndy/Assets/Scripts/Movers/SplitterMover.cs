@@ -7,13 +7,21 @@ public class SplitterMover : BasicEnemyMover
     public float ProjectileDetectionRadius;
     public float DodgeSpeed;
     public float DistanceFactor;
+    public AfterImage AfterImage;
     private Collider[] _projectileColliders;
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+        AfterImage.enabled = false;
+    }
+
     protected override void Update()
     {
         _projectileColliders = Physics.OverlapSphere(transform.position, ProjectileDetectionRadius, (int) Const.Layers.PlayerProjectile);
         if (_projectileColliders.Length > 0)
         {
+            AfterImage.enabled = true;
             GameObject closestProjectile = _projectileColliders[0].gameObject;
             float distance = float.PositiveInfinity;
             foreach (var collider in _projectileColliders)
@@ -53,7 +61,7 @@ public class SplitterMover : BasicEnemyMover
         }
         else
         {
-
+            AfterImage.enabled = false;
             base.Update();
         }
     }

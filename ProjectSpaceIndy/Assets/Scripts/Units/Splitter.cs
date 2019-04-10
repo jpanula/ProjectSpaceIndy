@@ -14,6 +14,6 @@ public class Splitter : MonoBehaviour
 
     private void Update()
     {
-        Animator.speed = _baseSpeed * TimerManager.Instance.GameDeltaTime;
+        Animator.speed = _baseSpeed * TimerManager.Instance.GameDeltaScale;
     }
 }
