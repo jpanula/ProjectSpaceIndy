@@ -88,7 +88,10 @@ public class Projectile : MonoBehaviour
     }
     
     private void Awake()
-    {   
+    {
+        var collider = gameObject.AddComponent<SphereCollider>();
+        collider.radius = 0.01f;
+        collider.center = Vector3.zero;
         _firingEffectIsNotNull = FiringEffect != null;
         _collisionEffectIsNotNull = CollisionEffect != null;
         _constantEffectIsNotNull = ConstantEffect != null;
