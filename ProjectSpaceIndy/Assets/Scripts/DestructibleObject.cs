@@ -10,7 +10,11 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
     public float DropDistance;
     [Tooltip("Max distance from player for object to be destroyed")]
     public float MaxDistance = 22f;
-    
+
+    public GameObject AudioSourceToSpawn;
+    public GameObject ImpactSound;
+    public float ImpactSoundDelay;
+    private float _timeOfLastImpact;
 
     private void Awake()
     {
@@ -27,10 +31,21 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (Vector3.Distance(player.transform.position, transform.position) <= MaxDistance)
         {
-
+            
             destroyed = _health.DecreaseHealth(amount);
+            if (ImpactSound != null && !destroyed && (TimerManager.Instance.ScaledGameTime - _timeOfLastImpact >= ImpactSoundDelay))
+            {
+                Instantiate(ImpactSound);
+                ImpactSound.transform.position = transform.position;
+                _timeOfLastImpact = TimerManager.Instance.ScaledGameTime;
+            }
             if (destroyed)
             {
+                if (AudioSourceToSpawn != null)
+                {
+                    Instantiate(AudioSourceToSpawn);
+                    AudioSourceToSpawn.transform.position = transform.position;
+                }
                 Die();
             }
         }
@@ -77,6 +92,8 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
                 }
             }
         }
+
+        
         
         Destroy(gameObject);
     }
