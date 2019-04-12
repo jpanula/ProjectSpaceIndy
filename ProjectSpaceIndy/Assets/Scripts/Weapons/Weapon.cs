@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
 
     public float CoolDownTime;
     public ProjectilePool Projectiles;
-    private float _coolDownTimer;
+    protected float _coolDownTimer;
 
     public AudioSource AudioSource;
 
@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
     /// Fires a projectile
     /// </summary>
     /// <returns>True if the projectile can be fired, false otherwise</returns>
-    public bool Fire()
+    public virtual bool Fire()
     {
         if (_coolDownTimer >= CoolDownTime)
         {

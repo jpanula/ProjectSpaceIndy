@@ -26,6 +26,12 @@ public class PlayerMover : MonoBehaviour, IMover
 	private Vector3 _pointOnPlane;
 	public Vector3 _movementVector;
 	private float _timeOutTimer;
+
+	public bool Knockback;
+	private float _knockbackTimer;
+	private float _knockbackTimeout;
+	private float _knockbackSpeed;
+	private Vector3 _knockbackDirection;
 	
 	// Spherecast variables
 	private float _sphereRadius;
@@ -49,6 +55,10 @@ public class PlayerMover : MonoBehaviour, IMover
 		_plane = new Plane(Vector3.up, 0);
 		_timeOutTimer = 0;
 		_sphereRadius = gameObject.GetComponent<SphereCollider>().radius + AdditionalSphereRadius;
+		if (Camera == null)
+		{
+			Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		}
 	}
 
 	public float Speed
@@ -145,7 +155,7 @@ public class PlayerMover : MonoBehaviour, IMover
 		{
 			UseMouse = true;
 		}
-		
+		 
 		_timeOutTimer += TimerManager.Instance.GameDeltaTime;
 		float horizontal = Input.GetAxisRaw( "Horizontal" );
 		float vertical = Input.GetAxisRaw( "Vertical" );
@@ -177,9 +187,42 @@ public class PlayerMover : MonoBehaviour, IMover
 		Debug.DrawLine(transform.position, transform.position + inputVector * 5, Color.green, 0.2f);
 		_movementVector = inputVector;
 
-		// Kutsutaan Moverin Move metodia ja välitetään syötevektori 
-		// parametrina.
-		Move( _movementVector * TimerManager.Instance.GameDeltaTime);
+		if (Knockback)
+		{
+			var pos = transform.position;
+			var newPos = Vector3.Lerp(pos, pos + _knockbackDirection, TimerManager.Instance.GameDeltaTime * _knockbackSpeed);
+			var direction = newPos - pos;
+			var maxDistance = Vector3.Distance(pos, newPos);
+			var layerMask = (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.EnemyProjectile | Const.Layers.InvisibleWall);
+			
+			RaycastHit hit;
+			while (Physics.SphereCast(pos, _sphereRadius, direction, out hit, maxDistance, layerMask))
+			{
+				direction = Vector3.ProjectOnPlane(direction, hit.normal);
+				newPos = transform.position + direction;
+
+				if (direction.magnitude < 0.00001)
+				{
+					newPos = transform.position;
+					break;
+				}
+			}
+
+			transform.position = newPos;
+			
+			_knockbackTimer += TimerManager.Instance.GameDeltaTime;
+			if (_knockbackTimer > _knockbackTimeout)
+			{
+				Knockback = false;
+				_knockbackTimer = 0;
+			}
+		}
+		else
+		{
+			// Kutsutaan Moverin Move metodia ja välitetään syötevektori 
+			// parametrina.
+			Move(_movementVector * TimerManager.Instance.GameDeltaTime);
+		}
 		
 		//Debug.Log("X: " + Input.GetAxisRaw("Horizontal_Look") + " Y: " + Input.GetAxisRaw("Vertical_Look"));
 		
@@ -204,5 +247,17 @@ public class PlayerMover : MonoBehaviour, IMover
 	public void ResetMover()
 	{
 		_timeOutTimer = 0;
+		_knockbackTimer = _knockbackTimeout;
+		Knockback = false;
+	}
+
+	public void KnockBack(Vector3 direction, float speed, float time)
+	{
+		Knockback = true;
+		_knockbackTimer = 0;
+		
+		_knockbackDirection = direction;
+		_knockbackSpeed = speed;
+		_knockbackTimeout = time;
 	}
 }
