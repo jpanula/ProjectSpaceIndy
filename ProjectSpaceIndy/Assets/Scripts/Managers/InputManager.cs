@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
 
     public void ResetDeadzones()
     {
-        _leftStickDeadzone = 0.2f;
+        _leftStickDeadzone = 0.5f;
         _rightStickDeadzone = 0.5f;
     }
 }
