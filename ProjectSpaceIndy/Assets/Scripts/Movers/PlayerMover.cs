@@ -146,6 +146,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			}
 		}
 
+		newPosition.y = 0;
 		transform.position = newPosition;		
 	}
 
@@ -208,6 +209,7 @@ public class PlayerMover : MonoBehaviour, IMover
 				}
 			}
 
+			newPos.y = 0;
 			transform.position = newPos;
 			
 			_knockbackTimer += TimerManager.Instance.GameDeltaTime;

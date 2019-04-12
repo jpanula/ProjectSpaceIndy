@@ -76,7 +76,9 @@ public class PickupDropper : MonoBehaviour
                     drop = PickupManager.GetHealth();
                 }
 
-                drop.transform.position = transform.position + positions[i];
+                Vector3 newPos = transform.position + positions[i];
+                newPos.y = 0;
+                drop.transform.position = newPos;
             }
         }
     }
