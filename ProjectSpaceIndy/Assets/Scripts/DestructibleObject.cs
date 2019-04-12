@@ -15,6 +15,7 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
     public GameObject ImpactSound;
     public float ImpactSoundDelay;
     private float _timeOfLastImpact;
+    private bool _dead;
 
     private void Awake()
     {
@@ -55,7 +56,7 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
 
     protected virtual void Die()
     {
-        if(AmountOfScrapToDrop > 0)   
+        if(AmountOfScrapToDrop > 0 && !_dead)   
         {
             List<PickupBase> scraps = new List<PickupBase>();
             for (int i = 0; i < AmountOfScrapToDrop; i++)
@@ -72,9 +73,11 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
                     dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
                 }
             }
+
+            _dead = true;
         }
 
-        if (AmountOfFuelToDrop > 0)
+        if (AmountOfFuelToDrop > 0 && !_dead)
         {
             List<PickupBase> fuel = new List<PickupBase>();
             for (int i = 0; i < AmountOfFuelToDrop; i++)
@@ -91,6 +94,8 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
                     dropAngle = Quaternion.AngleAxis(360.0f / fuel.Count, Vector3.up) * dropAngle;
                 }
             }
+
+            _dead = true;
         }
 
         
