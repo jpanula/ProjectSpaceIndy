@@ -54,9 +54,9 @@ public class PickupDropper : MonoBehaviour
             int fuelAmount = 0;
             int healthAmount = 0;
             
-            if (ScrapDropChance / 100 >= Random.value) scrapAmount = Random.Range(MinimumScrap, MaximumScrap);
-            if (FuelDropChance / 100 >= Random.value) fuelAmount = Random.Range(MinimumFuel, MaximumFuel);
-            if (HealthDropChance / 100 >= Random.value) healthAmount = Random.Range(MinimumHealth, MaximumHealth);
+            if (ScrapDropChance / 100 >= Random.value && !(ScrapDropChance <= 0)) scrapAmount = Random.Range(MinimumScrap, MaximumScrap);
+            if (FuelDropChance / 100 >= Random.value && !(FuelDropChance <= 0)) fuelAmount = Random.Range(MinimumFuel, MaximumFuel);
+            if (HealthDropChance / 100 >= Random.value && !(HealthDropChance <= 0)) healthAmount = Random.Range(MinimumHealth, MaximumHealth);
             
             int dropTotal = scrapAmount + fuelAmount + healthAmount;
             var positions = GetRandomPositions(dropTotal);
