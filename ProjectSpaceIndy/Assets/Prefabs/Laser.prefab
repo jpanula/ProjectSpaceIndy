@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5803736187307273471}
-  m_Layer: 11
+  m_Layer: 18
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,8 +46,7 @@ GameObject:
   - component: {fileID: 6557513992326190393}
   - component: {fileID: 1198068418653266628}
   - component: {fileID: 2105115717400580204}
-  - component: {fileID: 6884274954517462725}
-  m_Layer: 11
+  m_Layer: 18
   m_Name: Laser Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,25 +157,6 @@ MonoBehaviour:
   Damage: 1
   KnockBackSpeed: 5
   KnockBackTime: 0.5
---- !u!95 &6884274954517462725
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8908667377275134253}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 183bfd08152684a44869cbff91987d51, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &5893111778001582017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -190,15 +170,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 1ca0421ad383cbd49b1bbd003237dca6, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1ca0421ad383cbd49b1bbd003237dca6, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 1ca0421ad383cbd49b1bbd003237dca6, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1ca0421ad383cbd49b1bbd003237dca6, type: 3}
       propertyPath: m_LocalPosition.x
