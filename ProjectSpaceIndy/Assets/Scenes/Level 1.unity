@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.026319813, g: 0.18593234, b: 0.34662336, a: 1}
+  m_IndirectSpecularColor: {r: 0.010648938, g: 0.10787437, b: 0.21630451, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2627,7 +2627,8 @@ PrefabInstance:
       propertyPath: Activators.Array.data[0]
       value: 
       objectReference: {fileID: 144493518}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 799608002348786958, guid: cd8181d76cf657e4394a6665840640d0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd8181d76cf657e4394a6665840640d0, type: 3}
 --- !u!1 &144493517 stripped
 GameObject:
@@ -2652,6 +2653,23 @@ MonoBehaviour:
   - {fileID: 1760464010}
   Activators:
   - {fileID: 1037683942}
+--- !u!114 &144493519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144493517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a39c37c32caff0498b3e392f2ac79cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 1694057853}
+  Speed: 5
+  Activator: {fileID: 144493518}
+  PlayerDetector: {fileID: 1830509375}
+  AudioSource: {fileID: 0}
 --- !u!1 &147963263
 GameObject:
   m_ObjectHideFlags: 0
@@ -9770,12 +9788,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428580226}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &430607717 stripped
+--- !u!1 &430607717
 GameObject:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 100000, guid: 18f7a5a054c4f5a4f84859d71a27aac9,
     type: 3}
   m_PrefabInstance: {fileID: 501675621}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430607719}
+  - component: {fileID: 430607718}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!65 &430607718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9789,6 +9819,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8997781, y: 13.818593, z: 2.6401763}
   m_Center: {x: 0.07568252, y: -1.8185992, z: -0.048282385}
+--- !u!4 &430607719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 501675621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430607717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1260408725}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &432994223
 GameObject:
   m_ObjectHideFlags: 0
@@ -18922,7 +18966,8 @@ PrefabInstance:
       propertyPath: Activators.Array.data[0]
       value: 
       objectReference: {fileID: 907952960}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 799608002348786958, guid: cd8181d76cf657e4394a6665840640d0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd8181d76cf657e4394a6665840640d0, type: 3}
 --- !u!1 &907952959 stripped
 GameObject:
@@ -18947,6 +18992,23 @@ MonoBehaviour:
   - {fileID: 1760464010}
   Activators:
   - {fileID: 1037683942}
+--- !u!114 &907952961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907952959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a39c37c32caff0498b3e392f2ac79cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 2063321359}
+  Speed: 5
+  Activator: {fileID: 907952960}
+  PlayerDetector: {fileID: 1830509375}
+  AudioSource: {fileID: 0}
 --- !u!1 &908069212
 GameObject:
   m_ObjectHideFlags: 0
@@ -23325,6 +23387,7 @@ MonoBehaviour:
   AttractionRadius: 2
   AttractionSpeed: 0.45
   SeparationRadius: 0.3
+  PickupSound: {fileID: 0}
   Score: 30
 --- !u!95 &1080062937
 Animator:
@@ -27895,6 +27958,37 @@ MonoBehaviour:
   Delay: 0
   Cooldown: 0
   GizmoColor: {r: 0, g: 0.69438887, b: 1, a: 1}
+--- !u!1 &1260408724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 501675621}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1260408725}
+  m_Layer: 0
+  m_Name: Carriership (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1260408725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 501675621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260408724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 430607719}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1263637700
 GameObject:
   m_ObjectHideFlags: 0
@@ -29069,6 +29163,7 @@ MonoBehaviour:
   AttractionRadius: 2
   AttractionSpeed: 0.45
   SeparationRadius: 0.3
+  PickupSound: {fileID: 0}
   Score: 30
 --- !u!54 &1323189182
 Rigidbody:
@@ -30228,7 +30323,7 @@ Transform:
   - {fileID: 251303266}
   - {fileID: 743874057}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1361782660
 GameObject:
@@ -37954,6 +38049,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690526739}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1694057853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 799608001656410489, guid: cd8181d76cf657e4394a6665840640d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 144493516}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1694687455
 GameObject:
   m_ObjectHideFlags: 0
@@ -47664,6 +47765,12 @@ Transform:
   m_Father: {fileID: 1060410735}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2063321359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 799608001656410489, guid: cd8181d76cf657e4394a6665840640d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 907952958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2067436328
 GameObject:
   m_ObjectHideFlags: 0
@@ -48579,6 +48686,7 @@ MonoBehaviour:
   AttractionRadius: 0
   AttractionSpeed: 0
   SeparationRadius: 0.3
+  PickupSound: {fileID: 0}
   Score: 100
   FinalRelic: 1
 --- !u!135 &2145803825

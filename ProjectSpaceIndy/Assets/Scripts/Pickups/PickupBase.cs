@@ -13,6 +13,8 @@ public abstract class PickupBase : MonoBehaviour
     private bool _permanent;
     private float _lifeTimeTimer;
 
+    public GameObject PickupSound;
+
     protected virtual void Awake()
     {
         if (LifeTime == 0) _permanent = true;

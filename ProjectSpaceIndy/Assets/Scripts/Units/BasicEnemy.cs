@@ -19,8 +19,6 @@ public class BasicEnemy : UnitBase
     [Range(0f, 100f)] [Tooltip("0 = Never drop health, 100 = Always drop health")]
     public float HealthDropProbability;
 
-    public GameObject ExplosionSound;
-
     private bool _playerFound;
     private Collider[] _colliders;
     private Transform _target;
@@ -101,11 +99,6 @@ public class BasicEnemy : UnitBase
     
     protected override void Die()
     {
-        if (ExplosionSound != null)
-        {
-            Instantiate(ExplosionSound);
-            ExplosionSound.transform.position = transform.position;
-        }
         
         List<PickupBase> scraps = new List<PickupBase>();
         for (int i = 0; i < DroppedScrap; i++)
