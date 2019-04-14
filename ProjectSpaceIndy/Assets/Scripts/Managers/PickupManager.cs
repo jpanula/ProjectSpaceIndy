@@ -8,8 +8,10 @@ public class PickupManager : MonoBehaviour
 
     public int TestLevelScrapPoolSize;
     public int TestLevelFuelPoolSize;
+    public int TestLevelHealthPoolSize;
     public PickupPool ScrapPool;
     public PickupPool FuelPool;
+    public PickupPool HealthPool;
     
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class PickupManager : MonoBehaviour
             case GameManager.Level.Test:
                 ScrapPool.Size = TestLevelScrapPoolSize;
                 FuelPool.Size = TestLevelFuelPoolSize;
+                HealthPool.Size = TestLevelHealthPoolSize;
                 break;
             
             default:
@@ -56,5 +59,15 @@ public class PickupManager : MonoBehaviour
     public bool ReturnFuel(FuelPickup fuel)
     {
         return FuelPool.ReturnPooledItem(fuel);
+    }
+
+    public PickupBase GetHealth()
+    {
+        return HealthPool.GetPooledItem();
+    }
+
+    public bool ReturnHealth(HealthPickup health)
+    {
+        return HealthPool.ReturnPooledItem(health);
     }
 }

@@ -154,6 +154,9 @@ MonoBehaviour:
   DistanceFromPlayer: 4
   DroppedScrap: 3
   ScrapDropRadius: 1
+  HealthDropProbability: 25
+  ExplosionSound: {fileID: 6245573893390584228, guid: 1407b5e0190b35248abcb89a2efb7f04,
+    type: 3}
 --- !u!1 &387492239455428056
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +294,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4c206c0ad5392584b86561e81d687d71, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

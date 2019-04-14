@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7576213932094457565}
   - component: {fileID: 3139743824514831521}
   - component: {fileID: 6372843851026030859}
+  - component: {fileID: 305141522160189791}
   m_Layer: 0
   m_Name: PickupManager
   m_TagString: Untagged
@@ -47,8 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TestLevelScrapPoolSize: 40
   TestLevelFuelPoolSize: 10
+  TestLevelHealthPoolSize: 10
   ScrapPool: {fileID: 3139743824514831521}
   FuelPool: {fileID: 6372843851026030859}
+  HealthPool: {fileID: 305141522160189791}
 --- !u!114 &3139743824514831521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,5 +80,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectPrefab: {fileID: 5556060727595822569, guid: bba74710d2fcfd349adce93402c3fa35,
+    type: 3}
+  _size: 0
+--- !u!114 &305141522160189791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6854241664209798992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25e7d5a97a8e134382847148956f4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectPrefab: {fileID: 726731079311876478, guid: f3586d080f52d4e4a94651a140d29d86,
     type: 3}
   _size: 0
