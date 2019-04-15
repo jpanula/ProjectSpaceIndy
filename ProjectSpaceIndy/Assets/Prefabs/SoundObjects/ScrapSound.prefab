@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5648800474062828255}
   - component: {fileID: 6626999383997674933}
   - component: {fileID: 8603784391221940198}
+  - component: {fileID: 4190285572516213524}
   m_Layer: 0
   m_Name: ScrapSound
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2212979808640420163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.268906, y: 0, z: 184.78856}
+  m_LocalPosition: {x: 1.8174584, y: 0, z: 130.35687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -146,3 +147,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7e32014f47973ef45b12784a2f1d84ae, type: 3}
   - {fileID: 8300000, guid: 82ac88ddc922a6a4cba537b94d4fbfe3, type: 3}
   - {fileID: 8300000, guid: ae03f77156a1d934393103c81f2e70e4, type: 3}
+--- !u!114 &4190285572516213524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2212979808640420163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2390bcce883db8f46864adb1a272191e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeBeforeDestroy: 2
