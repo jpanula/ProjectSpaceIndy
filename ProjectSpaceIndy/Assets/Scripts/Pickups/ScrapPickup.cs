@@ -18,8 +18,7 @@ public class ScrapPickup : PickupBase
         {
             if (PickupSound != null)
             {
-                Instantiate(PickupSound);
-                PickupSound.transform.position = transform.position;
+                Instantiate(PickupSound, transform.position, transform.rotation);
             }
             GrantEffect(player);
             ResetPickup();

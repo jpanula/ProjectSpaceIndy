@@ -54,8 +54,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
         }
         if (ExplosionSound != null)
         {
-            Instantiate(ExplosionSound);
-            ExplosionSound.transform.position = transform.position;
+            Instantiate(ExplosionSound, transform.position, transform.rotation);
         }
         if (Spawner != null)
         {
