@@ -36,16 +36,14 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
             destroyed = _health.DecreaseHealth(amount);
             if (ImpactSound != null && !destroyed && (TimerManager.Instance.ScaledGameTime - _timeOfLastImpact >= ImpactSoundDelay))
             {
-                Instantiate(ImpactSound);
-                ImpactSound.transform.position = transform.position;
+                Instantiate(ImpactSound, transform.position, transform.rotation);
                 _timeOfLastImpact = TimerManager.Instance.ScaledGameTime;
             }
             if (destroyed)
             {
                 if (AudioSourceToSpawn != null)
                 {
-                    Instantiate(AudioSourceToSpawn);
-                    AudioSourceToSpawn.transform.position = transform.position;
+                    Instantiate(AudioSourceToSpawn, transform.position, transform.rotation);
                 }
                 Die();
             }

@@ -16,6 +16,10 @@ public class ScrapPickup : PickupBase
         PlayerUnit player = other.GetComponent<PlayerUnit>();
         if (player != null)
         {
+            if (PickupSound != null)
+            {
+                Instantiate(PickupSound, transform.position, transform.rotation);
+            }
             GrantEffect(player);
             ResetPickup();
             if (!PickupManager.Instance.ReturnScrap(this))

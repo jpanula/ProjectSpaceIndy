@@ -5,7 +5,7 @@ using UnityEngine;
 public class LightColourLerp : MonoBehaviour
 {
     public Light DirectionalLight;
-    private Color lerpedColour;
+    private Color _lerpedColour;
     private float _startTime;
     private bool _firstTime = true;
     
@@ -19,8 +19,8 @@ public class LightColourLerp : MonoBehaviour
                 _firstTime = false;
             }
 
-            lerpedColour = Color.Lerp(Color.white, Color.red, Mathf.PingPong(TimerManager.Instance.ScaledGameTime - _startTime, 1));
-            DirectionalLight.color = lerpedColour;
+            _lerpedColour = Color.Lerp(Color.white, Color.red, Mathf.PingPong(TimerManager.Instance.ScaledGameTime - _startTime, 1));
+            DirectionalLight.color = _lerpedColour;
         }
     }
 }

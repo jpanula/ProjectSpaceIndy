@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4168361235723260982}
   - component: {fileID: 5563636479817630477}
   - component: {fileID: 6357441049274019686}
+  - component: {fileID: 1548097143700773198}
   m_Layer: 0
   m_Name: EnemyExplosion
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6245573893390584228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.703808, y: 0, z: 344.61795}
+  m_LocalPosition: {x: -13.439995, y: 0.48, z: 249.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,8 +43,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 25eb3cf6cd045e34fbd214aff40fd50f, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
@@ -141,3 +142,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeBeforeDestroy: 3
+--- !u!114 &1548097143700773198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245573893390584228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6255f3d3baceb44496ada9144e0785a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource: {fileID: 5563636479817630477}
+  AudioClips:
+  - {fileID: 8300000, guid: 9963bb82c0156af40ba1299eaac7b895, type: 3}
+  - {fileID: 8300000, guid: 89705a0a1ad1837448efb841cbd77d7a, type: 3}
+  - {fileID: 8300000, guid: a355010f0640225469791226454c778b, type: 3}

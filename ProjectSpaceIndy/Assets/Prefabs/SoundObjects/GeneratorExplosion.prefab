@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7427041738877752180}
   - component: {fileID: 7673937067990939877}
   - component: {fileID: 1193887074058743266}
+  - component: {fileID: 3702023634595619950}
   m_Layer: 0
   m_Name: GeneratorExplosion
   m_TagString: Untagged
@@ -42,8 +43,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1b255df3f927de247871749f9888075d, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
@@ -141,3 +142,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeBeforeDestroy: 3
+--- !u!114 &3702023634595619950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4159720783025481382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6255f3d3baceb44496ada9144e0785a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource: {fileID: 7673937067990939877}
+  AudioClips:
+  - {fileID: 8300000, guid: 1b255df3f927de247871749f9888075d, type: 3}
+  - {fileID: 8300000, guid: 9ece0eb06e793794fbb912e5c5b2075c, type: 3}
+  - {fileID: 8300000, guid: 2528ad9d4c8b6a64d88cd36b4955a429, type: 3}

@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 6642691921997612391}
   - component: {fileID: 6642691921997612395}
   - component: {fileID: 6642691921997612394}
+  - component: {fileID: 6006831791126192901}
   m_Layer: 10
   m_Name: Charger
   m_TagString: Untagged
@@ -116,6 +117,8 @@ MonoBehaviour:
   Weapons: []
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
+  ExplosionSound: {fileID: 6245573893390584228, guid: 1407b5e0190b35248abcb89a2efb7f04,
+    type: 3}
   ChargeTime: 1
   ChargeDistance: 20
   ChargeTimeout: 2
@@ -130,6 +133,7 @@ MonoBehaviour:
   AfterImage: {fileID: 9102098774746892237}
   Bumper: {fileID: 6642691922685555827}
   CurrentState: 0
+  ChargeSound: {fileID: 6006831791126192901}
 --- !u!135 &6642691921997612391
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -178,6 +182,102 @@ MonoBehaviour:
   _minHealth: 0
   _isImmortal: 0
   _isInvulnerable: 0
+--- !u!82 &6006831791126192901
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642691921997612390}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7a216e84dce07c448848a58f76956dfb, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6642691922685555826
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,14 +362,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6642691921997612389}
     m_Modifications:
-    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
-      propertyPath: m_Name
-      value: "l\xE4hitaistelija"
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -325,6 +417,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
+      propertyPath: m_Name
+      value: "l\xE4hitaistelija"
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_Materials.Array.data[0]

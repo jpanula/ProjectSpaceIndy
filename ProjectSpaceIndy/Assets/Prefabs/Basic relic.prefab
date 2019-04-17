@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a9bcb26084b2c34b91e76a6876ce86b, type: 2}
+  - {fileID: 2100000, guid: d5a4ed81d2a656e4ba1bb029e024a8cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   AttractionRadius: 2
   AttractionSpeed: 0.45
   SeparationRadius: 0.3
+  PickupSound: {fileID: 0}
   Score: 30
 --- !u!95 &5633051144452057015
 Animator:
@@ -137,7 +138,7 @@ Animator:
   m_GameObject: {fileID: 5288670911587852668}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f4037643e89e9784797d461b3331ff5b, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
