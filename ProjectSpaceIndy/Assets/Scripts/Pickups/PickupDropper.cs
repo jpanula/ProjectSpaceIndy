@@ -79,6 +79,7 @@ public class PickupDropper : MonoBehaviour
                 Vector3 newPos = transform.position + positions[i];
                 newPos.y = 0;
                 drop.transform.position = newPos;
+                drop.transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
             }
         }
     }

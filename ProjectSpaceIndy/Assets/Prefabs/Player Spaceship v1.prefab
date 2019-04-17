@@ -293,6 +293,8 @@ MonoBehaviour:
   _fuelAmount: 5
   FuelCap: 10
   ShootDelay: 0.07
+  InvulnerabilityTime: 2.2
+  BlinkTime: 0.15
   FuelText: {fileID: 8861605705170948501}
   HealthBar: {fileID: 2083707900740763832}
   HealthBarChangeSpeed: 10
@@ -307,6 +309,7 @@ MonoBehaviour:
   - {fileID: 5780578081476204534}
   - {fileID: 5587220442334840201}
   - {fileID: 4357126199886335308}
+  _renderer: {fileID: 8817842809758519888}
 --- !u!114 &2442794101808648109
 MonoBehaviour:
   m_ObjectHideFlags: 0
