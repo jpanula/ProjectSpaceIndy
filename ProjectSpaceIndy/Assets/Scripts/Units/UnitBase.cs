@@ -7,6 +7,7 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
 
     public Weapon[] Weapons;
     public ParticleSystem DeathEffect;
+    public GameObject ExplosionSound;
     
     public IMover Mover;
     public IHealth Health;
@@ -50,6 +51,10 @@ public abstract class UnitBase : MonoBehaviour, IDamageReceiver
             GameObject deathEffectObject = Instantiate(DeathEffect.gameObject, transform.position, transform.rotation);
             var main = deathEffectObject.GetComponent<ParticleSystem>().main;
             main.stopAction = ParticleSystemStopAction.Destroy;
+        }
+        if (ExplosionSound != null)
+        {
+            Instantiate(ExplosionSound, transform.position, transform.rotation);
         }
         if (Spawner != null)
         {

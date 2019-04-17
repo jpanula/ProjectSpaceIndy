@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3156384051376110552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0.45, z: 1.168}
+  m_LocalPosition: {x: -0.45, y: 0, z: 1.168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8817842811518300645}
@@ -88,7 +88,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6323561447577146824}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.45, y: 0.45, z: 1.168}
+  m_LocalPosition: {x: 0.45, y: 0, z: 1.168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8817842811518300645}
@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817842809756257424}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.368}
+  m_LocalPosition: {x: 0, y: -0.453, z: 0.368}
   m_LocalScale: {x: 0.3, y: 0.35, z: 0.35}
   m_Children: []
   m_Father: {fileID: 8817842811518300645}
@@ -267,6 +267,7 @@ MonoBehaviour:
   RotationTimeout: 0.5
   UseMouse: 0
   _movementVector: {x: 0, y: 0, z: 0}
+  Knockback: 0
   AdditionalSphereRadius: 0.6
   NormalMovement: {fileID: 0}
   FadeTime: 0
@@ -287,6 +288,7 @@ MonoBehaviour:
   - {fileID: 401558577471715531}
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
+  ExplosionSound: {fileID: 0}
   _fuelAmount: 5
   FuelCap: 10
   ShootDelay: 0.07
@@ -334,7 +336,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7
-  m_Center: {x: 0, y: 0.43464184, z: 0.08}
+  m_Center: {x: 0, y: 0, z: 0.08}
 --- !u!1001 &3710409269549740139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -509,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 4574175103119101315, guid: 4f86f7ad8cd7b204fb31e270d99b7f65,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.453
       objectReference: {fileID: 0}
     - target: {fileID: 4574175103119101315, guid: 4f86f7ad8cd7b204fb31e270d99b7f65,
         type: 3}

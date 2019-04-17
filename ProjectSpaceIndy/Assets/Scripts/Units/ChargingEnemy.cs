@@ -26,6 +26,8 @@ public class ChargingEnemy : UnitBase
     private float _chargedDistance;
     private Vector3 _lastPosition;
     private Vector3 _targetPos;
+
+    public AudioSource ChargeSound;
     
     public enum State
     {
@@ -105,6 +107,10 @@ public class ChargingEnemy : UnitBase
                     _lastPosition = pos;
                     CurrentState = State.ChargeAttack;
                     _chargeTimer = 0;
+                    /*if (ChargeSound != null && !ChargeSound.isPlaying)
+                    {
+                        ChargeSound.Play();
+                    }*/
                 }
                 
                 break;
@@ -112,6 +118,7 @@ public class ChargingEnemy : UnitBase
             case State.ChargeAttack:
                 Bumper.gameObject.SetActive(true);
                 AfterImage.enabled = true;
+
                 
                 Mover.Speed = _baseSpeed * ChargeSpeedMultiplier;
                 _chargedDistance += Vector3.Distance(_lastPosition, pos);
