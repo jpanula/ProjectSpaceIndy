@@ -117,7 +117,7 @@ MonoBehaviour:
   Weapons: []
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
-  ExplosionSound: {fileID: 6245573893390584228, guid: 1407b5e0190b35248abcb89a2efb7f04,
+  ExplosionSound: {fileID: 6245573893390584228, guid: a38e19721397db64d8698c940950ff30,
     type: 3}
   ChargeTime: 1
   ChargeDistance: 20
@@ -362,6 +362,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6642691921997612389}
     m_Modifications:
+    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
+      propertyPath: m_Name
+      value: "l\xE4hitaistelija"
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -417,14 +425,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
-      propertyPath: m_Name
-      value: "l\xE4hitaistelija"
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_Materials.Array.data[0]
