@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bc645ea253f96e143a7e886f53acad15, type: 3}
+  - {fileID: 2100000, guid: 08f6174f0fabb8e4e804b85ee37a9685, type: 2}
   - {fileID: 2100002, guid: bc645ea253f96e143a7e886f53acad15, type: 3}
   - {fileID: 2100004, guid: bc645ea253f96e143a7e886f53acad15, type: 3}
   - {fileID: 2100006, guid: bc645ea253f96e143a7e886f53acad15, type: 3}
@@ -141,9 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bcab8d947a7144ea9fc132ca5b866e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmountOfScrapToDrop: 0
-  AmountOfFuelToDrop: 0
-  DropDistance: 0
   MaxDistance: 22
   AudioSourceToSpawn: {fileID: 4159720783025481382, guid: 1a501561e8c10c7418aebbd1474d36f0,
     type: 3}

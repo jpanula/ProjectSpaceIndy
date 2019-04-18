@@ -20,7 +20,7 @@ public class ParticleEffectOnDestroy : MonoBehaviour
 
     private void OnActiveSceneChanged(Scene current, Scene next)
     {
-        _isQuitting = true;
+        //_isQuitting = true;
     }
 
     private void OnDestroy()
