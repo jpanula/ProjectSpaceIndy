@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9103536560283390066}
   - component: {fileID: 9103536560283390093}
   - component: {fileID: 8097382972067003682}
+  - component: {fileID: 2837339628216427330}
   m_Layer: 11
   m_Name: Fuel Box
   m_TagString: Untagged
@@ -96,9 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bcab8d947a7144ea9fc132ca5b866e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmountOfScrapToDrop: 0
-  AmountOfFuelToDrop: 4
-  DropDistance: 1
   MaxDistance: 0
   AudioSourceToSpawn: {fileID: 5669901125121992359, guid: 35166e3dd5a7e724da275b909dc98ba4,
     type: 3}
@@ -149,3 +147,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Effect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061, type: 3}
+--- !u!114 &2837339628216427330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9103536560283358766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66a71f7891195347a8c0a6678a72bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinimumScrap: 0
+  MaximumScrap: 0
+  MinimumFuel: 5
+  MaximumFuel: 5
+  MinimumHealth: 0
+  MaximumHealth: 0
+  ScrapDropChance: 100
+  FuelDropChance: 100
+  HealthDropChance: 100
+  DropRadius: 1

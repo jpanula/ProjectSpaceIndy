@@ -5,9 +5,6 @@ using UnityEngine;
 public class DestructibleObject : MonoBehaviour, IDamageReceiver
 {
     private Health _health;
-    public int AmountOfScrapToDrop;
-    public int AmountOfFuelToDrop;
-    public float DropDistance;
     [Tooltip("Max distance from player for object to be destroyed")]
     public float MaxDistance = 22f;
 
