@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3021860078181337203}
   - component: {fileID: 3021860078181337207}
   - component: {fileID: 5125862804266256836}
+  - component: {fileID: 8133700418693938747}
   m_Layer: 10
   m_Name: StrongEnemy
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
   - {fileID: 3021860078947833974}
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
-  ExplosionSound: {fileID: 6245573893390584228, guid: 1407b5e0190b35248abcb89a2efb7f04,
+  ExplosionSound: {fileID: 6245573893390584228, guid: a38e19721397db64d8698c940950ff30,
     type: 3}
   DistanceFromPlayer: 12
   PlayerDetectionRadius: 18
@@ -64,8 +65,6 @@ MonoBehaviour:
     m_Bits: 2048
   CurrentState: 0
   TurnSpeed: 1
-  DroppedScrap: 1
-  ScrapDropRadius: 0
 --- !u!114 &3021860078181337203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +113,28 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.1
   m_Center: {x: 0, y: 0, z: -0.19}
+--- !u!114 &8133700418693938747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3021860078181337202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66a71f7891195347a8c0a6678a72bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinimumScrap: 0
+  MaximumScrap: 0
+  MinimumFuel: 0
+  MaximumFuel: 0
+  MinimumHealth: 0
+  MaximumHealth: 0
+  ScrapDropChance: 100
+  FuelDropChance: 100
+  HealthDropChance: 100
+  DropRadius: 0
 --- !u!1 &3021860078529030056
 GameObject:
   m_ObjectHideFlags: 0

@@ -147,6 +147,8 @@ MonoBehaviour:
   - {fileID: 8627920163059155383}
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
+  ExplosionSound: {fileID: 6245573893390584228, guid: a38e19721397db64d8698c940950ff30,
+    type: 3}
   DetectionRadius: 40
   VisionBlockedBy:
     serializedVersion: 2
@@ -155,8 +157,6 @@ MonoBehaviour:
   DroppedScrap: 3
   ScrapDropRadius: 1
   HealthDropProbability: 25
-  ExplosionSound: {fileID: 6245573893390584228, guid: 1407b5e0190b35248abcb89a2efb7f04,
-    type: 3}
 --- !u!1 &387492239455428056
 GameObject:
   m_ObjectHideFlags: 0

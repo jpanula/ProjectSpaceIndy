@@ -96,47 +96,6 @@ public class BasicEnemy : UnitBase
             }
         }
     }
-    
-    protected override void Die()
-    {
-        
-        List<PickupBase> scraps = new List<PickupBase>();
-        for (int i = 0; i < DroppedScrap; i++)
-        {
-            scraps.Add(PickupManager.Instance.GetScrap());
-        }
-        Vector3 dropAngle = Vector3.forward * ScrapDropRadius;
-        for (int i = 0; i < scraps.Count; i++)
-        {
-            if (scraps[i] != null)
-            {
-                scraps[i].transform.position = dropAngle + transform.position;
-                dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
-            }
-        }
-
-        float probability = HealthDropProbability / 100;
-        if (Random.value <= probability)
-        {
-            PickupBase health = PickupManager.Instance.GetHealth();
-            if (health != null)
-            {
-                health.transform.position = transform.position;
-            }
-            base.Die();
-        }
-        
-        else
-        {
-            PickupBase fuel = PickupManager.Instance.GetFuel();
-            if (fuel != null)
-            {
-                fuel.transform.position = transform.position;
-            }
-
-            base.Die();
-        }
-    }
 
     private void OnDrawGizmosSelected()
     {

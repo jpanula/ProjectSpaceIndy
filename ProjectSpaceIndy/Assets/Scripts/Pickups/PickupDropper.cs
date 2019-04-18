@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PickupDropper : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class PickupDropper : MonoBehaviour
     [Range(0,100)]
     public float HealthDropChance = 100;
     
-    
+    [Space(20)]
     public float DropRadius;
     
     private PickupManager PickupManager;
@@ -36,12 +37,27 @@ public class PickupDropper : MonoBehaviour
         MaximumHealth = Mathf.Max(MaximumHealth, MinimumHealth);
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
     private void Start()
     {
         PickupManager = PickupManager.Instance;
     }
 
     private void OnApplicationQuit()
+    {
+        _isQuitting = true;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+
+    private void OnSceneUnloaded(Scene scene)
     {
         _isQuitting = true;
     }
@@ -79,6 +95,7 @@ public class PickupDropper : MonoBehaviour
                 Vector3 newPos = transform.position + positions[i];
                 newPos.y = 0;
                 drop.transform.position = newPos;
+                drop.transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
             }
         }
     }

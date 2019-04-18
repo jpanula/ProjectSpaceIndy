@@ -10,6 +10,8 @@ public class PlayerUnit : UnitBase
 	[FormerlySerializedAs("FuelAmount")] public float _fuelAmount;
 	public float FuelCap;
 	public float ShootDelay;
+	public float InvulnerabilityTime;
+	public float BlinkTime;
 	
 	[Header("UI Stuff")]
 	public TextMeshProUGUI FuelText;
@@ -20,6 +22,7 @@ public class PlayerUnit : UnitBase
 	public float ShipHUDFadeOutSpeed = 1;
 	public float ShipHUDFadeInSpeed = 1;
 	public Image[] ShipHUDElements = new Image[6];
+	public MeshRenderer _renderer;
 	
 	private Vector3 _spawnPosition;
 	private PlayerMover _playerMover;
@@ -40,7 +43,9 @@ public class PlayerUnit : UnitBase
 	private float _shipHUDTimeoutTimer;
 	private int _lastHP;
 	private float _lastFuel;
-
+	private float _invulnerabilityTimer;
+	private float _blinkTimer;
+	
 	public Vector3 SpawnPos
 	{
 		get { return _spawnPosition; }
@@ -52,7 +57,13 @@ public class PlayerUnit : UnitBase
 		get { return _fuelAmount; }
 		set { _fuelAmount = Mathf.Min(FuelCap, value); }
 	}
-	
+
+	public override void Awake()
+	{
+		_invulnerabilityTimer = InvulnerabilityTime;
+		base.Awake();
+	}
+
 	private void Start()
 	{
 		_playerMover = GetComponent<PlayerMover>();
@@ -94,6 +105,30 @@ public class PlayerUnit : UnitBase
 
 	protected override void Update ()
 	{
+		
+
+		_invulnerabilityTimer += TimerManager.Instance.GameDeltaTime;
+
+		if (_invulnerabilityTimer >= InvulnerabilityTime)
+		{
+			_blinkTimer = 0;
+			Health.IsInvulnerable = false;
+			_renderer.enabled = true;
+
+		}
+		else
+		{
+			_blinkTimer += TimerManager.Instance.GameDeltaTime;
+		
+			if (_blinkTimer >= BlinkTime)
+			{
+				_renderer.enabled = !_renderer.enabled;
+				_blinkTimer = 0;
+			}
+			
+			Health.IsInvulnerable = true;
+		}
+		
 		float fillAmount = (float) Health.CurrentHealth / Health.MaxHealth;
 		HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, fillAmount, TimerManager.Instance.UiDeltaTime * HealthBarChangeSpeed);
 		_hpBarFill.fillAmount = HealthBar.fillAmount;
@@ -240,6 +275,7 @@ public class PlayerUnit : UnitBase
 	{
 		_playerMover.Knockback = false;
 		transform.position = _spawnPosition;
+		_invulnerabilityTimer = 0;
 
 		ResetUnit();
 	}
