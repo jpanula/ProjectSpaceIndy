@@ -39,7 +39,7 @@ public class PickupDropper : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
     }
 
     private void Start()
@@ -54,10 +54,10 @@ public class PickupDropper : MonoBehaviour
 
     private void OnDisable()
     {
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
     }
 
-    private void OnSceneUnloaded(Scene scene)
+    private void OnActiveSceneChanged(Scene current, Scene next)
     {
         _isQuitting = true;
     }

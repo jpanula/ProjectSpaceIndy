@@ -4697,7 +4697,7 @@ ParticleSystem:
 --- !u!199 &349892845835143359
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4924,7 +4924,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 25
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5415,7 +5415,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 2
+    type: 4
     angle: 56.158577
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -5731,7 +5731,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 7
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -6118,9 +6118,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
-        key1: {r: 0, g: 0, b: 0, a: 0.3980633}
-        key2: {r: 0, g: 0, b: 0, a: 0.35686275}
-        key3: {r: 0, g: 0, b: 0, a: 0.23921569}
+        key1: {r: 0, g: 0, b: 0, a: 0.8784314}
+        key2: {r: 0, g: 0, b: 0, a: 0.9647059}
+        key3: {r: 0, g: 0, b: 0, a: 0.41568628}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -6135,8 +6135,8 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 20046
-        atime2: 26985
-        atime3: 36237
+        atime2: 32382
+        atime3: 49344
         atime4: 65535
         atime5: 65535
         atime6: 0
@@ -7273,7 +7273,7 @@ ParticleSystem:
     magnitude:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 6
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9453,7 +9453,7 @@ ParticleSystem:
 --- !u!199 &349892847202089740
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -14212,7 +14212,7 @@ ParticleSystem:
 --- !u!199 &349892847301924242
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
