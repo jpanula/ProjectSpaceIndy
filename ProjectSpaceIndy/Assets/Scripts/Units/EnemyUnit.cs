@@ -24,22 +24,6 @@ public class EnemyUnit : UnitBase
         }
     }
 
-    protected override void Die()
-    {
-        List<PickupBase> scraps = new List<PickupBase>();
-        for (int i = 0; i < AmountOfScrapToDrop; i++)
-        {
-            scraps.Add(PickupManager.Instance.GetScrap());
-        }
-        Vector3 dropAngle = Vector3.forward * DropDistance;
-        for (int i = 0; i < scraps.Count; i++)
-        {
-            scraps[i].transform.position = dropAngle + transform.position;
-            dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
-        }
-        base.Die();
-    }
-
     protected override void ResetUnit()
     {
         base.ResetUnit();

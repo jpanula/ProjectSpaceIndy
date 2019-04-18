@@ -10,10 +10,6 @@ public class StrongEnemy : UnitBase
     public LayerMask VisionBlockedBy;
     public State CurrentState = State.Patrol;
     public float TurnSpeed;
-    [Tooltip("The amount of scrap the enemy drops when killed")]
-    public int DroppedScrap;
-    [Tooltip("The maximum radius at which to drop the scrap")]
-    public float ScrapDropRadius;
 
     private GameObject _target;
     private Collider[] _colliders;
@@ -83,31 +79,6 @@ public class StrongEnemy : UnitBase
                 
                 throw new ArgumentOutOfRangeException();
         }
-    }
-    
-    protected override void Die()
-    {
-        List<PickupBase> scraps = new List<PickupBase>();
-        for (int i = 0; i < DroppedScrap; i++)
-        {
-            scraps.Add(PickupManager.Instance.GetScrap());
-        }
-        Vector3 dropAngle = Vector3.forward * ScrapDropRadius;
-        for (int i = 0; i < scraps.Count; i++)
-        {
-            if (scraps[i] != null)
-            {
-                scraps[i].transform.position = dropAngle + transform.position;
-                dropAngle = Quaternion.AngleAxis(360.0f / scraps.Count, Vector3.up) * dropAngle;
-            }
-        }
-
-        PickupBase fuel = PickupManager.Instance.GetFuel();
-        if (fuel != null)
-        {
-            fuel.transform.position = transform.position;
-        }
-        base.Die();
     }
     
     private void OnDrawGizmosSelected()
