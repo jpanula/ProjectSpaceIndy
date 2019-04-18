@@ -15,6 +15,8 @@ public class ChargingEnemy : UnitBase
     public float TurnSpeed;
     public LayerMask VisionBlockedBy;
     public AfterImage AfterImage;
+    public Path PatrolPath;
+    public float NodeDistance;
     
     public BoxCollider Bumper;
     public State CurrentState;
@@ -28,7 +30,8 @@ public class ChargingEnemy : UnitBase
     private Vector3 _targetPos;
 
     public AudioSource ChargeSound;
-    
+    private Node _currentNode;
+
     public enum State
     {
         Patrol,
@@ -54,6 +57,28 @@ public class ChargingEnemy : UnitBase
         switch (CurrentState)
         {
             case State.Patrol:
+                if (PatrolPath == null)
+                {
+                    Mover.Speed = 0;
+                }
+                
+                else
+                {
+                    if (_currentNode == null)
+                    {
+                        _currentNode = PatrolPath.GetClosestNode(transform.position);
+                    }
+
+                    if (Vector3.Distance(pos, _currentNode.GetPosition()) < NodeDistance)
+                    {
+                        _currentNode = PatrolPath.GetNextNode(_currentNode);
+                    }
+
+                    var nodeDirection = _currentNode.GetPosition() - pos;
+                    Mover.MovementVector = nodeDirection;
+                    Mover.Speed = _baseSpeed;
+                }
+                
                 Bumper.gameObject.SetActive(false);
 
                 Mover.MovementVector = Vector3.zero;

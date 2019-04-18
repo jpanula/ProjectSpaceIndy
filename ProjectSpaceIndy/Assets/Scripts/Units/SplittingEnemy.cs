@@ -23,7 +23,10 @@ public class SplittingEnemy : MonoBehaviour
 
     private void OnActiveSceneChanged(Scene current, Scene next)
     {
-        _isQuitting = true;
+        if (TimerManager.Instance.ScaledGameTime > 3)
+        {
+            _isQuitting = true;
+        }
     }
     
     private void OnDestroy()

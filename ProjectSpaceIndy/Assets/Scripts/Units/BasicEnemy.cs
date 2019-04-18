@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,19 +12,24 @@ public class BasicEnemy : UnitBase
     public LayerMask VisionBlockedBy = (int) Const.Layers.Environment;
     [Tooltip("Distance in units at which the enemy tries to stay at from player")]
     public float DistanceFromPlayer;
-    [Tooltip("The amount of scrap the enemy drops when killed")]
-    public int DroppedScrap;
-    [FormerlySerializedAs("ScrapDropDistance")] [Tooltip("The maximum radius at which to drop the scrap")]
-    public float ScrapDropRadius;
+    [Tooltip("Path to use when in patrol mode")]
+    public Path PatrolPath;
 
-    [Range(0f, 100f)] [Tooltip("0 = Never drop health, 100 = Always drop health")]
-    public float HealthDropProbability;
+    [Tooltip("Distance from current target node when the next node should be targeted")]
+    public float NodeDistance;
 
-    private bool _playerFound;
+    public State CurrentState;
     private Collider[] _colliders;
     private Transform _target;
     private float _movementSpeed;
+    private Node _currentNode;
 
+    public enum State
+    {
+        Patrol,
+        PlayerFound
+    }
+    
     public override void Awake()
     {
         Health = gameObject.GetOrAddComponent<Health>();
@@ -34,66 +40,80 @@ public class BasicEnemy : UnitBase
 
     protected override void Update()
     {
-        // Check for players
-        _colliders = Physics.OverlapSphere(transform.position, DetectionRadius, (int) Const.Layers.Player);
-        int size = _colliders.Length;
-        
-        // If multiple players found, find the closest one and target it
-        if (size > 1)
-        {
-            _playerFound = true;
-            float distance = Vector3.Distance(_colliders[0].transform.position, transform.position);
-            _target = _colliders[0].transform;
-            for (int i = 1; i < size; i++)
-            {
-                float newDistance = Vector3.Distance(_colliders[i].transform.position, transform.position);
-                if (newDistance < distance)
-                {
-                    distance = newDistance;
-                    _target = _colliders[i].transform;
-                }
-            }
-        }
-        // If only one player found, target it
-        else if (size == 1)
-        {
-            _target = _colliders[0].transform;
-            _playerFound = true;
-        }
-        // If no player found, make target null
-        else
-        {
-            _target = null;
-            _playerFound = false;
-            Mover.Speed = 0;
-        }
+        var position = transform.position;
 
-        if (_playerFound)
+        switch (CurrentState)
         {
-            Vector3 playerDirection = _target.position - transform.position;
-            Mover.MovementVector = playerDirection;
-            float maxDistance = Vector3.Distance(transform.position, _target.position);
-            
-            // If player is in line of sight, execute the following
-            if (!Physics.Raycast(transform.position, playerDirection, maxDistance, VisionBlockedBy))
-            {
-                // If player is not at the wanted distance, move appropriately
-                if (DistanceFromPlayer < Vector3.Distance(transform.position, _target.position))
+            case State.Patrol:
+                if (PatrolPath == null)
                 {
+                    Mover.Speed = 0;
+                }
+                
+                else
+                {
+                    if (_currentNode == null)
+                    {
+                        _currentNode = PatrolPath.GetClosestNode(transform.position);
+                    }
+
+                    if (Vector3.Distance(position, _currentNode.GetPosition()) < NodeDistance)
+                    {
+                        _currentNode = PatrolPath.GetNextNode(_currentNode);
+                    }
+
+                    var nodeDirection = _currentNode.GetPosition() - position;
+                    Mover.MovementVector = nodeDirection;
                     Mover.Speed = _movementSpeed;
+                }
+                
+                // Check for players
+                _colliders = Physics.OverlapSphere(position, DetectionRadius, (int) Const.Layers.Player);
+                int size = _colliders.Length;
+
+                if (size > 0)
+                {
+                    _target = _colliders[0].transform;
+                    CurrentState = State.PlayerFound;
+                }
+                
+                break;
+            
+            case State.PlayerFound:
+                
+                var targetPos = _target.position;
+                Vector3 playerDirection = targetPos - position;
+                Mover.MovementVector = playerDirection;
+                var distance = Vector3.Distance(position, targetPos);
+            
+                // If player is in line of sight, execute the following
+                if (!Physics.Raycast(position, playerDirection, distance, VisionBlockedBy))
+                {
+                    // If player is not at the wanted distance, move appropriately
+                    if (DistanceFromPlayer < distance)
+                    {
+                        Mover.Speed = _movementSpeed;
+                    }
+                    else
+                    {
+                        Mover.Speed = 0;
+                    }
+                    Fire();
                 }
                 else
                 {
                     Mover.Speed = 0;
                 }
 
-                // Shoot at player
-                Fire();
-            }
-            else
-            {
-                Mover.Speed = 0;
-            }
+                if (distance > DetectionRadius)
+                {
+                    CurrentState = State.Patrol;
+                }
+                
+                break;
+            
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
