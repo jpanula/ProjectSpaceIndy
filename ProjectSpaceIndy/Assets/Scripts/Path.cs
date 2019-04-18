@@ -49,11 +49,14 @@ public class Path : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = GizmoColor;
-        for (int i = 0; i < Nodes.Length; i++)
+        if (Nodes.Length > 0)
         {
-            if (Nodes[i] != null && Nodes[(i + 1) % Nodes.Length] != null)
+            for (int i = 0; i < Nodes.Length; i++)
             {
-                Gizmos.DrawLine(Nodes[i].GetPosition(), Nodes[(i + 1) % Nodes.Length].GetPosition());
+                if (Nodes[i] != null && Nodes[(i + 1) % Nodes.Length] != null)
+                {
+                    Gizmos.DrawLine(Nodes[i].GetPosition(), Nodes[(i + 1) % Nodes.Length].GetPosition());
+                }
             }
         }
     }

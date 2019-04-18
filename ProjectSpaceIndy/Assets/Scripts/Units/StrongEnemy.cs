@@ -10,10 +10,13 @@ public class StrongEnemy : UnitBase
     public LayerMask VisionBlockedBy;
     public State CurrentState = State.Patrol;
     public float TurnSpeed;
+    public Path PatrolPath;
+    public float NodeDistance;
 
     private GameObject _target;
     private Collider[] _colliders;
     private bool _targetAcquired;
+    private Node _currentNode;
     public enum State
     {
         Patrol = 0,
@@ -56,7 +59,26 @@ public class StrongEnemy : UnitBase
         switch (CurrentState)
         {
             case State.Patrol:
-                Mover.MovementVector = Vector3.zero;
+                if (PatrolPath == null)
+                {
+                    Mover.MovementVector = Vector3.zero;
+                }
+                
+                else
+                {
+                    if (_currentNode == null)
+                    {
+                        _currentNode = PatrolPath.GetClosestNode(transform.position);
+                    }
+
+                    if (Vector3.Distance(position, _currentNode.GetPosition()) < NodeDistance)
+                    {
+                        _currentNode = PatrolPath.GetNextNode(_currentNode);
+                    }
+
+                    var nodeDirection = _currentNode.GetPosition() - position;
+                    Mover.MovementVector = nodeDirection;
+                }
                 break;
             
             case State.PlayerDetected:
