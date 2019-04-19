@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1318954889}
   - component: {fileID: 1318954890}
   - component: {fileID: 1318954891}
+  - component: {fileID: 485351991887039142}
   m_Layer: 10
   m_Name: pienivihollinen
   m_TagString: Untagged
@@ -154,9 +155,31 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   DistanceFromPlayer: 4
-  DroppedScrap: 3
-  ScrapDropRadius: 1
-  HealthDropProbability: 25
+  PatrolPath: {fileID: 0}
+  NodeDistance: 0
+  CurrentState: 0
+--- !u!114 &485351991887039142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318954888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66a71f7891195347a8c0a6678a72bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinimumScrap: 4
+  MaximumScrap: 4
+  MinimumFuel: 1
+  MaximumFuel: 1
+  MinimumHealth: 1
+  MaximumHealth: 1
+  ScrapDropChance: 100
+  FuelDropChance: 50
+  HealthDropChance: 20
+  DropRadius: 1.5
 --- !u!1 &387492239455428056
 GameObject:
   m_ObjectHideFlags: 0

@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 6642691921997612395}
   - component: {fileID: 6642691921997612394}
   - component: {fileID: 6006831791126192901}
+  - component: {fileID: 3075855196172803743}
   m_Layer: 10
   m_Name: Charger
   m_TagString: Untagged
@@ -131,6 +132,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   AfterImage: {fileID: 9102098774746892237}
+  PatrolPath: {fileID: 0}
+  NodeDistance: 0
   Bumper: {fileID: 6642691922685555827}
   CurrentState: 0
   ChargeSound: {fileID: 6006831791126192901}
@@ -278,6 +281,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3075855196172803743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642691921997612390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66a71f7891195347a8c0a6678a72bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinimumScrap: 5
+  MaximumScrap: 5
+  MinimumFuel: 0
+  MaximumFuel: 0
+  MinimumHealth: 0
+  MaximumHealth: 0
+  ScrapDropChance: 100
+  FuelDropChance: 100
+  HealthDropChance: 100
+  DropRadius: 1.5
 --- !u!1 &6642691922685555826
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,14 +387,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6642691921997612389}
     m_Modifications:
-    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
-      propertyPath: m_Name
-      value: "l\xE4hitaistelija"
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -425,6 +442,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
+      propertyPath: m_Name
+      value: "l\xE4hitaistelija"
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 1c58e03e0142dd842b79e8904f4f5396, type: 3}
       propertyPath: m_Materials.Array.data[0]

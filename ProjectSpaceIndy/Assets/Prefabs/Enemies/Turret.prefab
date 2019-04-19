@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 6150377660379970193}
   - component: {fileID: 6150377660379970198}
   - component: {fileID: 5266836592200930041}
+  - component: {fileID: 5115707106109686401}
   m_Layer: 10
   m_Name: Turret
   m_TagString: Untagged
@@ -282,9 +283,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   DistanceFromPlayer: 0
-  DroppedScrap: 3
-  ScrapDropRadius: 1
-  HealthDropProbability: 25
+  PatrolPath: {fileID: 0}
+  NodeDistance: 0
+  CurrentState: 0
 --- !u!114 &6150377660379970193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +333,28 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0.25}
+--- !u!114 &5115707106109686401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150377660379970194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66a71f7891195347a8c0a6678a72bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinimumScrap: 4
+  MaximumScrap: 4
+  MinimumFuel: 1
+  MaximumFuel: 1
+  MinimumHealth: 1
+  MaximumHealth: 1
+  ScrapDropChance: 100
+  FuelDropChance: 60
+  HealthDropChance: 15
+  DropRadius: 1
 --- !u!1001 &6761015984265800323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -339,11 +362,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6150377660379970199}
     m_Modifications:
-    - target: {fileID: 1123954758774201703, guid: 5214aa7e3aef3084da6e70f94f319a0a,
-        type: 3}
-      propertyPath: m_Name
-      value: TurretTop
-      objectReference: {fileID: 0}
     - target: {fileID: 6368266959142839356, guid: 5214aa7e3aef3084da6e70f94f319a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -398,6 +416,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123954758774201703, guid: 5214aa7e3aef3084da6e70f94f319a0a,
+        type: 3}
+      propertyPath: m_Name
+      value: TurretTop
       objectReference: {fileID: 0}
     - target: {fileID: 4384068635433366928, guid: 5214aa7e3aef3084da6e70f94f319a0a,
         type: 3}
