@@ -29,6 +29,7 @@ public class PickupDropper : MonoBehaviour
     
     private PickupManager PickupManager;
     private bool _isQuitting;
+    private bool _hasBeenEnabled;
 
     private void OnValidate()
     {
@@ -40,6 +41,7 @@ public class PickupDropper : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        _hasBeenEnabled = true;
     }
 
     private void Start()
@@ -55,14 +57,53 @@ public class PickupDropper : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+        if (!_isQuitting && _hasBeenEnabled)
+        {
+            int scrapAmount = 0;
+            int fuelAmount = 0;
+            int healthAmount = 0;
+            
+            if (ScrapDropChance / 100 >= Random.value && !(ScrapDropChance <= 0)) scrapAmount = Random.Range(MinimumScrap, MaximumScrap);
+            if (FuelDropChance / 100 >= Random.value && !(FuelDropChance <= 0)) fuelAmount = Random.Range(MinimumFuel, MaximumFuel);
+            if (HealthDropChance / 100 >= Random.value && !(HealthDropChance <= 0)) healthAmount = Random.Range(MinimumHealth, MaximumHealth);
+            
+            int dropTotal = scrapAmount + fuelAmount + healthAmount;
+            var positions = GetRandomPositions(dropTotal);
+            for (int i = 0; i < dropTotal; i++)
+            {
+                PickupBase drop;
+                if (i < scrapAmount)
+                {
+
+                    drop = PickupManager.GetScrap();
+                    
+                }
+                else if (i < scrapAmount + fuelAmount)
+                {
+                    drop = PickupManager.GetFuel();
+                }
+                else
+                {
+                    drop = PickupManager.GetHealth();
+                }
+
+                if(drop != null)
+                {
+                    Vector3 newPos = transform.position + positions[i];
+                    newPos.y = 0;
+                    drop.transform.position = newPos;
+                    drop.transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
+                }
+            }
+        }
     }
 
     private void OnActiveSceneChanged(Scene current, Scene next)
     {
-        _isQuitting = true;
+        //_isQuitting = true;
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         if (!_isQuitting)
         {
@@ -98,7 +139,7 @@ public class PickupDropper : MonoBehaviour
                 drop.transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
             }
         }
-    }
+    }*/
 
     public Vector3[] GetRandomPositions(int amount)
     {
