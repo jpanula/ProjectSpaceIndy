@@ -303,9 +303,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   DistanceFromPlayer: 5
-  DroppedScrap: 0
-  ScrapDropRadius: 0
-  HealthDropProbability: 0
+  PatrolPath: {fileID: 0}
+  NodeDistance: 0
+  CurrentState: 0
 --- !u!114 &860152554489189291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 5401388882268194119}
+  _invulnerabilityTime: 1
 --- !u!114 &276932595520700177
 MonoBehaviour:
   m_ObjectHideFlags: 0
