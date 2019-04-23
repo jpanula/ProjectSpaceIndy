@@ -100,6 +100,7 @@ public class ChargingEnemy : UnitBase
             
             case State.PlayerDetected:
                 Bumper.gameObject.SetActive(false);
+                Mover.Speed = _baseSpeed;
 
                 _targetPos = _target.transform.position;
                 var distanceFromPlayer = Vector3.Distance(pos, _targetPos);
