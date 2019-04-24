@@ -40,7 +40,7 @@ public class PickupDropper : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        ResultScreen.SceneChanging += OnSceneChanging;
         _hasBeenEnabled = true;
     }
 
@@ -56,7 +56,7 @@ public class PickupDropper : MonoBehaviour
 
     private void OnDisable()
     {
-        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+        ResultScreen.SceneChanging -= OnSceneChanging;
         if (!_isQuitting && _hasBeenEnabled)
         {
             int scrapAmount = 0;
@@ -98,9 +98,9 @@ public class PickupDropper : MonoBehaviour
         }
     }
 
-    private void OnActiveSceneChanged(Scene current, Scene next)
+    private void OnSceneChanging()
     {
-        //_isQuitting = true;
+        _isQuitting = true;
     }
 
     /*private void OnDestroy()
