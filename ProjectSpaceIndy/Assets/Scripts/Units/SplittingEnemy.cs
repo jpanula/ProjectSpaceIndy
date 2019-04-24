@@ -15,12 +15,12 @@ public class SplittingEnemy : MonoBehaviour
     private void OnEnable()
     {
         _splittersSpawned = false;
-        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        ResultScreen.SceneChanging += OnSceneChanging;
     }
 
     private void OnDisable()
     {
-        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+        ResultScreen.SceneChanging -= OnSceneChanging;
         if (!_isQuitting && GetComponent<BasicEnemy>().Spawner != null && !_splittersSpawned)
         {
             var t = transform;
@@ -32,12 +32,9 @@ public class SplittingEnemy : MonoBehaviour
         }
     }
 
-    private void OnActiveSceneChanged(Scene current, Scene next)
+    private void OnSceneChanging()
     {
-        if (TimerManager.Instance.ScaledGameTime > 3)
-        {
             _isQuitting = true;
-        }
     }
     
     private void OnDestroy()

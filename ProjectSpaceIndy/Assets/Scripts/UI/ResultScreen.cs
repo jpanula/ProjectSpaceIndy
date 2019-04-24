@@ -12,6 +12,9 @@ public class ResultScreen : MonoBehaviour
     private double _gametimeInSeconds;
     private double _gametimeInMinutes;
     private double _gametimeInHours;
+    
+    public delegate void SceneChangeHandler();
+    public static event SceneChangeHandler SceneChanging;
 
     private void OnEnable()
     {
@@ -46,6 +49,10 @@ public class ResultScreen : MonoBehaviour
 
     public void LevelSelect()
     {
+        if (SceneChanging != null)
+        {
+            SceneChanging.Invoke();
+        }
         SceneManager.LoadScene(0);
         gameObject.SetActive(false);
         GameManager.EscapePhase = false;
@@ -54,6 +61,10 @@ public class ResultScreen : MonoBehaviour
 
     public void Retry()
     {
+        if (SceneChanging != null)
+        {
+            SceneChanging.Invoke();
+        }
         SceneManager.LoadScene(2);
         gameObject.SetActive((false));
         GameManager.EscapePhase = false;
