@@ -148,8 +148,16 @@ public class Projectile : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_constantEffectIsNotNull) _constantEffectObject.transform.position = transform.position;
-        if (_trailIsNotNull) _trailObject.transform.position = transform.position;
+        if (_constantEffectIsNotNull)
+        {
+            _constantEffectObject.transform.position = transform.position;
+            _constantEffectObject.transform.rotation = transform.rotation;
+        }
+        if (_trailIsNotNull)
+        {
+            _trailObject.transform.position = transform.position;
+            _trailObject.transform.rotation = transform.rotation;
+        }
     }
 
     public void Launch(Weapon weapon, Vector3 direction)
