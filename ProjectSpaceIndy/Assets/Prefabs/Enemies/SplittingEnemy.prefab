@@ -179,7 +179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4842254239624213254
 Transform:
   m_ObjectHideFlags: 0
@@ -266,9 +266,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   DistanceFromPlayer: 7
-  DroppedScrap: 0
-  ScrapDropRadius: 0
-  HealthDropProbability: 0
+  PatrolPath: {fileID: 0}
+  NodeDistance: 0
+  CurrentState: 0
 --- !u!114 &6496147565289665076
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3021860078181337205
 Transform:
   m_ObjectHideFlags: 0
@@ -391,16 +391,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5528562736578921245, guid: 99bf0236b5b40944fa171abad3ef1481,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037550042427441086, guid: 99bf0236b5b40944fa171abad3ef1481,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3721147133682530782, guid: 99bf0236b5b40944fa171abad3ef1481,
         type: 3}
       propertyPath: Rotation
@@ -416,6 +406,16 @@ PrefabInstance:
       propertyPath: ParentHealth
       value: 
       objectReference: {fileID: 3021860078181337207}
+    - target: {fileID: 8037550042427441086, guid: 99bf0236b5b40944fa171abad3ef1481,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528562736578921245, guid: 99bf0236b5b40944fa171abad3ef1481,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99bf0236b5b40944fa171abad3ef1481, type: 3}
 --- !u!224 &3585412225523348381 stripped
@@ -431,6 +431,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3021860078181337205}
     m_Modifications:
+    - target: {fileID: 100000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
+      propertyPath: m_Name
+      value: suurivihollinen
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -474,14 +482,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
-      propertyPath: m_Name
-      value: suurivihollinen
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
       propertyPath: m_Materials.Array.data[0]
