@@ -10,17 +10,17 @@ public class ParticleEffectOnDestroy : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        ResultScreen.SceneChanging += OnSceneChanging;
     }
 
     private void OnDisable()
     {
-        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        ResultScreen.SceneChanging -= OnSceneChanging;
     }
 
-    private void OnActiveSceneChanged(Scene current, Scene next)
+    private void OnSceneChanging()
     {
-        //_isQuitting = true;
+        _isQuitting = true;
     }
 
     private void OnDestroy()
