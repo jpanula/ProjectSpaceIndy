@@ -205,7 +205,7 @@ public class Projectile : MonoBehaviour
         owner.ReturnProjectile(this);
     }
 
-    private void Hit(Collider hitCollider)
+    public void Hit(Collider hitCollider)
     {
         IDamageReceiver damageReceiver = hitCollider.GetComponent<IDamageReceiver>();
         if (damageReceiver != null)

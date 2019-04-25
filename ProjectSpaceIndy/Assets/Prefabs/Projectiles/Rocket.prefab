@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &6242000709718985320
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806092620151574585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &323334384798690568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,8 +28,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentState: 0
   SearchRadius: 20
-  TurnSpeed: 2
+  TurnSpeed: 1.8
   ProjectileModel: {fileID: 8201904059715936787}
+  Health: {fileID: 1313167281256457447}
+  Projectile: {fileID: 1017935065544862124}
+  SpawnInvulnerabilityTime: 0.8
+--- !u!114 &1313167281256457447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806092620151574585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee29269ca6166946bacf06c2a801bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingHealth: 4
+  _currentHealth: 0
+  _maxHealth: 4
+  _minHealth: 0
+  _isImmortal: 0
+  _isInvulnerable: 0
 --- !u!1001 &2879754385356708919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,6 +58,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6756375600297774094, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
+        type: 3}
+      propertyPath: m_Name
+      value: Rocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756375600297774094, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 3014772748916913563, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
         type: 3}
       propertyPath: LayerMask.m_Bits
@@ -76,16 +121,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7446905692251427736, guid: 7ec24ce9e19604a47905b38205775642,
         type: 3}
-    - target: {fileID: 6756375600297774094, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
-        type: 3}
-      propertyPath: m_Name
-      value: Rocket
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756375600297774094, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 5778243456058951121, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,6 +215,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2879754385356708919}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017935065544862124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3014772748916913563, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 2879754385356708919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806092620151574585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328741884ef08614e8a0ab4c8cffc5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8201904059715936787 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6207637120983285284, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
