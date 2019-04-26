@@ -116,7 +116,7 @@ public class PlayerMover : MonoBehaviour, IMover
 				rotationSpeed * TimerManager.Instance.GameDeltaTime);
 		}
 
-		int layerMask = (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.EnemyProjectile | Const.Layers.InvisibleWall);
+		int layerMask = (int) (Const.Layers.Enemy | Const.Layers.Environment | Const.Layers.InvisibleWall);
 		//layerMask = ~layerMask;
 
 		Vector3 origin = transform.position;
