@@ -83,7 +83,7 @@ MonoBehaviour:
     type: 3}
   RocketLauncher: {fileID: 7727962697590379883}
   DistanceFromPlayer: 12
-  PlayerDetectionRadius: 18
+  PlayerDetectionRadius: 25
   VisionBlockedBy:
     serializedVersion: 2
     m_Bits: 2048
@@ -92,6 +92,11 @@ MonoBehaviour:
   PatrolPath: {fileID: 0}
   NodeDistance: 0
   RocketHPTreshold: 0.7
+  TeleportHPTreshold: 0.9
+  TeleportCoolDown: 1
+  TeleportDistanceFromPlayer: 5
+  TeleportEffect: {fileID: 8575243468302792608, guid: e25691af5280cb5449a0144b05b2c7ec,
+    type: 3}
 --- !u!1001 &2793976267954084543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108,6 +113,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
+        type: 3}
+      propertyPath: _startingHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3021860078181337205, guid: 077165beaab78884990027c42eef7d33,
         type: 3}
@@ -174,16 +189,6 @@ PrefabInstance:
       propertyPath: _collider
       value: 
       objectReference: {fileID: 7053916380615922555}
-    - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
-        type: 3}
-      propertyPath: _startingHealth
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
-        type: 3}
-      propertyPath: _maxHealth
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 5125862804266256836, guid: 077165beaab78884990027c42eef7d33,
         type: 3}
       propertyPath: m_Radius

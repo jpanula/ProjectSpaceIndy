@@ -19,6 +19,7 @@ public class ChargingEnemy : UnitBase
     public float NodeDistance;
     
     public BoxCollider Bumper;
+    public ParticleSystem ChargingEffect;
     public State CurrentState;
 
     private GameObject _target;
@@ -108,6 +109,7 @@ public class ChargingEnemy : UnitBase
                 if (distanceFromPlayer < DistanceFromPlayer && Vector3.Angle(t.forward, _targetPos - pos) <= ChargeMaxAngle)
                 {
                     CurrentState = State.Charging;
+                    ChargingEffect.Play();
                 }
                 else if (distanceFromPlayer > PlayerDetectionRadius)
                 {
@@ -157,6 +159,7 @@ public class ChargingEnemy : UnitBase
                     _chargeTimer = 0;
                     Mover.Speed = _baseSpeed;
                     CurrentState = State.Patrol;
+                    ChargingEffect.Stop();
                     AfterImage.enabled = false;
                 }
                 break;
