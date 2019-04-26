@@ -59,7 +59,7 @@ MonoBehaviour:
   ExplosionSound: {fileID: 6245573893390584228, guid: a38e19721397db64d8698c940950ff30,
     type: 3}
   DistanceFromPlayer: 12
-  PlayerDetectionRadius: 18
+  PlayerDetectionRadius: 25
   VisionBlockedBy:
     serializedVersion: 2
     m_Bits: 2048
@@ -276,16 +276,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3021860078181337205}
     m_Modifications:
-    - target: {fileID: 5316662057244094305, guid: 99bf0236b5b40944fa171abad3ef1481,
-        type: 3}
-      propertyPath: m_Name
-      value: OverheadHP
-      objectReference: {fileID: 0}
-    - target: {fileID: 5316662057244094305, guid: 99bf0236b5b40944fa171abad3ef1481,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1742397000805702622, guid: 99bf0236b5b40944fa171abad3ef1481,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,6 +381,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5316662057244094305, guid: 99bf0236b5b40944fa171abad3ef1481,
+        type: 3}
+      propertyPath: m_Name
+      value: OverheadHP
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316662057244094305, guid: 99bf0236b5b40944fa171abad3ef1481,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3721147133682530782, guid: 99bf0236b5b40944fa171abad3ef1481,
         type: 3}
       propertyPath: Rotation
@@ -431,14 +431,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3021860078181337205}
     m_Modifications:
-    - target: {fileID: 100000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
-      propertyPath: m_Name
-      value: suurivihollinen
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -482,6 +474,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
+      propertyPath: m_Name
+      value: suurivihollinen
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f8a9b584f5cede141b94bbc6cba3bf4d, type: 3}
       propertyPath: m_Materials.Array.data[0]
