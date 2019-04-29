@@ -31,7 +31,10 @@ public class SpawnRoomDoor : MonoBehaviour
 
     private void Start()
     {
-        _volume = AudioSource.volume;
+        if (AudioSource != null)
+        {
+            _volume = AudioSource.volume;
+        }
     }
 
     // Checks every activator in the array to see if they are active

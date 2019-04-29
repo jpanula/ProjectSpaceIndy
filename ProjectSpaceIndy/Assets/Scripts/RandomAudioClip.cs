@@ -11,7 +11,10 @@ public class RandomAudioClip : MonoBehaviour
     
     private void Awake()
     {
-        _volume = AudioSource.volume;
+        if (AudioSource != null)
+        {
+            _volume = AudioSource.volume;
+        }
         int random = Random.Range(0, AudioClips.Length);
         _randomClip = AudioClips[random];
         AudioSource.clip = _randomClip;

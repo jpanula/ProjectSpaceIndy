@@ -52,7 +52,10 @@ public class ChargingEnemy : UnitBase
 
     private void Start()
     {
-        _volume = ChargeSound.volume;
+        if (ChargeSound != null)
+        {
+            _volume = ChargeSound.volume;
+        }
     }
 
     protected override void Update()

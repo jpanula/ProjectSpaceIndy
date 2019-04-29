@@ -19,7 +19,10 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        _volume = AudioSource.volume;
+        if (AudioSource != null)
+        {
+            _volume = AudioSource.volume;
+        }
     }
 
     private void Update()

@@ -64,7 +64,10 @@ public class PlayerMover : MonoBehaviour, IMover
 
 	private void Start()
 	{
-		_volume = NormalMovement.volume;
+		if (NormalMovement != null)
+		{
+			_volume = NormalMovement.volume;
+		}
 	}
 
 	public float Speed
