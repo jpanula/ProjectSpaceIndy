@@ -42,10 +42,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField, Range(0, 1)]
     private float _musicVolume;
 
-    public void ResetVolumeSettings()
+    public static void ResetVolumeSettings()
     {
-        _masterVolume = 0.8f;
-        _effectsVolume = 1;
-        _musicVolume = 1;
+        Instance._masterVolume = 0.8f;
+        Instance._effectsVolume = 1;
+        Instance._musicVolume = 1;
     }
 }

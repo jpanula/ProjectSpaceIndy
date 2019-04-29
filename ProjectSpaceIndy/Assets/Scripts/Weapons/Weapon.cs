@@ -10,10 +10,16 @@ public class Weapon : MonoBehaviour
     protected float _coolDownTimer;
 
     public AudioSource AudioSource;
+    protected float _volume;
 
     private void Awake()
     {
         _coolDownTimer = 0;
+    }
+
+    private void Start()
+    {
+        _volume = AudioSource.volume;
     }
 
     private void Update()
@@ -38,6 +44,7 @@ public class Weapon : MonoBehaviour
                 projectile.Launch(this, transform.forward);
                 if (AudioSource != null)
                 {
+                    AudioSource.volume = AudioManager.EffectsVolume * _volume;
                     AudioSource.Play();
                 }
                 

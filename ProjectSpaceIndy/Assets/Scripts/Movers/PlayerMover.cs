@@ -42,7 +42,8 @@ public class PlayerMover : MonoBehaviour, IMover
 	public AudioSource NormalMovement;
 	[Tooltip("How fast the movement sound fades away")]
 	public float FadeTime;
-	
+
+	private float _volume;
 
 	public Vector3 MovementVector
 	{
@@ -59,6 +60,11 @@ public class PlayerMover : MonoBehaviour, IMover
 		{
 			Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 		}
+	}
+
+	private void Start()
+	{
+		_volume = NormalMovement.volume;
 	}
 
 	public float Speed
@@ -170,6 +176,7 @@ public class PlayerMover : MonoBehaviour, IMover
 			inputVector = Vector3.zero;
 			if (NormalMovement != null && NormalMovement.isPlaying)
 			{
+				NormalMovement.volume = AudioManager.EffectsVolume * _volume;
 				AudioFadeOut(NormalMovement);
 			}
 		}

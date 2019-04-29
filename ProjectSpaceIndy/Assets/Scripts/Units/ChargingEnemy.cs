@@ -32,6 +32,7 @@ public class ChargingEnemy : UnitBase
 
     public AudioSource ChargeSound;
     private Node _currentNode;
+    private float _volume;
 
     public enum State
     {
@@ -47,6 +48,11 @@ public class ChargingEnemy : UnitBase
         _baseSpeed = Mover.Speed;
         _targetPos = Vector3.zero;
         AfterImage.enabled = false;
+    }
+
+    private void Start()
+    {
+        _volume = ChargeSound.volume;
     }
 
     protected override void Update()
@@ -137,6 +143,7 @@ public class ChargingEnemy : UnitBase
                     _chargeTimer = 0;
                     /*if (ChargeSound != null && !ChargeSound.isPlaying)
                     {
+                        ChargeSound.volume = _volume * AudioManager.EffectsVolume;
                         ChargeSound.Play();
                     }*/
                 }
