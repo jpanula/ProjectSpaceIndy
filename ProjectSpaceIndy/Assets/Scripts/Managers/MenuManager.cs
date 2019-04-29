@@ -30,6 +30,9 @@ public class MenuManager : MonoBehaviour
 
     public GameObject PauseMenu;
     public GameObject ResultScreen;
+    public GameObject MainMenu;
+    public GameObject SettingsMenu;
+    public GameObject LevelSelect;
 
     private Menu _currentMenu;
     private float _gameTimeScale;
@@ -75,17 +78,44 @@ public class MenuManager : MonoBehaviour
 
     public void ShowMainMenu(bool show)
     {
-        
+        if (show)
+        {
+            _currentMenu = Menu.Main;
+            MainMenu.SetActive(true);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            MainMenu.SetActive(false);
+        }
     }
 
     public void ShowSettingsMenu(bool show)
     {
-        
+        if (show)
+        {
+            _currentMenu = Menu.Settings;
+            SettingsMenu.SetActive(true);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            SettingsMenu.SetActive(false);
+        }
     }
 
     public void ShowLevelSelect(bool show)
     {
-        
+        if (show)
+        {
+            _currentMenu = Menu.LevelSelect;
+            LevelSelect.SetActive(true);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            LevelSelect.SetActive(false);
+        }
     }
 
     public void ShowTitleMenu(bool show)
