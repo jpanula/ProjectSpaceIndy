@@ -50,9 +50,11 @@ public class MenuManager : MonoBehaviour
                     ShowPauseMenu(false);
                     break;
                 case Menu.Settings:
+                    ShowSettingsMenu(false);
                     ShowMainMenu(true);
                     break;
                 case Menu.LevelSelect:
+                    ShowLevelSelect(false);
                     ShowMainMenu(true);
                     break;
             }
