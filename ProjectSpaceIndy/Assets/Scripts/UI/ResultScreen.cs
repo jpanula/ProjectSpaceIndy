@@ -54,9 +54,12 @@ public class ResultScreen : MonoBehaviour
             SceneChanging.Invoke();
         }
         SceneManager.LoadScene(0);
-        gameObject.SetActive(false);
+        TimerManager.Instance.SetGameTimeScale(1);
         GameManager.EscapePhase = false;
         GameManager.Score = 0;
+        GameManager.Instance.CurrentLevel = GameManager.Level.MainMenu;
+        MenuManager.Instance.ShowResultScreen(false);
+        MenuManager.Instance.ShowMainMenu(true);
     }
 
     public void Retry()
@@ -66,7 +69,8 @@ public class ResultScreen : MonoBehaviour
             SceneChanging.Invoke();
         }
         SceneManager.LoadScene(2);
-        gameObject.SetActive((false));
+        TimerManager.Instance.SetGameTimeScale(1);
+        MenuManager.Instance.ShowResultScreen(false);
         GameManager.EscapePhase = false;
         GameManager.Score = 0;
     }
