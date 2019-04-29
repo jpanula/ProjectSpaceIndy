@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketMover : MonoBehaviour, IMover
+public class RocketMover : MonoBehaviour, IMover, IDamageReceiver
 {
     public float Speed { get; set; }
     public Vector3 MovementVector { get; set; }
@@ -11,8 +11,12 @@ public class RocketMover : MonoBehaviour, IMover
     public float SearchRadius;
     public float TurnSpeed;
     public GameObject ProjectileModel;
+    public Health Health;
+    public Projectile Projectile;
+    public float SpawnInvulnerabilityTime;
     private Transform _target;
     private Collider[] _colliders;
+    private float _invulnerabilityTimer;
 
     public enum State
     {
@@ -21,14 +25,32 @@ public class RocketMover : MonoBehaviour, IMover
         PlayerFound
         
     }
-    
+
+    private void Awake()
+    {
+        Health = GetComponent<Health>();
+        Projectile = GetComponent<Projectile>();
+    }
+
+    private void Start()
+    {
+        Health.IsInvulnerable = true;
+    }
+
     public void ResetMover()
     {
-        CurrentState = State.Searching;
+        CurrentState = State.Launching;
+        Health.IsInvulnerable = true;
+        _invulnerabilityTimer = 0;
     }
 
     private void Update()
     {
+        _invulnerabilityTimer += TimerManager.Instance.GameDeltaTime;
+        if (_invulnerabilityTimer >= SpawnInvulnerabilityTime)
+        {
+            Health.IsInvulnerable = false;
+        }
         transform.rotation = Quaternion.LookRotation(MovementVector);
     }
 
@@ -85,5 +107,16 @@ public class RocketMover : MonoBehaviour, IMover
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, SearchRadius);
+    }
+
+    public bool TakeDamage(int amount)
+    {
+       bool died = Health.DecreaseHealth(amount);
+       if (died)
+       {
+           Projectile.ReturnProjectile();
+       }
+
+       return died;
     }
 }

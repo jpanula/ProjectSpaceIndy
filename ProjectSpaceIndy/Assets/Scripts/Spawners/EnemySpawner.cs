@@ -20,6 +20,14 @@ public class EnemySpawner : PooledSpawner
     private bool _ActivatorExists;
 
     private bool _finishedSpawning;
+    [SerializeField, Tooltip("How long before spawn does the spawner warn about enemies")]
+    private float _warningTime;
+    private float _warningTimer;
+    private bool _warningStarted;
+    [Tooltip("Delay before warning (and spawn) after activator has activated")]
+    public float WarningDelay;
+
+    public GameObject WarningSprite;
 
     public bool FinishedSpawning
     {
@@ -31,6 +39,7 @@ public class EnemySpawner : PooledSpawner
         if (MaxSpawns == 0) _endlessSpawn = true;
         _ActivatorExists = Activator != null;
         _finishedSpawning = false;
+        _warningStarted = false;
     }
 
     private void Start()
@@ -40,12 +49,29 @@ public class EnemySpawner : PooledSpawner
 
     private void Update()
     {
-        _spawnTimer += TimerManager.Instance.GameDeltaTime;
-        if (_currentSpawns < _maxSimultaneousSpawns && (MaxSpawns > 0 || _endlessSpawn) && _spawnTimer > SpawnCooldown && (!_ActivatorExists || Activator.Active))
+        if (Activator.Active && WarningSprite != null && _finishedSpawning == false || _warningStarted)
         {
+            _warningStarted = true;
+            _warningTimer += Time.deltaTime * TimerManager.Instance.GameDeltaScale;
+            if(_warningTimer >= WarningDelay && !WarningSprite.activeSelf)
+            {
+                WarningSprite.SetActive(true);
+            }
+        }
+        
+        
+        _spawnTimer += TimerManager.Instance.GameDeltaTime;
+        if (_currentSpawns < _maxSimultaneousSpawns && (MaxSpawns > 0 || _endlessSpawn) && _spawnTimer > SpawnCooldown && (!_ActivatorExists || Activator.Active) && _warningTimer >= _warningTime)
+        {
+            _warningStarted = false;
+            if(WarningSprite != null)
+            {
+                WarningSprite.SetActive(false);
+            }
             UnitBase enemy = Spawn();
             enemy.transform.position = transform.position;
             _spawnTimer = 0;
+            _warningTimer = 0;
             _currentSpawns++;
             if (!_endlessSpawn) MaxSpawns--;
         }

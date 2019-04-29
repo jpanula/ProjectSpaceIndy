@@ -89,9 +89,9 @@ public class Projectile : MonoBehaviour
     
     private void Awake()
     {
-        var collider = gameObject.AddComponent<SphereCollider>();
+        /*var collider = gameObject.AddComponent<SphereCollider>();
         collider.radius = 0.01f;
-        collider.center = Vector3.zero;
+        collider.center = Vector3.zero;*/
         _firingEffectIsNotNull = FiringEffect != null;
         _collisionEffectIsNotNull = CollisionEffect != null;
         _constantEffectIsNotNull = ConstantEffect != null;
@@ -205,7 +205,7 @@ public class Projectile : MonoBehaviour
         owner.ReturnProjectile(this);
     }
 
-    private void Hit(Collider hitCollider)
+    public void Hit(Collider hitCollider)
     {
         IDamageReceiver damageReceiver = hitCollider.GetComponent<IDamageReceiver>();
         if (damageReceiver != null)
