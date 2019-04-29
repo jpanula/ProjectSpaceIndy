@@ -16,11 +16,13 @@ public class SplittingEnemy : MonoBehaviour
     {
         _splittersSpawned = false;
         ResultScreen.SceneChanging += OnSceneChanging;
+        PauseMenu.OnBackToMainMenu += OnSceneChanging;
     }
 
     private void OnDisable()
     {
         ResultScreen.SceneChanging -= OnSceneChanging;
+        PauseMenu.OnBackToMainMenu -= OnSceneChanging;
         if (!_isQuitting && GetComponent<BasicEnemy>().Spawner != null && !_splittersSpawned)
         {
             var t = transform;

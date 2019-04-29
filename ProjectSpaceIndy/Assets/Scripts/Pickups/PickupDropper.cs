@@ -41,6 +41,7 @@ public class PickupDropper : MonoBehaviour
     private void OnEnable()
     {
         ResultScreen.SceneChanging += OnSceneChanging;
+        PauseMenu.OnBackToMainMenu += OnSceneChanging;
         _hasBeenEnabled = true;
     }
 
@@ -57,6 +58,7 @@ public class PickupDropper : MonoBehaviour
     private void OnDisable()
     {
         ResultScreen.SceneChanging -= OnSceneChanging;
+        PauseMenu.OnBackToMainMenu -= OnSceneChanging;
         if (!_isQuitting && _hasBeenEnabled)
         {
             int scrapAmount = 0;
