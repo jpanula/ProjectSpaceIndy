@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public TimerManager TimerManager;
     public MenuManager MenuManager;
     public InputManager InputManager;
+    public AudioManager AudioManager;
     
     #endregion Manager Prefabs
 
@@ -45,20 +46,45 @@ public class GameManager : MonoBehaviour
         {
             PickupManager = Instantiate(PickupManager);
         }
+        else
+        {
+            PickupManager = PickupManager.Instance;
+        }
 
         if (TimerManager.Instance == null)
         {
             TimerManager = Instantiate(TimerManager);
+        }
+        else
+        {
+            TimerManager = TimerManager.Instance;
         }
 
         if (MenuManager.Instance == null)
         {
             MenuManager = Instantiate(MenuManager);
         }
+        else
+        {
+            MenuManager = MenuManager.Instance;
+        }
 
         if (InputManager.Instance == null)
         {
             InputManager = Instantiate(InputManager);
+        }
+        else
+        {
+            InputManager = InputManager.Instance;
+        }
+
+        if (AudioManager.Instance == null)
+        {
+            AudioManager = Instantiate(AudioManager);
+        }
+        else
+        {
+            AudioManager = AudioManager.Instance;
         }
     }
 
@@ -70,6 +96,14 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }*/
+
+    private void Start()
+    {
+        if (CurrentLevel == Level.MainMenu)
+        {
+            MenuManager.Instance.ShowMainMenu(true);
+        }
+    }
 
     public static bool EscapePhase
     {
