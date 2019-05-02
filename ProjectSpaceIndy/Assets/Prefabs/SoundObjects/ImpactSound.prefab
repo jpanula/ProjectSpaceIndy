@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 198556271279064909}
   - component: {fileID: 2997666964251220059}
   - component: {fileID: 3934431050281773056}
+  - component: {fileID: 1034028740557423813}
   m_Layer: 0
   m_Name: ImpactSound
   m_TagString: Untagged
@@ -141,3 +142,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeBeforeDestroy: 2
+--- !u!114 &1034028740557423813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120556472705086998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f8cc0f289fd984ab552bf2c7649773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource: {fileID: 2997666964251220059}

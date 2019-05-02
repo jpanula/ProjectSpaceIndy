@@ -2,25 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomAudioClip : MonoBehaviour
+public class ScaleEffectVolume : MonoBehaviour
 {
     public AudioSource AudioSource;
-    public AudioClip[] AudioClips;
-    private AudioClip _randomClip;
     private float _volume;
-    
+
     private void Awake()
     {
+        if (AudioSource == null)
+        {
+            AudioSource = GetComponent<AudioSource>();
+        }
+
         if (AudioSource != null)
         {
             _volume = AudioSource.volume;
+            AudioSource.volume = _volume * AudioManager.EffectsVolume;
         }
-        int random = Random.Range(0, AudioClips.Length);
-        _randomClip = AudioClips[random];
-        AudioSource.clip = _randomClip;
-        AudioSource.volume = _volume * AudioManager.EffectsVolume;
-        AudioSource.Play();
     }
-    
-    
+
+    private void Update()
+    {
+        AudioSource.volume = _volume * AudioManager.EffectsVolume;
+    }
 }

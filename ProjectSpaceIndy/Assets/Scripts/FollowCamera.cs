@@ -20,6 +20,8 @@ public class FollowCamera : MonoBehaviour
 	public float MovementAdjustRelax;
 	[Tooltip("Holds a slowly falling deadzone for right stick values to prevent camera jumping back when moving stick back to neutral")]
 	public float HoldFor;
+
+	public AudioListener AudioListener;
 	//private Vector3 defaultCamPos;
 	private Vector3 _newPos;
 	private float _adjustTimer;
@@ -54,6 +56,8 @@ public class FollowCamera : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		AudioListener.volume = AudioManager.MasterVolume;
+		
 		/*Vector3 newCamPos = target.transform.position + defaultCamPos;
 		transform.position = newCamPos;*/
 		_holdValue -= TimerManager.Instance.GameDeltaTime / HoldFor;

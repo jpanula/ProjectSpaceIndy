@@ -65,6 +65,7 @@ public class StrongEnemyWeapon : Weapon
                 projectile.Launch(this, newDirection);
                 if (AudioSource != null)
                 {
+                    AudioSource.volume = AudioManager.EffectsVolume * _volume;
                     AudioSource.Play();
                 }
                 _burstShots++;

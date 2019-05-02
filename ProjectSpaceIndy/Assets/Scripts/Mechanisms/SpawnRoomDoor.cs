@@ -15,6 +15,7 @@ public class SpawnRoomDoor : MonoBehaviour
     
     public AudioSource AudioSource;
     private bool _isAudioSourceNull;
+    private float _volume;
 
     protected void Awake()
     {
@@ -25,6 +26,14 @@ public class SpawnRoomDoor : MonoBehaviour
         if (!_isAudioSourceNull && !AudioSource.mute)
         {
             AudioSource.mute = true;
+        }
+    }
+
+    private void Start()
+    {
+        if (AudioSource != null)
+        {
+            _volume = AudioSource.volume;
         }
     }
 
@@ -44,6 +53,7 @@ public class SpawnRoomDoor : MonoBehaviour
             Activation();
             if (!_isAudioSourceNull && !AudioSource.isPlaying)
             {
+                AudioSource.volume = _volume * AudioManager.EffectsVolume;
                 AudioSource.Play();
             }
         }
@@ -53,6 +63,7 @@ public class SpawnRoomDoor : MonoBehaviour
             Deactivation();
             if (!_isAudioSourceNull && !AudioSource.isPlaying)
             {
+                AudioSource.volume = _volume * AudioManager.EffectsVolume;
                 AudioSource.Play();
             }
         }

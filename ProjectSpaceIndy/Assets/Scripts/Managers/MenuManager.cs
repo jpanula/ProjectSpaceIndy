@@ -21,6 +21,7 @@ public class MenuManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
@@ -50,9 +51,18 @@ public class MenuManager : MonoBehaviour
                     ShowPauseMenu(false);
                     break;
                 case Menu.Settings:
-                    ShowMainMenu(true);
+                    ShowSettingsMenu(false);
+                    if (GameManager.Instance.CurrentLevel == GameManager.Level.MainMenu)
+                    {
+                        ShowMainMenu(true);
+                    }
+                    else
+                    {
+                        ShowPauseMenuKeepTimeScale(true);
+                    }
                     break;
                 case Menu.LevelSelect:
+                    ShowLevelSelect(false);
                     ShowMainMenu(true);
                     break;
             }
@@ -73,6 +83,20 @@ public class MenuManager : MonoBehaviour
             _currentMenu = Menu.None;
             PauseMenu.SetActive(false);
             TimerManager.Instance.SetGameTimeScale(_gameTimeScale);
+        }
+    }
+    
+    public void ShowPauseMenuKeepTimeScale(bool show)
+    {
+        if (show)
+        {
+            _currentMenu = Menu.Pause;
+            PauseMenu.SetActive(true);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            PauseMenu.SetActive(false);
         }
     }
 

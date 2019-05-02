@@ -11,11 +11,13 @@ public class ParticleEffectOnDestroy : MonoBehaviour
     private void OnEnable()
     {
         ResultScreen.SceneChanging += OnSceneChanging;
+        PauseMenu.OnBackToMainMenu += OnSceneChanging;
     }
 
     private void OnDisable()
     {
         ResultScreen.SceneChanging -= OnSceneChanging;
+        PauseMenu.OnBackToMainMenu -= OnSceneChanging;
     }
 
     private void OnSceneChanging()
