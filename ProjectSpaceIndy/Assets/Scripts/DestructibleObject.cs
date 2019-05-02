@@ -8,7 +8,7 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
     [Tooltip("Max distance from player for object to be destroyed")]
     public float MaxDistance = 22f;
 
-    public GameObject AudioSourceToSpawn;
+    public GameObject ExplosionSound;
     public GameObject ImpactSound;
     public float ImpactSoundDelay;
     private float _timeOfLastImpact;
@@ -38,9 +38,9 @@ public class DestructibleObject : MonoBehaviour, IDamageReceiver
             }
             if (destroyed)
             {
-                if (AudioSourceToSpawn != null)
+                if (ExplosionSound != null)
                 {
-                    Instantiate(AudioSourceToSpawn, transform.position, transform.rotation);
+                    Instantiate(ExplosionSound, transform.position, transform.rotation);
                 }
                 Die();
             }
