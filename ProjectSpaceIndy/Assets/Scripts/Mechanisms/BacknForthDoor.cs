@@ -9,6 +9,7 @@ public class BacknForthDoor : MechanismBase
     private Vector3 _startPosition;
     
     public AudioSource AudioSource;
+    private float _volume;
     
 
     protected void Awake()
@@ -16,6 +17,14 @@ public class BacknForthDoor : MechanismBase
         _activated = false;
         _targetPosition = Target.transform.position;
         _startPosition = transform.position;
+    }
+
+    private void Start()
+    {
+        if (AudioSource != null)
+        {
+            _volume = AudioSource.volume;
+        }
     }
 
     // Checks every activator in the array to see if they are active
@@ -41,6 +50,7 @@ public class BacknForthDoor : MechanismBase
             _activated = false;
             if (AudioSource != null && !AudioSource.isPlaying && !_activated)
             {
+                AudioSource.volume = _volume * AudioManager.EffectsVolume;
                 AudioSource.Play();
                 //Debug.Log("Activation");
             }
@@ -51,6 +61,7 @@ public class BacknForthDoor : MechanismBase
         {
             if (AudioSource != null && !AudioSource.isPlaying && _activated)
             {
+                AudioSource.volume = _volume * AudioManager.EffectsVolume;
                 AudioSource.Play();
                 //Debug.Log("Deactivation");
             }

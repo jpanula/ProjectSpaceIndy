@@ -50,7 +50,7 @@ public class DeadzoneAdjuster : MonoBehaviour
         InputManager.Instance.ResetDeadzones();
     }
 
-    public void LeftDeadzoneField(String text)
+    public void LeftDeadzoneField(string text)
     {
         float newValue = LeftDeadzone;
         if (ParseField(text, out newValue))
@@ -59,7 +59,7 @@ public class DeadzoneAdjuster : MonoBehaviour
         }
     }
     
-    public void RightDeadzoneField(String text)
+    public void RightDeadzoneField(string text)
     {
         float newValue = RightDeadzone;
         if (ParseField(text, out newValue))

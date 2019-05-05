@@ -21,6 +21,7 @@ public class MenuManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
@@ -30,6 +31,9 @@ public class MenuManager : MonoBehaviour
 
     public GameObject PauseMenu;
     public GameObject ResultScreen;
+    public GameObject MainMenu;
+    public GameObject SettingsMenu;
+    public GameObject LevelSelect;
 
     private Menu _currentMenu;
     private float _gameTimeScale;
@@ -47,9 +51,18 @@ public class MenuManager : MonoBehaviour
                     ShowPauseMenu(false);
                     break;
                 case Menu.Settings:
-                    ShowMainMenu(true);
+                    ShowSettingsMenu(false);
+                    if (GameManager.Instance.CurrentLevel == GameManager.Level.MainMenu)
+                    {
+                        ShowMainMenu(true);
+                    }
+                    else
+                    {
+                        ShowPauseMenuKeepTimeScale(true);
+                    }
                     break;
                 case Menu.LevelSelect:
+                    ShowLevelSelect(false);
                     ShowMainMenu(true);
                     break;
             }
@@ -72,20 +85,61 @@ public class MenuManager : MonoBehaviour
             TimerManager.Instance.SetGameTimeScale(_gameTimeScale);
         }
     }
+    
+    public void ShowPauseMenuKeepTimeScale(bool show)
+    {
+        if (show)
+        {
+            _currentMenu = Menu.Pause;
+            PauseMenu.SetActive(true);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            PauseMenu.SetActive(false);
+        }
+    }
 
     public void ShowMainMenu(bool show)
     {
-        
+        if (show)
+        {
+            _currentMenu = Menu.Main;
+            MainMenu.SetActive(true);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            MainMenu.SetActive(false);
+        }
     }
 
     public void ShowSettingsMenu(bool show)
     {
-        
+        if (show)
+        {
+            _currentMenu = Menu.Settings;
+            SettingsMenu.SetActive(true);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            SettingsMenu.SetActive(false);
+        }
     }
 
     public void ShowLevelSelect(bool show)
     {
-        
+        if (show)
+        {
+            _currentMenu = Menu.LevelSelect;
+            LevelSelect.SetActive(true);
+        }
+        else
+        {
+            _currentMenu = Menu.None;
+            LevelSelect.SetActive(false);
+        }
     }
 
     public void ShowTitleMenu(bool show)
