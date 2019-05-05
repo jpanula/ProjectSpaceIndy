@@ -76,13 +76,13 @@ public class ChargingEnemy : UnitBase
                     }
 
                     var nodeDirection = _currentNode.GetPosition() - pos;
-                    Mover.MovementVector = nodeDirection;
                     Mover.Speed = _baseSpeed;
+                    var lookRotation = Quaternion.LookRotation(nodeDirection, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(t.rotation, lookRotation, TimerManager.Instance.GameDeltaTime * TurnSpeed);
+                    Mover.MovementVector = t.forward;
                 }
                 
                 Bumper.gameObject.SetActive(false);
-
-                Mover.MovementVector = Vector3.zero;
                 
                 _colliders = Physics.OverlapSphere(pos, PlayerDetectionRadius, (int) Const.Layers.Player);
                 if (_colliders.Length > 0)

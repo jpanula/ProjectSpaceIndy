@@ -17,19 +17,22 @@ public class LaserObstacle : MonoBehaviour
 
     void Update()
     {
-        int counter = 0;
-
-        for (int i = 0; i < Activators.Length; i++)
+        if(Activators.Length > 0)
         {
-            if (Activators[i].Active)
+            int counter = 0;
+
+            for (int i = 0; i < Activators.Length; i++)
             {
-                counter++;
+                if (Activators[i].Active)
+                {
+                    counter++;
+                }
             }
-        }
 
-        if (counter == Activators.Length)
-        {
-            DeactivateLasers();
+            if (counter == Activators.Length)
+            {
+                DeactivateLasers();
+            }
         }
     }
 
