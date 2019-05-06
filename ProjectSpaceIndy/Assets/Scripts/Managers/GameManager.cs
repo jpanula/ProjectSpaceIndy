@@ -88,14 +88,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /*private void Update()
+    private void Update()
     {
-        // Return to main menu if Esc is pressed
-        if (Input.GetKey(KeyCode.Escape))
+        if (!PickupManager)
         {
-            SceneManager.LoadScene(0);
+            if (!PickupManager.Instance)
+            {
+                PickupManager = Instantiate(PickupManager);
+            }
+            else
+            {
+                PickupManager = PickupManager.Instance;
+            }
         }
-    }*/
+    }
 
     private void Start()
     {
