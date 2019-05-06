@@ -53,7 +53,7 @@ public class ResultScreen : MonoBehaviour
         }
         GameManager.EscapePhase = false;
         GameManager.Score = 0;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
         GameManager.Instance.CurrentLevel = GameManager.Level.MainMenu;
         MenuManager.Instance.ShowResultScreen(false);
         MenuManager.Instance.ShowMainMenu(true);
@@ -68,7 +68,7 @@ public class ResultScreen : MonoBehaviour
         }
         GameManager.EscapePhase = false;
         GameManager.Score = 0;
-        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
         MenuManager.Instance.ShowResultScreen(false);
     }
 }
