@@ -45,7 +45,7 @@ public class Weapon : MonoBehaviour
                 projectile.transform.position = transform.position;
                 projectile.transform.rotation = transform.rotation;
                 projectile.Launch(this, transform.forward);
-                if (AudioSource != null && AudioSource.gameObject.activeSelf)
+                if (AudioSource != null && AudioSource.gameObject.activeSelf && AudioSource.isActiveAndEnabled)
                 {
                     AudioSource.volume = AudioManager.EffectsVolume * _volume;
                     AudioSource.Play();
