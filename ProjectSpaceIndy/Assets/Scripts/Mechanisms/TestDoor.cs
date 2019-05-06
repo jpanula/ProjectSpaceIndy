@@ -10,19 +10,43 @@ public class TestDoor : MechanismBase
     private Vector3 _targetPosition;
     private Vector3 _startPosition;
     
+    public AudioSource AudioSource;
+    private bool _isAudioSourceNull;
+    private float _volume;
 
     protected void Awake()
     {
+        _isAudioSourceNull = AudioSource == null;
         _activated = false;
         _finished = true;
         _targetPosition = Target.transform.position;
         _startPosition = transform.position;
+        if (!_isAudioSourceNull && !AudioSource.mute)
+        {
+            AudioSource.mute = true;
+        }
+    }
+
+    private void Start()
+    {
+        if (AudioSource != null)
+        {
+            _volume = AudioSource.volume;
+        }
     }
 
     // Checks every activator in the array to see if they are active
     // If all are active, go to Activation();
     protected void Update()
     {
+        if(!_isAudioSourceNull)
+        {
+            if (TimerManager.Instance.ScaledGameTime > 10f && AudioSource.mute)
+            {
+                AudioSource.mute = false;
+            }
+        }
+        
         int activeCounter = 0;
         foreach (ActivatorBase activator in Activators)
         {
@@ -42,12 +66,21 @@ public class TestDoor : MechanismBase
             _activated = false;
             _finished = false;
             Activation();
+            if (!_isAudioSourceNull && !AudioSource.isPlaying)
+            {
+                AudioSource.volume = _volume * AudioManager.EffectsVolume;
+                AudioSource.Play();
+            }
         }
 
         if (_activated && _finished && activeCounter < Activators.Length)
         {
             Deactivation();
-            
+            if (!_isAudioSourceNull && !AudioSource.isPlaying)
+            {
+                AudioSource.volume = _volume * AudioManager.EffectsVolume;
+                AudioSource.Play();
+            }
         }
     }
 
