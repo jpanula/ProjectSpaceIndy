@@ -58,16 +58,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6756375600297774094, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
-        type: 3}
-      propertyPath: m_Name
-      value: Rocket
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756375600297774094, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 3014772748916913563, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
         type: 3}
       propertyPath: LayerMask.m_Bits
@@ -81,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 3014772748916913563, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
         type: 3}
       propertyPath: Speed
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3014772748916913563, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
         type: 3}
@@ -121,6 +111,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7446905692251427736, guid: 7ec24ce9e19604a47905b38205775642,
         type: 3}
+    - target: {fileID: 6756375600297774094, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
+        type: 3}
+      propertyPath: m_Name
+      value: Rocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756375600297774094, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5778243456058951121, guid: 3a0a127dc9ec2d943883abe8d3e806ef,
         type: 3}
       propertyPath: m_LocalPosition.x
