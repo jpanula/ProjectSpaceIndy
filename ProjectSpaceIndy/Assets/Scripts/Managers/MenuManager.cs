@@ -40,7 +40,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start") || Input.GetButton("Cancel"))
         {
             switch (_currentMenu)
             {

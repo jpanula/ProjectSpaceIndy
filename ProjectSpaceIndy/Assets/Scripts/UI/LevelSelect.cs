@@ -9,6 +9,7 @@ public class LevelSelect : MonoBehaviour
     {
         GameManager.Instance.CurrentLevel = GameManager.Level.Test;
         SceneManager.LoadScene(levelNumber + 1);
+        TimerManager.Instance.SetScaledSceneLoadTime();
         MenuManager.Instance.ShowLevelSelect(false);
         
     }
