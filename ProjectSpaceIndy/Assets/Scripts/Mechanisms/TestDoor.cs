@@ -61,7 +61,7 @@ public class TestDoor : MechanismBase
             }
         }
 
-        if (activeCounter == Activators.Length || !_activated && !_finished)
+        if (activeCounter == Activators.Length && !_activated || !_activated && !_finished)
         {
             _activated = false;
             _finished = false;

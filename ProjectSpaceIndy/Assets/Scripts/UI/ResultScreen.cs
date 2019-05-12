@@ -20,7 +20,7 @@ public class ResultScreen : MonoBehaviour
     {
         Score.text = "Score: " + GameManager.Score;
 
-        _gametimeInSeconds = (Math.Floor(TimerManager.Instance.ScaledGameTime));
+        _gametimeInSeconds = (Math.Floor(TimerManager.Instance.ScaledGameTime - TimerManager.Instance.ScaledSceneLoadtime));
         if (_gametimeInSeconds > 60)
         {
             _gametimeInMinutes = Math.Floor(_gametimeInSeconds / 60);
@@ -69,6 +69,7 @@ public class ResultScreen : MonoBehaviour
         GameManager.EscapePhase = false;
         GameManager.Score = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        TimerManager.Instance.SetScaledSceneLoadTime();
         MenuManager.Instance.ShowResultScreen(false);
     }
 }

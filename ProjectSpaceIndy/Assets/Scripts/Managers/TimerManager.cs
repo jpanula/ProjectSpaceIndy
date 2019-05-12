@@ -27,6 +27,8 @@ public class TimerManager : MonoBehaviour
     private float _uiDeltaScale = 1;
     private float _gameTime = 0;
     private float _scaledGameTime;
+    private float _timeSinceSceneLoad;
+    private float _scaledSceneLoadtime;
 
     public float ScaledGameTime
     {
@@ -56,6 +58,16 @@ public class TimerManager : MonoBehaviour
     public float UiDeltaScale
     {
         get { return _uiDeltaScale; }
+    }
+
+    public float ScaledSceneLoadtime
+    {
+        get { return _scaledSceneLoadtime; }
+    }
+
+    public void SetScaledSceneLoadTime()
+    {
+        _scaledSceneLoadtime = ScaledGameTime;
     }
 
     public void SetGameTimeScale(float timeScale)
