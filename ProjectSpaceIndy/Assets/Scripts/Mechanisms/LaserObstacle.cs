@@ -8,11 +8,15 @@ public class LaserObstacle : MonoBehaviour
     [Tooltip("Gameobjects that will deactivate when the lasers turn off")]
     public GameObject[] ObjectsToDeactivate;
 
+    public AudioSource DeactivationSound;
+
     private BoxCollider _boxCollider;
+    private bool _hasPlayedOnce;
 
     private void Start()
     {
         _boxCollider = this.GetComponent<BoxCollider>();
+        _hasPlayedOnce = false;
     }
 
     void Update()
@@ -31,6 +35,11 @@ public class LaserObstacle : MonoBehaviour
 
             if (counter == Activators.Length)
             {
+                if (DeactivationSound != null && !_hasPlayedOnce)
+                {
+                    DeactivationSound.Play();
+                    _hasPlayedOnce = true;
+                }
                 DeactivateLasers();
             }
         }
