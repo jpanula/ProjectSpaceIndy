@@ -21,6 +21,4 @@ public class RandomAudioClip : MonoBehaviour
         AudioSource.volume = _volume * AudioManager.EffectsVolume;
         AudioSource.Play();
     }
-    
-    
 }

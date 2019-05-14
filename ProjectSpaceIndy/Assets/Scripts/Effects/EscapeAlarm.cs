@@ -6,10 +6,15 @@ public class EscapeAlarm : MonoBehaviour
 {
     public AudioSource AudioSource;
     private bool _isAudioNull;
+    private float _volume;
     
     void Start()
     {
         _isAudioNull = AudioSource == null;
+        if (!_isAudioNull)
+        {
+            _volume = AudioSource.volume;
+        }
     }
 
 
@@ -17,6 +22,7 @@ public class EscapeAlarm : MonoBehaviour
     {
         if (GameManager.EscapePhase && !_isAudioNull && !AudioSource.isPlaying)
         {
+            AudioSource.volume = _volume * AudioManager.EffectsVolume;
             AudioSource.Play();
         }
     }
