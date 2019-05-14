@@ -24,7 +24,7 @@ public abstract class PickupBase : MonoBehaviour
         if (LifeTime == 0) _permanent = true;
         else _permanent = false;
         _lifeTimeTimer = 0;
-        Renderer = GetComponent<Renderer>();
+        Renderer = GetComponentInChildren<Renderer>();
     }
     
     protected virtual void Update()
