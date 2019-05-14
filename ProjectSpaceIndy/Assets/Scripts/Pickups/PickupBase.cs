@@ -8,10 +8,14 @@ public abstract class PickupBase : MonoBehaviour
     public float AttractionRadius;
     public float AttractionSpeed;
     public float SeparationRadius = 0.3f;
+    public float BlinkTime = 0.15f;
+    public float BlinkStartTime;
+    public Renderer Renderer;
     private Transform _target;
     private float _movementTimer;
     private bool _permanent;
     private float _lifeTimeTimer;
+    private float _blinkTimer;
 
     public GameObject PickupSound;
 
@@ -20,6 +24,7 @@ public abstract class PickupBase : MonoBehaviour
         if (LifeTime == 0) _permanent = true;
         else _permanent = false;
         _lifeTimeTimer = 0;
+        Renderer = GetComponent<Renderer>();
     }
     
     protected virtual void Update()
@@ -31,6 +36,15 @@ public abstract class PickupBase : MonoBehaviour
                 Destroy(gameObject);
             }
             _lifeTimeTimer += TimerManager.Instance.GameDeltaTime;
+            if (_lifeTimeTimer >= BlinkStartTime)
+            {
+                _blinkTimer += TimerManager.Instance.GameDeltaTime;
+                if (_blinkTimer >= BlinkTime)
+                {
+                    Renderer.enabled = !Renderer.enabled;
+                    _blinkTimer = 0;
+                }
+            }
         }
         
         Collider[] colliders = Physics.OverlapSphere(transform.position, AttractionRadius, (int) Const.Layers.Player);
@@ -117,6 +131,7 @@ public abstract class PickupBase : MonoBehaviour
         _target = null;
         _movementTimer = 0;
         _lifeTimeTimer = 0;
+        Renderer.enabled = true;
     }
 
     private void OnDrawGizmosSelected()
