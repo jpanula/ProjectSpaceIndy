@@ -147,6 +147,10 @@ MonoBehaviour:
   AttractionRadius: 3
   AttractionSpeed: 0.7
   SeparationRadius: 0.5
+  BlinkTime: 0.15
+  BlinkStartTime: 0
+  Renderer: {fileID: 5556060727196846135}
+  PickupSound: {fileID: 0}
   FuelAmount: 0.5
 --- !u!54 &3648378568996502600
 Rigidbody:
