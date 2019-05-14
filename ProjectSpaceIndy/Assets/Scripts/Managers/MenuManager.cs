@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,13 +41,38 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start") || Input.GetButton("Cancel"))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
         {
             switch (_currentMenu)
             {
                 case Menu.None:
                     ShowPauseMenu(true);
                     break;
+                case Menu.Pause:
+                    ShowPauseMenu(false);
+                    break;
+                case Menu.Settings:
+                    ShowSettingsMenu(false);
+                    if (GameManager.Instance.CurrentLevel == GameManager.Level.MainMenu)
+                    {
+                        ShowMainMenu(true);
+                    }
+                    else
+                    {
+                        ShowPauseMenuKeepTimeScale(true);
+                    }
+                    break;
+                case Menu.LevelSelect:
+                    ShowLevelSelect(false);
+                    ShowMainMenu(true);
+                    break;
+            }
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            switch (_currentMenu)
+            {
                 case Menu.Pause:
                     ShowPauseMenu(false);
                     break;
