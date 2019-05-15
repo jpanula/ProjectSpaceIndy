@@ -14,8 +14,6 @@ public class PlayerUnit : UnitBase
 	public float BlinkTime;
 	
 	[Header("UI Stuff")]
-	public TextMeshProUGUI FuelText;
-	public Image HealthBar;
 	public float HealthBarChangeSpeed = 10;
 	public float FuelBarChangeSpeed = 10;
 	public float ShipHUDTimeout = 3;
@@ -130,11 +128,9 @@ public class PlayerUnit : UnitBase
 		}
 		
 		float fillAmount = (float) Health.CurrentHealth / Health.MaxHealth;
-		HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, fillAmount, TimerManager.Instance.UiDeltaTime * HealthBarChangeSpeed);
-		_hpBarFill.fillAmount = HealthBar.fillAmount;
+		_hpBarFill.fillAmount = Mathf.Lerp(_hpBarFill.fillAmount, fillAmount, TimerManager.Instance.UiDeltaTime * HealthBarChangeSpeed);
 		fillAmount = FuelAmount / FuelCap;
 		_fuelBarFill.fillAmount = Mathf.Lerp(_fuelBarFill.fillAmount, fillAmount, TimerManager.Instance.UiDeltaTime * FuelBarChangeSpeed);
-		FuelText.text = "Fuel: " + FuelAmount.ToString("0.00");
 		
 		if (Input.GetButton("Fire3") || Input.GetAxis("Triggers") != 0)
 		{

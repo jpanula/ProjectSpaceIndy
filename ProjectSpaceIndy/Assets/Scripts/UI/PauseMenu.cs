@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
             OnBackToMainMenu.Invoke();
         }
         SceneManager.LoadScene(0);
+        GameManager.Score = 0;
         GameManager.Instance.CurrentLevel = GameManager.Level.MainMenu;
         MenuManager.Instance.ShowPauseMenu(false);
         MenuManager.Instance.ShowMainMenu(true);
