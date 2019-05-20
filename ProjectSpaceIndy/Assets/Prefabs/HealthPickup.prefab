@@ -82,6 +82,9 @@ MonoBehaviour:
   AttractionRadius: 3
   AttractionSpeed: 0.7
   SeparationRadius: 0.3
+  BlinkTime: 0.15
+  BlinkStartTime: 0
+  Renderer: {fileID: 2863583007821372264}
   PickupSound: {fileID: 0}
   HealthAmount: 2
 --- !u!1 &5561411775612468826
@@ -387,6 +390,12 @@ PrefabInstance:
 --- !u!4 &2863583007823665544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2863583007823528712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2863583007821372264 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: 2c1b2705f2b9a3942a7d42597f3d145d,
     type: 3}
   m_PrefabInstance: {fileID: 2863583007823528712}
   m_PrefabAsset: {fileID: 0}
