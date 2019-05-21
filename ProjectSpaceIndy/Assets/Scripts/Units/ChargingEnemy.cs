@@ -31,8 +31,12 @@ public class ChargingEnemy : UnitBase
     private Vector3 _targetPos;
 
     public AudioSource ChargeSound;
+    public AudioSource LaunchSound;
     private Node _currentNode;
-    private float _volume;
+    private float _chargeVolume;
+    private float _launchVolume;
+    private bool _isChargeAudioNull;
+    private bool _isLaunchAudioNull;
 
     public enum State
     {
@@ -48,13 +52,21 @@ public class ChargingEnemy : UnitBase
         _baseSpeed = Mover.Speed;
         _targetPos = Vector3.zero;
         AfterImage.enabled = false;
+        _isChargeAudioNull = ChargeSound == null;
+        _isLaunchAudioNull = LaunchSound == null;
+        
     }
 
     private void Start()
     {
-        if (ChargeSound != null)
+        if (!_isChargeAudioNull)
         {
-            _volume = ChargeSound.volume;
+            _chargeVolume = ChargeSound.volume;
+        }
+
+        if (!_isLaunchAudioNull)
+        {
+            _launchVolume = LaunchSound.volume;
         }
     }
 

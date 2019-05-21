@@ -79,7 +79,7 @@ MonoBehaviour:
   - {fileID: 1092684931422274249}
   DeathEffect: {fileID: 349892847301924243, guid: 65794d36f5f91064093ceb6f9defe061,
     type: 3}
-  ExplosionSound: {fileID: 6245573893390584228, guid: a38e19721397db64d8698c940950ff30,
+  ExplosionSound: {fileID: 5363308430700264670, guid: cb3d57a5ef1941d4f892d9fb97d38136,
     type: 3}
   RocketLauncher: {fileID: 7727962697590379883}
   DistanceFromPlayer: 12
@@ -113,16 +113,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
-        type: 3}
-      propertyPath: _startingHealth
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
-        type: 3}
-      propertyPath: _maxHealth
-      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3021860078181337205, guid: 077165beaab78884990027c42eef7d33,
         type: 3}
@@ -178,6 +168,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
+        type: 3}
+      propertyPath: _startingHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3021860078181337203, guid: 077165beaab78884990027c42eef7d33,
         type: 3}
