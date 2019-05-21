@@ -4,46 +4,38 @@ using UnityEngine;
 
 public class EscapeArrow : MonoBehaviour
 {
-    public Path Path;
     public float Speed;
+    public Path Path;
+    public float NextNodeDistance;
+    private RectTransform _rectTransform;
+    private Camera _mainCam;
     private Node _currentNode;
-    private Camera _mainCamera;
+    private Rect _viewportRect = new Rect(0, 0, 1, 1);
 
     private void Awake()
     {
-        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _rectTransform = GetComponent<RectTransform>();
+        _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     private void Update()
     {
-        var cameraRect = new Rect(
-            0, 0, Screen.width, Screen.height);
-        
-        var pos = transform.position;
-        
         if (!_currentNode)
         {
-            _currentNode = Path.GetClosestNode(pos);
+            _currentNode = Path.GetClosestNode(_mainCam.ScreenToWorldPoint(_rectTransform.position));
         }
 
-        if (pos == _currentNode.GetPosition())
+        Debug.Log("Arrow Position\nScreen: " + _rectTransform.position + " World: " + _mainCam.ScreenToWorldPoint(_rectTransform.position));
+        Debug.Log("Node Position\nScreen: " + _mainCam.WorldToScreenPoint(_currentNode.GetPosition()) + " World: " + _currentNode.GetPosition());
+        if (_viewportRect.Contains(_mainCam.WorldToViewportPoint(_currentNode.GetPosition())))
+        {
+            _rectTransform.position = Vector3.Lerp(_rectTransform.position, _mainCam.WorldToScreenPoint(_currentNode.GetPosition()), TimerManager.Instance.UiDeltaTime * Speed / Vector3.Distance(_mainCam.ScreenToWorldPoint(_rectTransform.position), _currentNode.GetPosition()));
+        }
+
+        if (Vector3.Distance(_mainCam.ScreenToWorldPoint(_rectTransform.position), _currentNode.GetPosition()) <=
+            NextNodeDistance)
         {
             _currentNode = Path.GetNextNode(_currentNode);
         }
-
-        var newPos = Vector3.Lerp(pos, _currentNode.GetPosition(), TimerManager.Instance.GameDeltaTime * Speed / Vector3.Distance(pos, _currentNode.GetPosition()));
-        var arrowScreenPos = _mainCamera.WorldToScreenPoint(newPos);
-        if (!cameraRect.Contains(arrowScreenPos))
-        {
-            arrowScreenPos.x = Mathf.Clamp(arrowScreenPos.x, cameraRect.xMin, cameraRect.xMax);
-            arrowScreenPos.y = Mathf.Clamp(arrowScreenPos.z, cameraRect.yMin, cameraRect.yMax);
-            newPos.x = _mainCamera.ScreenToWorldPoint(arrowScreenPos).x;
-            newPos.z = _mainCamera.ScreenToWorldPoint(arrowScreenPos).y;
-        }
-        transform.position = newPos;
-        pos = newPos;
-        var Ray = _mainCamera.ScreenPointToRay(_mainCamera.WorldToScreenPoint(pos));
-        var newRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(_currentNode.GetPosition() - pos, Ray.direction), -Ray.direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, newRot, TimerManager.Instance.GameDeltaTime * Speed);
     }
 }

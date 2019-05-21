@@ -46,6 +46,20 @@ public class Path : MonoBehaviour
         return nextNode;
     }
 
+    public Node GetPreviousNode(Node current)
+    {
+        var prevNode = Nodes[0];
+        for (int i = 0; i < Nodes.Length; i++)
+        {
+            if (current == Nodes[i])
+            {
+                prevNode = Nodes[(i - 1) % Nodes.Length];
+            }
+        }
+
+        return prevNode;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = GizmoColor;
@@ -59,5 +73,12 @@ public class Path : MonoBehaviour
                 }
             }
         }
+    }
+
+    private Vector3 GetClosestPointonPath(Vector3 position)
+    {
+        var closestPoint = new Vector3();
+        
+        return closestPoint;
     }
 }
