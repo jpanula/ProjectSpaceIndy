@@ -28,6 +28,10 @@ public class FuelPickup : PickupBase
         PlayerUnit player = other.GetComponent<PlayerUnit>();
         if (player != null)
         {
+            if (PickupSound != null)
+            {
+                Instantiate(PickupSound, transform.position, transform.rotation);
+            }
             GrantEffect(player);
             ResetPickup();
             if (!PickupManager.Instance.ReturnFuel(this))
