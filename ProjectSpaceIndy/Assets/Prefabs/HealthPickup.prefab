@@ -104,7 +104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9045688751917704567
 Transform:
   m_ObjectHideFlags: 0
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 5561411775612468826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.2}
+  m_LocalScale: {x: 0.73, y: 0.73, z: 0.05}
   m_Children: []
   m_Father: {fileID: 3698081597740754151}
   m_RootOrder: 0
@@ -144,7 +144,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cb2556ac8f7ca5d4faa2ae1a4596b3aa, type: 2}
+  - {fileID: 2100000, guid: 4fa47d3684b4ef0489dfde6877f9d61f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -329,13 +329,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: healtpickup-jakoavain
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fa47d3684b4ef0489dfde6877f9d61f, type: 2}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.033
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -343,19 +347,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.013514068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.004506525
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.32157135
+      value: -0.32169554
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9467782
+      value: 0.9468432
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_RootOrder
@@ -371,7 +375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -37.531002
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalScale.x
@@ -379,12 +383,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.05
+      value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4fa47d3684b4ef0489dfde6877f9d61f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c1b2705f2b9a3942a7d42597f3d145d, type: 3}
 --- !u!4 &2863583007823665544 stripped
