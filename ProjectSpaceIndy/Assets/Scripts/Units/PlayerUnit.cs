@@ -274,5 +274,6 @@ public class PlayerUnit : UnitBase
 		_invulnerabilityTimer = 0;
 
 		ResetUnit();
+		ScoreManager.Combo = 0;
 	}
 }

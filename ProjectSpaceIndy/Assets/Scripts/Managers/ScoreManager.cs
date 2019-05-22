@@ -26,6 +26,10 @@ public class ScoreManager : MonoBehaviour
             {
                 ResetComboTime();
             }
+            else if (Combo == 0)
+            {
+                ComboTimeLeft = 0;
+            }
             ComboMultiplier = Mathf.Clamp(1 + (Combo - 1) * MultiplierPerCombo, 1, ComboMaxMultiplier);
               
         }
