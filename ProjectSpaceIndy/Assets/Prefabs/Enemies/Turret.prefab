@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 6150377660379970198}
   - component: {fileID: 5266836592200930041}
   - component: {fileID: 5115707106109686401}
+  - component: {fileID: 3255187158090895630}
   m_Layer: 10
   m_Name: Turret
   m_TagString: Untagged
@@ -355,6 +356,20 @@ MonoBehaviour:
   FuelDropChance: 60
   HealthDropChance: 15
   DropRadius: 1
+--- !u!114 &3255187158090895630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150377660379970194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e09cf8d9bdcfde47a2790124129b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComboAmount: 1
+  ScoreAmount: 50
 --- !u!1001 &6761015984265800323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -362,6 +377,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6150377660379970199}
     m_Modifications:
+    - target: {fileID: 1123954758774201703, guid: 5214aa7e3aef3084da6e70f94f319a0a,
+        type: 3}
+      propertyPath: m_Name
+      value: TurretTop
+      objectReference: {fileID: 0}
     - target: {fileID: 6368266959142839356, guid: 5214aa7e3aef3084da6e70f94f319a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -416,11 +436,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1123954758774201703, guid: 5214aa7e3aef3084da6e70f94f319a0a,
-        type: 3}
-      propertyPath: m_Name
-      value: TurretTop
       objectReference: {fileID: 0}
     - target: {fileID: 4384068635433366928, guid: 5214aa7e3aef3084da6e70f94f319a0a,
         type: 3}

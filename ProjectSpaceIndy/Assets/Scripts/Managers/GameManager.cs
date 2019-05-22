@@ -14,8 +14,12 @@ public class GameManager : MonoBehaviour
         Test = 1,
         Level1 = 2
     }
-    
-    public static int Score;
+
+    public static float Score
+    {
+        get { return ScoreManager.Score; }
+        set { ScoreManager.Score = value; }
+    }
     public Level CurrentLevel;
 
     private static bool _escapePhase;
@@ -27,6 +31,7 @@ public class GameManager : MonoBehaviour
     public MenuManager MenuManager;
     public InputManager InputManager;
     public AudioManager AudioManager;
+    public ScoreManager ScoreManager;
     
     #endregion Manager Prefabs
 
@@ -85,6 +90,14 @@ public class GameManager : MonoBehaviour
         else
         {
             AudioManager = AudioManager.Instance;
+        }
+        if (ScoreManager.Instance == null)
+        {
+            ScoreManager = Instantiate(ScoreManager);
+        }
+        else
+        {
+            ScoreManager = ScoreManager.Instance;
         }
     }
 

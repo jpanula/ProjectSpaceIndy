@@ -97,6 +97,20 @@ MonoBehaviour:
   TeleportDistanceFromPlayer: 5
   TeleportEffect: {fileID: 8575243468302792608, guid: e25691af5280cb5449a0144b05b2c7ec,
     type: 3}
+--- !u!114 &3725513457666365265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092684931251344077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e09cf8d9bdcfde47a2790124129b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComboAmount: 25
+  ScoreAmount: 1000
 --- !u!1001 &2793976267954084543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,16 +118,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3021860078181337202, guid: 077165beaab78884990027c42eef7d33,
-        type: 3}
-      propertyPath: m_Name
-      value: StrongEnemyBoss
-      objectReference: {fileID: 0}
-    - target: {fileID: 3021860078181337202, guid: 077165beaab78884990027c42eef7d33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3021860078181337205, guid: 077165beaab78884990027c42eef7d33,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -168,6 +172,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021860078181337202, guid: 077165beaab78884990027c42eef7d33,
+        type: 3}
+      propertyPath: m_Name
+      value: StrongEnemyBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021860078181337202, guid: 077165beaab78884990027c42eef7d33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3021860078181337207, guid: 077165beaab78884990027c42eef7d33,
         type: 3}

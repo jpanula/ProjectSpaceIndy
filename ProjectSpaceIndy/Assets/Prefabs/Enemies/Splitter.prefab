@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 1395168568765788287}
   - component: {fileID: 276932595520700177}
   - component: {fileID: 6139921557169831876}
+  - component: {fileID: 7758338427202506819}
   m_Layer: 10
   m_Name: Splitter
   m_TagString: Untagged
@@ -371,6 +372,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.93
   m_Center: {x: 0, y: 0, z: 0.33}
+--- !u!114 &7758338427202506819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380409496318297589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e09cf8d9bdcfde47a2790124129b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComboAmount: 1
+  ScoreAmount: 15
 --- !u!1001 &3133324291608815732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,14 +393,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 805205962621911575}
     m_Modifications:
-    - target: {fileID: 100000, guid: 34037c31c5ebe4a4d83578474a6f7e67, type: 3}
-      propertyPath: m_Name
-      value: jakautunut-vihollinen
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 34037c31c5ebe4a4d83578474a6f7e67, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 34037c31c5ebe4a4d83578474a6f7e67, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -429,6 +436,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 34037c31c5ebe4a4d83578474a6f7e67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 34037c31c5ebe4a4d83578474a6f7e67, type: 3}
+      propertyPath: m_Name
+      value: jakautunut-vihollinen
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 34037c31c5ebe4a4d83578474a6f7e67, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300000, guid: 34037c31c5ebe4a4d83578474a6f7e67, type: 3}
