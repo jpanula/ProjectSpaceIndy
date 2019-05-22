@@ -9503,7 +9503,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8af408bc8f644f9469986c6ff8c1f608, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -19565,8 +19565,6 @@ MonoBehaviour:
   ShootDelay: 0.07
   InvulnerabilityTime: 2.2
   BlinkTime: 0.15
-  FuelText: {fileID: 0}
-  HealthBar: {fileID: 0}
   HealthBarChangeSpeed: 10
   FuelBarChangeSpeed: 10
   ShipHUDTimeout: 3
@@ -19714,6 +19712,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8817842811518300645}
     m_Modifications:
+    - target: {fileID: 694143216478530044, guid: 277f1fd06d857d846b939589c372de25,
+        type: 3}
+      propertyPath: m_Name
+      value: ShipHUD
+      objectReference: {fileID: 0}
     - target: {fileID: 2328167450640452085, guid: 277f1fd06d857d846b939589c372de25,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19818,11 +19821,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 694143216478530044, guid: 277f1fd06d857d846b939589c372de25,
-        type: 3}
-      propertyPath: m_Name
-      value: ShipHUD
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277f1fd06d857d846b939589c372de25, type: 3}
