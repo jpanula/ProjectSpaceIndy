@@ -4787,6 +4787,7 @@ GameObject:
   - component: {fileID: 6642691921997612394}
   - component: {fileID: 6006831791126192901}
   - component: {fileID: 3075855196172803743}
+  - component: {fileID: 2389463716729213356}
   m_Layer: 10
   m_Name: Charger
   m_TagString: Untagged
@@ -4846,6 +4847,7 @@ MonoBehaviour:
   ChargingEffect: {fileID: 3907110961032512755}
   CurrentState: 0
   ChargeSound: {fileID: 6006831791126192901}
+  LaunchSound: {fileID: 0}
 --- !u!135 &6642691921997612391
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5012,6 +5014,20 @@ MonoBehaviour:
   FuelDropChance: 100
   HealthDropChance: 100
   DropRadius: 1.5
+--- !u!114 &2389463716729213356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642691921997612390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e09cf8d9bdcfde47a2790124129b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComboAmount: 1
+  ScoreAmount: 50
 --- !u!1 &6642691922685555826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,6 +5089,7 @@ MonoBehaviour:
   Damage: 1
   KnockBackSpeed: 10
   KnockBackTime: 0.3
+  HitSound: {fileID: 0}
 --- !u!54 &6642691922685555830
 Rigidbody:
   m_ObjectHideFlags: 0

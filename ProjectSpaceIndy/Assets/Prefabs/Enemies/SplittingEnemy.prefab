@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 4053659834904975538}
   - component: {fileID: 1145601273633243284}
   - component: {fileID: 6496147565289665076}
+  - component: {fileID: 6641578489159363695}
   m_Layer: 10
   m_Name: SplittingEnemy
   m_TagString: Untagged
@@ -287,6 +288,20 @@ MonoBehaviour:
   _minHealth: 0
   _isImmortal: 0
   _isInvulnerable: 0
+--- !u!114 &6641578489159363695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165983607981738163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e09cf8d9bdcfde47a2790124129b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComboAmount: 1
+  ScoreAmount: 40
 --- !u!1 &8174592363214580066
 GameObject:
   m_ObjectHideFlags: 0

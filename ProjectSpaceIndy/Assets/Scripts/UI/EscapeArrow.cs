@@ -38,8 +38,6 @@ public class EscapeArrow : MonoBehaviour
 
         var arrowViewportPosition = _mainCam.ScreenToViewportPoint(_rectTransform.position);
         
-        Debug.Log("Arrow Position\nScreen: " + _rectTransform.position + " World: " + _mainCam.ScreenToWorldPoint(_rectTransform.position));
-        Debug.Log("Node Position\nScreen: " + nodeScreenPosition + " World: " + _currentNode.GetPosition());
         if (_viewportRect.Contains(_mainCam.WorldToViewportPoint(_currentNode.GetPosition())))
         {
             _currentNode = Path.GetNextNode(_currentNode);
