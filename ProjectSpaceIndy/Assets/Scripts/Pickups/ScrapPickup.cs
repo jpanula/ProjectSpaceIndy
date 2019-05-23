@@ -14,7 +14,7 @@ public class ScrapPickup : PickupBase
     private void Awake()
     {
         _meshFilter = GetComponent<MeshFilter>();
-        if(Models.Length > 0)
+        if(Models != null && Models.Length > 0 )
         {
             int random = Random.Range(0, Models.Length);
             _randomModel = Models[random];
