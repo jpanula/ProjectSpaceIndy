@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4792791794338633242}
   m_Layer: 0
   m_Name: reliikkisauva
-  m_TagString: Untagged
+  m_TagString: Relic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +96,9 @@ MonoBehaviour:
   AttractionRadius: 0
   AttractionSpeed: 0
   SeparationRadius: 0.3
+  BlinkTime: 0.15
+  BlinkStartTime: 0
+  Renderer: {fileID: 0}
   PickupSound: {fileID: 0}
   Score: 100
   FinalRelic: 1

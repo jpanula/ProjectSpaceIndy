@@ -8,6 +8,12 @@ public class RelicPickup : PickupBase
     public bool FinalRelic;
 
 
+    protected override void Awake()
+    {
+        GameManager.TotalRelics = GameManager.TotalRelics + 1;
+        base.Awake();
+    }
+
     protected override void OnTriggerEnter(Collider other)
     {
         PlayerUnit player = other.GetComponent<PlayerUnit>();
@@ -18,6 +24,8 @@ public class RelicPickup : PickupBase
             {
                 GameManager.EscapePhase = true;
             }
+
+            GameManager.RelicsCollected = GameManager.RelicsCollected + 1;
             Destroy(gameObject);
         }
     }

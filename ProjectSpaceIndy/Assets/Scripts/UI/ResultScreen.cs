@@ -9,6 +9,7 @@ public class ResultScreen : MonoBehaviour
 {
     public TextMeshProUGUI Score;
     public TextMeshProUGUI Time;
+    public TextMeshProUGUI Relics;
     private double _gametimeInSeconds;
     private double _gametimeInMinutes;
     private double _gametimeInHours;
@@ -43,6 +44,8 @@ public class ResultScreen : MonoBehaviour
         }
         else
         { Time.text = "Time: " + _gametimeInSeconds + " seconds"; }
+        
+        Relics.text = "Relics collected: " + GameManager.RelicsCollected + " / " + GameManager.TotalRelics;
     }
 
     public void LevelSelect()
@@ -53,6 +56,8 @@ public class ResultScreen : MonoBehaviour
         }
         GameManager.EscapePhase = false;
         GameManager.Score = 0;
+        GameManager.RelicsCollected = 0;
+        GameManager.TotalRelics = 0;
         SceneManager.LoadScene(0, LoadSceneMode.Single);
         GameManager.Instance.CurrentLevel = GameManager.Level.MainMenu;
         MenuManager.Instance.ShowResultScreen(false);
@@ -68,6 +73,8 @@ public class ResultScreen : MonoBehaviour
         }
         GameManager.EscapePhase = false;
         GameManager.Score = 0;
+        GameManager.RelicsCollected = 0;
+        GameManager.TotalRelics = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
         TimerManager.Instance.SetScaledSceneLoadTime();
         MenuManager.Instance.ShowResultScreen(false);

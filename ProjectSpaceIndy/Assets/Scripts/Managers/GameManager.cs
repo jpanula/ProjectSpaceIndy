@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public Level CurrentLevel;
 
     private static bool _escapePhase;
+    private static int _relicsCollected;
+    private static int _totalRelics;
     
     #region Manager Prefabs
 
@@ -128,5 +130,17 @@ public class GameManager : MonoBehaviour
     {
         get { return _escapePhase; }
         set { _escapePhase = value; }
+    }
+
+    public static int RelicsCollected
+    {
+        get { return _relicsCollected; }
+        set { _relicsCollected = value; }
+    }
+
+    public static int TotalRelics
+    {
+        get { return _totalRelics; }
+        set { _totalRelics = value; }
     }
 }

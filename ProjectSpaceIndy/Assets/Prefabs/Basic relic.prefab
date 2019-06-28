@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5633051144452057015}
   m_Layer: 15
   m_Name: Basic relic
-  m_TagString: Untagged
+  m_TagString: Relic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,8 +126,12 @@ MonoBehaviour:
   AttractionRadius: 2
   AttractionSpeed: 0.45
   SeparationRadius: 0.3
+  BlinkTime: 0.15
+  BlinkStartTime: 0
+  Renderer: {fileID: 0}
   PickupSound: {fileID: 0}
   Score: 30
+  Models: []
 --- !u!95 &5633051144452057015
 Animator:
   serializedVersion: 3
